@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class RouletteBall : MonoBehaviour
 {
@@ -22,20 +23,12 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log($"Ball collided with: {collision.collider.name}");
+        Debug.Log($"Ball collided with: {col.collider.name}");
     }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Script is alive!");
-        }
-    }
-
 
 
     private void OnTriggerStay2D(Collider2D other)

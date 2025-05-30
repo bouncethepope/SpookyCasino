@@ -108,7 +108,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6529646735314826077}
-  - {fileID: 2998871535827817418}
   m_Father: {fileID: 1872300289723669517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761528601576415499
@@ -189,6 +188,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &842597069446786280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2944803525403177517}
+  m_Layer: 0
+  m_Name: Barriers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2944803525403177517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842597069446786280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1872300289723669517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &897272058421122258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +2012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1872300289723669517}
+  - component: {fileID: 1960998250489494321}
   m_Layer: 0
   m_Name: Roulette Wheel 1
   m_TagString: Untagged
@@ -2005,9 +2036,24 @@ Transform:
   - {fileID: 9034051962919791287}
   - {fileID: 6816552358055454745}
   - {fileID: 225798572558396679}
-  - {fileID: 2154131536793971250}
+  - {fileID: 2944803525403177517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -642.29}
+--- !u!114 &1960998250489494321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968961232770824358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228e3ea6889c50a42b66db346e7d8a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSpinSpeed: 1000
+  friction: 100
+  spinOnStart: 1
 --- !u!1 &6299058620089637369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,112 +3186,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &9057087679168486508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2154131536793971250}
-  - component: {fileID: 5673764790199984707}
-  m_Layer: 0
-  m_Name: Roulette Wheel Logic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2154131536793971250
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057087679168486508}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1872300289723669517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5673764790199984707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057087679168486508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228e3ea6889c50a42b66db346e7d8a3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialSpinSpeed: 720
-  friction: 50
-  spinOnStart: 1
---- !u!1001 &5913735387983493929
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 225798572558396679}
-    m_Modifications:
-    - target: {fileID: 4316438395122756644, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_Name
-      value: Slot_10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.156
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.028
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2a601f77fa154a647be689d135b76313, type: 3}
---- !u!4 &2998871535827817418 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8903597518821370083, guid: 2a601f77fa154a647be689d135b76313, type: 3}
-  m_PrefabInstance: {fileID: 5913735387983493929}
-  m_PrefabAsset: {fileID: 0}
