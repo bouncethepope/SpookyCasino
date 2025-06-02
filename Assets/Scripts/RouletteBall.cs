@@ -52,6 +52,12 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
+    public GameObject GetWinningSlot()
+    {
+        return resultSent ? currentSlot?.gameObject : null;
+    }
+
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other == currentSlot)
