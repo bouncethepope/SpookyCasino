@@ -1,11 +1,10 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RouletteBall : MonoBehaviour
 {
     [Header("Detection Settings")]
     public float timeToConfirm = 3f; // How long the ball must stay in a slot
-    public WheelSpinner wheelSpinner; // Optional reference to spinner (not enforced yet)
+    public WheelSpinner wheelSpinner; // Optional reference to spinner
 
     private Collider2D currentSlot = null;
     private float timeInSlot = 0f;
@@ -16,26 +15,17 @@ public class RouletteBall : MonoBehaviour
         if (other.gameObject.name.StartsWith("Slot_"))
         {
             Debug.Log($"🎯 Entered slot collider: {other.gameObject.name}");
-
             currentSlot = other;
             timeInSlot = 0f;
             resultSent = false;
         }
+
     }
-
-
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log($"Ball collided with: {col.collider.name}");
-    }
-
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other == currentSlot)
         {
-            // Optional: skip result if the wheel is still spinning
             if (wheelSpinner != null && wheelSpinner.IsSpinning())
             {
                 timeInSlot = 0f;
@@ -52,21 +42,19 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
-    public GameObject GetWinningSlot()
-    {
-        return resultSent ? currentSlot?.gameObject : null;
-    }
-
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other == currentSlot)
         {
             Debug.Log($"❌ Exited slot: {other.gameObject.name}");
-
             currentSlot = null;
             timeInSlot = 0f;
             resultSent = false;
         }
+    }
+
+    public GameObject GetWinningSlot()
+    {
+        return resultSent ? currentSlot?.gameObject : null;
     }
 }

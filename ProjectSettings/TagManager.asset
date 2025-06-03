@@ -8,6 +8,7 @@ TagManager:
   - Slot
   - Wheel
   - Barrier
+  - BetZone
   layers:
   - Default
   - TransparentFX
@@ -16,11 +17,11 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Bet Slot
   - Ball
   - Slot
   - Wheel
-  - 
+  - Bet Chip
   - 
   - 
   - 
@@ -50,6 +51,9 @@ TagManager:
     locked: 0
   - name: Barrier
     uniqueID: 268149101
+    locked: 0
+  - name: Betting Chip
+    uniqueID: 2946994423
     locked: 0
   m_RenderingLayers:
   - Default

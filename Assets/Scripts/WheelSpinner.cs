@@ -7,20 +7,27 @@ public class WheelSpinner : MonoBehaviour
     public float friction = 50f;          // Degrees per second squared
     public bool spinOnStart = false;
 
+    public float spinThreshold = 5f;      // Minimum spin for result
+    private Rigidbody2D rb;
+
     private float currentSpinSpeed = 0f;
     private bool isSpinning = false;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    public bool IsSpinning()
+    {
+        return Mathf.Abs(rb.angularVelocity) > spinThreshold;
+    }
 
     void Start()
     {
         if (spinOnStart)
             StartSpin();
     }
-
-    public bool IsSpinning()
-    {
-        return isSpinning;
-    }
-
 
     void Update()
     {

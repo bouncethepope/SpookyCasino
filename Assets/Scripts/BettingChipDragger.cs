@@ -12,31 +12,14 @@ public class BettingChipDragger : MonoBehaviour
     private Vector3 offset;
 
     private Camera mainCamera;
+    private Collider2D selfCollider;
 
     private void Awake()
     {
         mainCamera = Camera.main;
         originalScale = transform.localScale;
+        selfCollider = GetComponent<Collider2D>();
     }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                Debug.Log($"Raycast hit: {hit.collider.gameObject.name} on layer {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
-            }
-            else
-            {
-                Debug.Log("Raycast missed.");
-            }
-        }
-    }
-
 
     void OnMouseDown()
     {
@@ -63,10 +46,14 @@ public class BettingChipDragger : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.1f);
         Debug.Log($"🔍 Chip dropped at {transform.position}, detecting {hits.Length} overlaps:");
 
+        int count = 0;
         foreach (var hit in hits)
         {
-            if (hit.gameObject != gameObject)
-                Debug.Log($"    -> Overlapping: {hit.gameObject.name}");
+            if (hit != selfCollider && hit.CompareTag("BetZone"))
+            {
+                count++;
+                Debug.Log($"    [{count}] {hit.gameObject.name} (Tag: {hit.gameObject.tag}, Layer: {LayerMask.LayerToName(hit.gameObject.layer)})");
+            }
         }
     }
 
