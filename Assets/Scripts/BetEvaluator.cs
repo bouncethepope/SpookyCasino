@@ -1,57 +1,73 @@
-﻿// Bet Evaluator checks the physics of all bets, to see if they are winners or not.
-
-
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BetEvaluator : MonoBehaviour
 {
-    [Tooltip("All chips currently placed on the table")]
-    public BettingChipDragger[] placedChips;
+    [Header("References")]
+    public RouletteBall rouletteBall;
 
-    [ContextMenu("🧮 Evaluate Bets (Manual)")]
-    public void EvaluateBetsManually()
+    [Header("Chips")]
+    public List<GameObject> placedChips = new List<GameObject>();
+
+    [ContextMenu("Evaluate Bets")]
+    public void EvaluateBets()
     {
-        // Use modern Unity-safe method
-        var ball = FindFirstObjectByType<RouletteBall>();
-        if (ball == null)
-        {
-            Debug.LogWarning("No RouletteBall found in the scene.");
-            return;
-        }
-
-        GameObject winningSlot = ball.GetWinningSlot();
+        GameObject winningSlot = rouletteBall.GetWinningSlot();
         if (winningSlot == null)
         {
-            Debug.Log("❓ No winning slot registered yet.");
+            Debug.LogWarning("❌ No winning slot available yet.");
             return;
         }
 
-        EvaluateBets(winningSlot);
-    }
-
-    public void EvaluateBets(GameObject winningSlot)
-    {
-        Debug.Log($"🎲 Evaluating bets against winning slot: {winningSlot.name}");
+        RouletteSlot slotComponent = winningSlot.GetComponent<RouletteSlot>();
+        if (slotComponent == null)
+        {
+            Debug.LogWarning("❌ Winning slot has no RouletteSlot component.");
+            return;
+        }
 
         foreach (var chip in placedChips)
         {
             Collider2D chipCollider = chip.GetComponent<Collider2D>();
-            if (chipCollider == null)
-            {
-                Debug.LogWarning($"⚠️ Chip '{chip.name}' has no Collider2D.");
-                continue;
-            }
+            if (chipCollider == null) continue;
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, 0.1f);
             bool isWinning = false;
 
             foreach (var hit in hits)
             {
+                if (!hit.CompareTag("BetZone")) continue;
                 BetZone betZone = hit.GetComponent<BetZone>();
-                if (betZone != null && betZone.linkedSlot == winningSlot)
+                if (betZone == null) continue;
+
+                // Direct match
+                if (betZone.linkedSlot == winningSlot)
                 {
                     isWinning = true;
                     break;
+                }
+
+                // Grouped match
+                if (betZone.groupType != BetGroupType.None)
+                {
+                    isWinning = betZone.groupType switch
+                    {
+                        BetGroupType.Red => slotComponent.color == RouletteColor.Red,
+                        BetGroupType.Black => slotComponent.color == RouletteColor.Black,
+                        BetGroupType.Even => slotComponent.parity == RouletteParity.Even,
+                        BetGroupType.Odd => slotComponent.parity == RouletteParity.Odd,
+                        BetGroupType.First_1_12 => slotComponent.dozen == RouletteDozen.First_1_12,
+                        BetGroupType.Second_13_24 => slotComponent.dozen == RouletteDozen.Second_13_24,
+                        BetGroupType.Third_25_36 => slotComponent.dozen == RouletteDozen.Third_25_36,
+                        BetGroupType.Low_1_18 => slotComponent.half == RouletteHalf.Low_1_18,
+                        BetGroupType.High_19_36 => slotComponent.half == RouletteHalf.High_19_36,
+                        BetGroupType.Top => slotComponent.line == RouletteLine.Top,
+                        BetGroupType.Middle => slotComponent.line == RouletteLine.Middle,
+                        BetGroupType.Bottom => slotComponent.line == RouletteLine.Bottom,
+                        _ => false
+                    };
+
+                    if (isWinning) break;
                 }
             }
 

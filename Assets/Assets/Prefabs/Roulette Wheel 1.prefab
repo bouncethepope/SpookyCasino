@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4123960507538488997}
   - component: {fileID: 1130006865619063931}
+  - component: {fileID: 5913528758313448820}
   m_Layer: 0
   m_Name: Slot_23
   m_TagString: Untagged
@@ -78,6 +79,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5913528758313448820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334671052399564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 23
+  color: 1
+  parity: 1
+  half: 2
+  dozen: 2
+  line: 2
 --- !u!1 &109505015608260386
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499483331642274225}
   - component: {fileID: 4668534071053049195}
+  - component: {fileID: 5031353182444009850}
   m_Layer: 0
   m_Name: Slot_0
   m_TagString: Untagged
@@ -694,6 +714,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5031353182444009850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761528601576415499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 0
+  color: 0
+  parity: 0
+  half: 0
+  dozen: 0
+  line: 0
 --- !u!1 &824133697772095541
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737919466916471024}
   - component: {fileID: 2095901781742453092}
+  - component: {fileID: 5304533993050878720}
   m_Layer: 0
   m_Name: Slot_11
   m_TagString: Untagged
@@ -997,6 +1036,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5304533993050878720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897272058421122258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 11
+  color: 2
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 2
 --- !u!1 &962836119110257996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5317828121877859794}
   - component: {fileID: 4994639569796080526}
+  - component: {fileID: 2863502308370369528}
   m_Layer: 0
   m_Name: Slot_20
   m_TagString: Untagged
@@ -1200,6 +1258,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2863502308370369528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006468143820055729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 20
+  color: 2
+  parity: 2
+  half: 2
+  dozen: 2
+  line: 2
 --- !u!1 &1244947174015737499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5885552239277586667}
   - component: {fileID: 559524134969226009}
+  - component: {fileID: 3253011275304209374}
   m_Layer: 0
   m_Name: Slot_5
   m_TagString: Untagged
@@ -1278,6 +1355,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3253011275304209374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244947174015737499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 5
+  color: 1
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 2
 --- !u!1 &1393540810259998965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,6 +2014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 620668738131768254}
   - component: {fileID: 8072536046733031889}
+  - component: {fileID: 4369359991619429452}
   m_Layer: 0
   m_Name: Slot_35
   m_TagString: Untagged
@@ -1987,6 +2083,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4369359991619429452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450845479317379162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 35
+  color: 2
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 2
 --- !u!1 &2493121279034449243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +2111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3960483979591910825}
   - component: {fileID: 5622256431884432113}
+  - component: {fileID: 803792710676139190}
   m_Layer: 0
   m_Name: Slot_36
   m_TagString: Untagged
@@ -2065,6 +2180,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &803792710676139190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493121279034449243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 36
+  color: 1
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 1
 --- !u!1 &2508057952802826609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,6 +2333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5376919092148997641}
   - component: {fileID: 8716323557910450392}
+  - component: {fileID: 8634432048759618678}
   m_Layer: 0
   m_Name: Slot_19
   m_TagString: Untagged
@@ -2268,6 +2402,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8634432048759618678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515399132185218050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 19
+  color: 2
+  parity: 1
+  half: 2
+  dozen: 2
+  line: 3
 --- !u!1 &2674223093283207137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,6 +2430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6584243519675182126}
   - component: {fileID: 7514686783502471303}
+  - component: {fileID: 7323298173218038518}
   m_Layer: 0
   m_Name: Slot_30
   m_TagString: Untagged
@@ -2346,6 +2499,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7323298173218038518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674223093283207137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 30
+  color: 1
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 1
 --- !u!1 &2709540131928949927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,6 +2527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7519259028478976402}
   - component: {fileID: 1337054769887264176}
+  - component: {fileID: 2455722259635835226}
   m_Layer: 0
   m_Name: Slot_32
   m_TagString: Untagged
@@ -2424,6 +2596,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2455722259635835226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709540131928949927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 32
+  color: 1
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 2
 --- !u!1 &2719309497388586337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2397805293982092312}
   - component: {fileID: 3911393087658315455}
+  - component: {fileID: 3705164196552889553}
   m_Layer: 0
   m_Name: Slot_28
   m_TagString: Untagged
@@ -2502,6 +2693,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3705164196552889553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719309497388586337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 28
+  color: 1
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 3
 --- !u!1 &2822510507829980346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,6 +2971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6262160849322947610}
   - component: {fileID: 1440197922999978235}
+  - component: {fileID: 630271665239103131}
   m_Layer: 0
   m_Name: Slot_14
   m_TagString: Untagged
@@ -2830,6 +3040,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &630271665239103131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963816074946182161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 14
+  color: 1
+  parity: 2
+  half: 1
+  dozen: 2
+  line: 2
 --- !u!1 &2990685743304985039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,6 +3225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6935789128528480132}
   - component: {fileID: 6802159457871773335}
+  - component: {fileID: 6330769878875236433}
   m_Layer: 0
   m_Name: Slot_9
   m_TagString: Untagged
@@ -3065,6 +3294,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6330769878875236433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062402915293296871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 9
+  color: 1
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 1
 --- !u!1 &3189101642436901834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,6 +3604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9006844710011744721}
   - component: {fileID: 8943968750912996542}
+  - component: {fileID: 3116238725794240089}
   m_Layer: 0
   m_Name: Slot_24
   m_TagString: Untagged
@@ -3425,6 +3673,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3116238725794240089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272386034342136301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 24
+  color: 2
+  parity: 2
+  half: 2
+  dozen: 2
+  line: 1
 --- !u!1 &3288977673802205790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +3826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1663365148817477698}
   - component: {fileID: 5265739416125461776}
+  - component: {fileID: 8584588217025999294}
   m_Layer: 0
   m_Name: Slot_16
   m_TagString: Untagged
@@ -3628,6 +3895,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8584588217025999294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331427463698711400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 16
+  color: 1
+  parity: 2
+  half: 1
+  dozen: 2
+  line: 3
 --- !u!1 &3463277149815439457
 GameObject:
   m_ObjectHideFlags: 0
@@ -3914,6 +4199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4532287528422853067}
   - component: {fileID: 1330290987609286006}
+  - component: {fileID: 4211310092831721275}
   m_Layer: 0
   m_Name: Slot_2
   m_TagString: Untagged
@@ -3982,6 +4268,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4211310092831721275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3610447919214481707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 2
+  color: 2
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 2
 --- !u!1 &3614282556135855255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,6 +4392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8380113051587697267}
   - component: {fileID: 8946848827736556440}
+  - component: {fileID: 2625496600983997345}
   m_Layer: 0
   m_Name: Slot_31
   m_TagString: Untagged
@@ -4156,6 +4461,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2625496600983997345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954011519518982463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 31
+  color: 2
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 3
 --- !u!1 &4153354078695115520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,6 +4489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893206133697075716}
   - component: {fileID: 2476277003166027088}
+  - component: {fileID: 4736602216275804565}
   m_Layer: 0
   m_Name: Slot_8
   m_TagString: Untagged
@@ -4234,6 +4558,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4736602216275804565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153354078695115520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 8
+  color: 2
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 2
 --- !u!1 &4224705533463710284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,6 +4586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7854053512378359832}
   - component: {fileID: 2841774218471392528}
+  - component: {fileID: 6153221083083968550}
   m_Layer: 0
   m_Name: Slot_7
   m_TagString: Untagged
@@ -4312,6 +4655,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6153221083083968550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224705533463710284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 7
+  color: 1
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 3
 --- !u!1 &4296529873515915674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4479,6 +4840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001766746746787638}
   - component: {fileID: 2230235530498359857}
+  - component: {fileID: 4527357850583363157}
   m_Layer: 0
   m_Name: Slot_22
   m_TagString: Untagged
@@ -4547,6 +4909,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4527357850583363157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402699625941096601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 22
+  color: 2
+  parity: 2
+  half: 2
+  dozen: 2
+  line: 3
 --- !u!1 &4468047799977062217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5124,6 +5504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5903443536570310209}
   - component: {fileID: 4889393180194889375}
+  - component: {fileID: 6440459605357442120}
   m_Layer: 0
   m_Name: Slot_10
   m_TagString: Untagged
@@ -5192,6 +5573,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6440459605357442120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4646847304137339268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 10
+  color: 2
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 3
 --- !u!1 &4776458002887769524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,6 +5758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5545171856484197148}
   - component: {fileID: 4088145682787311133}
+  - component: {fileID: 7700461645498827473}
   m_Layer: 0
   m_Name: Slot_26
   m_TagString: Untagged
@@ -5427,6 +5827,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7700461645498827473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877383586372318970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 26
+  color: 2
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 2
 --- !u!1 &4885619355103337613
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,6 +5855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4667708333822708876}
   - component: {fileID: 7701738238620412602}
+  - component: {fileID: 635779528004769429}
   m_Layer: 0
   m_Name: Slot_3
   m_TagString: Untagged
@@ -5505,6 +5924,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &635779528004769429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885619355103337613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 3
+  color: 1
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 1
 --- !u!1 &4935846666008222050
 GameObject:
   m_ObjectHideFlags: 0
@@ -6082,6 +6519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798568727477790404}
   - component: {fileID: 4567077347890200163}
+  - component: {fileID: 2988383020265922818}
   m_Layer: 0
   m_Name: Slot_12
   m_TagString: Untagged
@@ -6150,6 +6588,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2988383020265922818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657753251796168630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 12
+  color: 1
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 1
 --- !u!1 &5699184361682992759
 GameObject:
   m_ObjectHideFlags: 0
@@ -6716,6 +7172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267513788650865194}
   - component: {fileID: 4691030165621652255}
+  - component: {fileID: 1348051973601386309}
   m_Layer: 0
   m_Name: Slot_13
   m_TagString: Untagged
@@ -6784,6 +7241,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1348051973601386309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299058620089637369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 13
+  color: 2
+  parity: 1
+  half: 1
+  dozen: 2
+  line: 3
 --- !u!1 &6396862631275804104
 GameObject:
   m_ObjectHideFlags: 0
@@ -7201,6 +7676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8424950966955487583}
   - component: {fileID: 4184868443508369333}
+  - component: {fileID: 4467666808865790904}
   m_Layer: 0
   m_Name: Slot_6
   m_TagString: Untagged
@@ -7269,6 +7745,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4467666808865790904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872734645968417761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 6
+  color: 2
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 1
 --- !u!1 &6974060693849898959
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2145470391304143542}
   - component: {fileID: 223459901833045427}
+  - component: {fileID: 5234944681586601705}
   m_Layer: 0
   m_Name: Slot_34
   m_TagString: Untagged
@@ -7347,6 +7842,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5234944681586601705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974060693849898959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 34
+  color: 1
+  parity: 2
+  half: 2
+  dozen: 3
+  line: 3
 --- !u!1 &7252553192541168753
 GameObject:
   m_ObjectHideFlags: 0
@@ -7671,6 +8184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7608493050856950882}
   - component: {fileID: 7563537926370503077}
+  - component: {fileID: 597999350960827863}
   m_Layer: 0
   m_Name: Slot_17
   m_TagString: Untagged
@@ -7739,6 +8253,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &597999350960827863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658592252568010270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 17
+  color: 2
+  parity: 1
+  half: 1
+  dozen: 2
+  line: 2
 --- !u!1 &7686089006258267389
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,6 +8709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2560179683176701711}
   - component: {fileID: 3664953215715934835}
+  - component: {fileID: 3720073639135577784}
   m_Layer: 0
   m_Name: Slot_25
   m_TagString: Untagged
@@ -8245,6 +8778,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3720073639135577784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866651479838133324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 25
+  color: 1
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 3
 --- !u!1 &7893610429211287790
 GameObject:
   m_ObjectHideFlags: 0
@@ -8287,6 +8838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3860700795816580753}
   - component: {fileID: 5237377687402910051}
+  - component: {fileID: 6835603873941144361}
   m_Layer: 0
   m_Name: Slot_33
   m_TagString: Untagged
@@ -8355,6 +8907,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6835603873941144361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900291886329874460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 33
+  color: 2
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 1
 --- !u!1 &8215303576000657995
 GameObject:
   m_ObjectHideFlags: 0
@@ -8397,6 +8967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304316979351749244}
   - component: {fileID: 4722969425142235597}
+  - component: {fileID: 4120982655809700175}
   m_Layer: 0
   m_Name: Slot_29
   m_TagString: Untagged
@@ -8465,6 +9036,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4120982655809700175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256174131435439243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 29
+  color: 2
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 2
 --- !u!1 &8294773159649365528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,6 +9308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3887296023614913345}
   - component: {fileID: 3112799065447711954}
+  - component: {fileID: 539959502540062187}
   m_Layer: 0
   m_Name: Slot_27
   m_TagString: Untagged
@@ -8787,6 +9377,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &539959502540062187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490369524430616091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 27
+  color: 1
+  parity: 1
+  half: 2
+  dozen: 3
+  line: 1
 --- !u!1 &8499801680118877820
 GameObject:
   m_ObjectHideFlags: 0
@@ -8797,6 +9405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4589356629701593183}
   - component: {fileID: 6033702846117597728}
+  - component: {fileID: 4254687184286921708}
   m_Layer: 0
   m_Name: Slot_21
   m_TagString: Untagged
@@ -8865,6 +9474,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4254687184286921708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499801680118877820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 21
+  color: 1
+  parity: 1
+  half: 2
+  dozen: 2
+  line: 1
 --- !u!1 &8568811802799618493
 GameObject:
   m_ObjectHideFlags: 0
@@ -8875,6 +9502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2642375391000530723}
   - component: {fileID: 3304889813930594705}
+  - component: {fileID: 9135064195951141873}
   m_Layer: 0
   m_Name: Slot_1
   m_TagString: Untagged
@@ -8943,6 +9571,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &9135064195951141873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568811802799618493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 1
+  color: 1
+  parity: 1
+  half: 1
+  dozen: 1
+  line: 3
 --- !u!1 &8612416759809856854
 GameObject:
   m_ObjectHideFlags: 0
@@ -8953,6 +9599,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6267948926298880385}
   - component: {fileID: 4222054389592071928}
+  - component: {fileID: 8538092598491661164}
   m_Layer: 0
   m_Name: Slot_15
   m_TagString: Untagged
@@ -9021,6 +9668,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8538092598491661164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612416759809856854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 15
+  color: 2
+  parity: 1
+  half: 1
+  dozen: 2
+  line: 1
 --- !u!1 &8659664007685447278
 GameObject:
   m_ObjectHideFlags: 0
@@ -9220,6 +9885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4719029680352903606}
   - component: {fileID: 475909298810284726}
+  - component: {fileID: 5552450695533446874}
   m_Layer: 0
   m_Name: Slot_18
   m_TagString: Untagged
@@ -9288,6 +9954,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5552450695533446874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927011740104786563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 18
+  color: 1
+  parity: 2
+  half: 1
+  dozen: 2
+  line: 1
 --- !u!1 &8989991276097200273
 GameObject:
   m_ObjectHideFlags: 0
@@ -9423,6 +10107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6218671127394511818}
   - component: {fileID: 6696043197528392532}
+  - component: {fileID: 2284128537470697311}
   m_Layer: 0
   m_Name: Slot_4
   m_TagString: Untagged
@@ -9491,6 +10176,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2284128537470697311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028676781571609140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f5de495082ed4bba544c2d62a8c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 4
+  color: 2
+  parity: 2
+  half: 1
+  dozen: 1
+  line: 3
 --- !u!1 &9102563624682060715
 GameObject:
   m_ObjectHideFlags: 0

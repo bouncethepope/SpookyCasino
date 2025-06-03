@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &822355884149106604
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &1039561123353471738
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &1115849413976711520
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8700943784571614076}
   - component: {fileID: 3404947129127590454}
+  - component: {fileID: 473336664562795126}
   m_Layer: 0
   m_Name: Bet_19to36
   m_TagString: BetZone
@@ -354,6 +358,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &473336664562795126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115849413976711520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 9
 --- !u!1 &1705631625659443813
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &1770160544747016716
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490096463152728470}
   - component: {fileID: 7572658798049778834}
+  - component: {fileID: 1137179561005922971}
   m_Layer: 0
   m_Name: Bet_1st12
   m_TagString: BetZone
@@ -524,6 +544,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &1137179561005922971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770160544747016716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 5
 --- !u!1 &2140037356476188528
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2140310917919190819
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2145490893394546878
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4238068526851423779}
   - component: {fileID: 6579823604686572161}
+  - component: {fileID: 5834041182099590014}
   m_Layer: 0
   m_Name: Bet_0
   m_TagString: BetZone
@@ -786,6 +823,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.38, y: 0.46}
   m_EdgeRadius: 0
+--- !u!114 &5834041182099590014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145490893394546878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2398336087894463971
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2402737248875538839
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +1022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2433932156118908094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2477750655844643477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &2965651663563315571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558397832465533557}
   - component: {fileID: 6257402272119615198}
+  - component: {fileID: 118443749883812172}
   m_Layer: 0
   m_Name: Bet_Red
   m_TagString: BetZone
@@ -1232,6 +1288,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &118443749883812172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965651663563315571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 1
 --- !u!1 &2980444640918945614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &3156026732640819897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &3214605006717543230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3988991818477872227}
   - component: {fileID: 7500022815780663212}
+  - component: {fileID: 2784288370571196436}
   m_Layer: 0
   m_Name: Bet_Upper
   m_TagString: BetZone
@@ -1494,6 +1567,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &2784288370571196436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3214605006717543230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 10
 --- !u!1 &3450043356455410350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &3575116423797092036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &4087205698953359397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4042148639199340852}
   - component: {fileID: 3122562674663275856}
+  - component: {fileID: 8981641530888961013}
   m_Layer: 0
   m_Name: Bet_2nd12
   m_TagString: BetZone
@@ -1823,6 +1913,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &8981641530888961013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156645392487578269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 6
 --- !u!1 &4346428513791587080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +2019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &4374834811500454602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &4388651089141650624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,6 +2123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7169430939857617001}
   - component: {fileID: 6591102903249063888}
+  - component: {fileID: 5534780910266897801}
   m_Layer: 0
   m_Name: Bet_Evens
   m_TagString: BetZone
@@ -2085,6 +2192,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &5534780910266897801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388651089141650624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 3
 --- !u!1 &4457270919601898807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,6 +2216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8994769006950960408}
   - component: {fileID: 1044546430789431540}
+  - component: {fileID: 6269986767434985616}
   m_Layer: 0
   m_Name: Bet_00
   m_TagString: BetZone
@@ -2163,6 +2285,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.38, y: 0.46}
   m_EdgeRadius: 0
+--- !u!114 &6269986767434985616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457270919601898807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 4457270919601898807}
+  groupType: 0
 --- !u!1 &4472281940516301092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,6 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &4742671207806269049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3548602894174334251}
   - component: {fileID: 7227740569429356626}
+  - component: {fileID: 9194253022662775409}
   m_Layer: 0
   m_Name: Bet_3rd12
   m_TagString: BetZone
@@ -2422,6 +2560,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &9194253022662775409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339103261170867455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 7
 --- !u!1 &5362000802115460796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,6 +2666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &5483213028422392965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,6 +2759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &5490043126555912087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,6 +2852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &5631063784149853384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,6 +2863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5249414636854289992}
   - component: {fileID: 6223137467226525545}
+  - component: {fileID: 4710991160699957980}
   m_Layer: 0
   m_Name: Bet_Odd
   m_TagString: BetZone
@@ -2776,6 +2932,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &4710991160699957980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631063784149853384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 4
 --- !u!1 &5797225654296768411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,6 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &5812054998662195747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,6 +3131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &5881943512630191695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,6 +3224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &6528529813222389631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,6 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &6544062836877813148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,6 +3410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &7147530057967069895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &7180169051126862098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3420,6 +3596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &7471893919086622223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,6 +3607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2173141416679706143}
   - component: {fileID: 2828355682879152939}
+  - component: {fileID: 1054740524430393339}
   m_Layer: 0
   m_Name: Bet_Black
   m_TagString: BetZone
@@ -3498,6 +3676,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &1054740524430393339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471893919086622223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 2
 --- !u!1 &7562189676192284576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &7724847517756856750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,6 +3920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &7969902638628164341
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,6 +4013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &8119061574456133402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3911,6 +4106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &8159906057943257243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,6 +4117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8244391693875359363}
   - component: {fileID: 92092158349616431}
+  - component: {fileID: 8537878935602362625}
   m_Layer: 0
   m_Name: Bet_1to18
   m_TagString: BetZone
@@ -3989,6 +4186,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.99, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &8537878935602362625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159906057943257243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 8
 --- !u!1 &8214430828533820757
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,6 +4292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &8218018933108861204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,6 +4385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &8251374783557855754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,6 +4478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &8586128236666838937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4275,6 +4489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536957974540046635}
   - component: {fileID: 5532550628074953197}
+  - component: {fileID: 4384130168963817491}
   m_Layer: 0
   m_Name: Bet_Middle
   m_TagString: BetZone
@@ -4343,6 +4558,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &4384130168963817491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586128236666838937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 11
 --- !u!1 &9018973529243645175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4435,6 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &9189805946180659292
 GameObject:
   m_ObjectHideFlags: 0
@@ -4527,6 +4757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedSlot: {fileID: 0}
+  groupType: 0
 --- !u!1 &9214191702272267473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,6 +4768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248663197186798824}
   - component: {fileID: 6509890113569549782}
+  - component: {fileID: 2453919999672646257}
   m_Layer: 0
   m_Name: Bet_Lower
   m_TagString: BetZone
@@ -4605,3 +4837,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &2453919999672646257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214191702272267473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a439fbea22c3a7c4f86148e04279bf4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedSlot: {fileID: 0}
+  groupType: 12
