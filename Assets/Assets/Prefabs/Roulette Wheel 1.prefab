@@ -6349,6 +6349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872300289723669517}
   - component: {fileID: 1960998250489494321}
+  - component: {fileID: 12478918940110455}
   m_Layer: 0
   m_Name: Roulette Wheel 1
   m_TagString: Wheel
@@ -6394,7 +6395,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpinSpeed: 350
   friction: 10
-  spinOnStart: 1
+  spinOnStart: 0
+  spinThreshold: 30
+--- !u!50 &12478918940110455
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968961232770824358}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6025567610663437865
 GameObject:
   m_ObjectHideFlags: 0
