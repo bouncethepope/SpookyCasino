@@ -46,5 +46,10 @@ public class BallLauncher : MonoBehaviour
         hasLaunched = false;
         launchNow = false;
         FreezeBall();
+
+        if (TryGetComponent(out RouletteBall ball))
+        {
+            ball.ResetBall();
+        }
     }
 }

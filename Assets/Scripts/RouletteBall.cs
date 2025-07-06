@@ -11,6 +11,7 @@ public class RouletteBall : MonoBehaviour
     private float timeInSlot = 0f;
     private bool resultSent = false;
     private bool isLocked = false;
+    private GameObject lockedSlot = null;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -72,6 +73,7 @@ public class RouletteBall : MonoBehaviour
 
         isLocked = true;
         resultSent = true;
+        lockedSlot = currentSlot.gameObject;
 
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
@@ -88,8 +90,18 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
+    public void ResetBall()
+    {
+        currentSlot = null;
+        lockedSlot = null;
+        timeInSlot = 0f;
+        resultSent = false;
+        isLocked = false;
+        transform.SetParent(null, true);
+    }
+
     public GameObject GetWinningSlot()
     {
-        return resultSent ? currentSlot?.gameObject : null;
+        return resultSent ? lockedSlot : null;
     }
 }
