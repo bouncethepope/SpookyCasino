@@ -12,6 +12,18 @@ public class BetEvaluator : MonoBehaviour
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
     {
+        if (rouletteBall == null)
+        {
+            Debug.LogError("❌ BetEvaluator is missing a reference to RouletteBall.");
+            return;
+        }
+
+        if (placedChips.Count == 0)
+        {
+            Debug.LogWarning("⚠️ No chips assigned, attempting to gather from scene.");
+            GatherChipsFromScene();
+        }
+
         GameObject winningSlot = rouletteBall.GetWinningSlot();
         if (winningSlot == null)
         {
@@ -28,6 +40,12 @@ public class BetEvaluator : MonoBehaviour
 
         foreach (var chip in placedChips)
         {
+            if (chip == null)
+            {
+                Debug.LogWarning("Found a null entry in placedChips list. Skipping.");
+                continue;
+            }
+
             Collider2D chipCollider = chip.GetComponent<Collider2D>();
             if (chipCollider == null) continue;
 
@@ -73,5 +91,16 @@ public class BetEvaluator : MonoBehaviour
 
             Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
         }
+    }
+
+    [ContextMenu("Gather Chips From Scene")]
+    public void GatherChipsFromScene()
+    {
+        placedChips.Clear();
+        foreach (var dragger in FindObjectsOfType<BettingChipDragger>())
+        {
+            placedChips.Add(dragger.gameObject);
+        }
+        Debug.Log($"Collected {placedChips.Count} chips from the scene.");
     }
 }
