@@ -87,7 +87,20 @@ public class RouletteBall : MonoBehaviour
         if (currentSlot.TryGetComponent(out RouletteSlot slot))
         {
             Debug.Log($"Final result number: {slot.number}");
+
+            // 🔽 Simple call to BetEvaluator
+            var evaluator = FindAnyObjectByType<BetEvaluator>();
+            if (evaluator != null)
+            {
+                evaluator.GatherChipsFromScene(); // Optional: ensures fresh chip list
+                evaluator.EvaluateBets();
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ No BetEvaluator found in the scene.");
+            }
         }
+
     }
 
     public void ResetBall()

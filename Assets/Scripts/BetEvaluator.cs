@@ -97,10 +97,11 @@ public class BetEvaluator : MonoBehaviour
     public void GatherChipsFromScene()
     {
         placedChips.Clear();
-        foreach (var dragger in FindObjectsOfType<BettingChipDragger>())
+        foreach (var dragger in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
         {
             placedChips.Add(dragger.gameObject);
         }
         Debug.Log($"Collected {placedChips.Count} chips from the scene.");
     }
+
 }
