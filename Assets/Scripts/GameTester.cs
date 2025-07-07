@@ -15,7 +15,7 @@ public class GameTester : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var chip in FindObjectsOfType<BettingChipDragger>())
+        foreach (var chip in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
         {
             chipStarts.Add((chip.transform, chip.transform.position, chip.transform.rotation));
         }
@@ -26,6 +26,7 @@ public class GameTester : MonoBehaviour
             ballStartRot = ballLauncher.transform.rotation;
         }
     }
+
 
     [ContextMenu("Launch Ball")]
     public void LaunchBall()
@@ -69,4 +70,23 @@ public class GameTester : MonoBehaviour
         betManager?.ClearAllBets();
         betEvaluator?.placedChips.Clear();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            LaunchBall();
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            SpinWheel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ResetGame();
+        }
+    }
+
 }
