@@ -38,4 +38,8 @@ public class BetZone : MonoBehaviour
     [Header("Grouped Betting")]
     [Tooltip("Grouped bet type, like Red, Black, Even, Odd, etc.")]
     public BetGroupType groupType = BetGroupType.None;
+
+    [Header("Overlap Rules")]
+    [Tooltip("If false, chips may not overlap this zone with other exclusive zones.")]
+    public bool allowOverlap = true;
 }
