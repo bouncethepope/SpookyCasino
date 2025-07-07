@@ -50,6 +50,24 @@ public class BetEvaluator : MonoBehaviour
             if (chipCollider == null) continue;
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, 0.1f);
+
+            int exclusiveCount = 0;
+            foreach (var hit in hits)
+            {
+                if (!hit.CompareTag("BetZone")) continue;
+                BetZone zone = hit.GetComponent<BetZone>();
+                if (zone != null && !zone.allowOverlap)
+                {
+                    exclusiveCount++;
+                }
+            }
+
+            if (exclusiveCount > 1)
+            {
+                Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple exclusive zones. Ignoring bet.");
+                continue;
+            }
+
             bool isWinning = false;
 
             foreach (var hit in hits)
