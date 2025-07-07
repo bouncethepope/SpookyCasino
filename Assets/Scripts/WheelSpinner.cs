@@ -12,10 +12,12 @@ public class WheelSpinner : MonoBehaviour
 
     private float currentSpinSpeed = 0f;
     private bool isSpinning = false;
+    private Quaternion initialRotation;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialRotation = transform.rotation;
     }
 
     public bool IsSpinning()
@@ -49,5 +51,13 @@ public class WheelSpinner : MonoBehaviour
     {
         currentSpinSpeed = initialSpinSpeed;
         isSpinning = true;
+    }
+
+    public void ResetSpin()
+    {
+        isSpinning = false;
+        currentSpinSpeed = 0f;
+        rb.angularVelocity = 0f;
+        transform.rotation = initialRotation;
     }
 }
