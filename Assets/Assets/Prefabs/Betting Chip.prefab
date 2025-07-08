@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3947375178536812113}
   - component: {fileID: 7523257589334865348}
   - component: {fileID: 8032333032166751261}
+  - component: {fileID: 8374576418603004352}
   m_Layer: 11
   m_Name: Betting Chip
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.42, y: 5.01, z: 0}
-  m_LocalScale: {x: 0.66059, y: 0.66059, z: 0.66059}
+  m_LocalScale: {x: 0.33998668, y: 0.33998668, z: 0.33998668}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.96981126, b: 0.8666881, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,3 +139,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8374576418603004352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181142888096545749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21de0da34df3e9d4980dca1d6563feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: d9f8a88975fd60c4ebb1fcf3f4889aac, type: 2}
+  conflictMaterial: {fileID: 2100000, guid: 95f4093ad8f12ac49a4ffa7a6af5ce7b, type: 2}
+  overlapRadius: 0.1
