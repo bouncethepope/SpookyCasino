@@ -46,34 +46,44 @@ public class BetEvaluator : MonoBehaviour
                 continue;
             }
 
-            Collider2D chipCollider = chip.GetComponent<Collider2D>();
-            if (chipCollider == null) continue;
-
-            Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, 0.1f);
-
-            int exclusiveCount = 0;
-            foreach (var hit in hits)
+            List<BetZone> zones = new List<BetZone>();
+            BetChip chipInfo = chip.GetComponent<BetChip>();
+            if (chipInfo != null)
             {
-                if (!hit.CompareTag("BetZone")) continue;
-                BetZone zone = hit.GetComponent<BetZone>();
-                if (zone != null && !zone.allowOverlap)
+                chipInfo.UpdateBetZones();
+                zones.AddRange(chipInfo.betZones);
+            }
+            else
+            {
+                Collider2D chipCollider = chip.GetComponent<Collider2D>();
+                if (chipCollider == null) continue;
+                Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, 0.1f);
+                foreach (var hit in hits)
                 {
-                    exclusiveCount++;
+                    if (!hit.CompareTag("BetZone")) continue;
+                    if (hit.TryGetComponent(out BetZone zone)) zones.Add(zone);
                 }
             }
 
-            if (exclusiveCount > 1)
+            int nonSlotExclusive = 0;
+            foreach (var zone in zones)
             {
-                Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple exclusive zones. Ignoring bet.");
+                if (zone.linkedSlot == null && !zone.allowOverlap)
+                {
+                    nonSlotExclusive++;
+                }
+            }
+
+            if (nonSlotExclusive > 1)
+            {
+                Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple incompatible zones. Ignoring bet.");
                 continue;
             }
 
             bool isWinning = false;
 
-            foreach (var hit in hits)
+            foreach (var betZone in zones)
             {
-                if (!hit.CompareTag("BetZone")) continue;
-                BetZone betZone = hit.GetComponent<BetZone>();
                 if (betZone == null) continue;
 
                 // Direct match

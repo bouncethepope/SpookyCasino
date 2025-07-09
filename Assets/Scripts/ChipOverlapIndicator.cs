@@ -39,6 +39,21 @@ public class ChipOverlapIndicator : MonoBehaviour
         }
 
         if (zones.Count <= 1) return false;
+
+        bool onlyNumberZones = true;
+        foreach (var z in zones)
+        {
+            if (z == null) continue;
+            // Number zones have a linked slot but no group type
+            if (z.linkedSlot == null)
+            {
+                onlyNumberZones = false;
+                break;
+            }
+        }
+
+        if (onlyNumberZones) return false;
+
         foreach (var z in zones)
         {
             if (z != null && !z.allowOverlap) return true;
