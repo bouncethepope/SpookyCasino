@@ -42,10 +42,16 @@ public class BettingChipDragger : MonoBehaviour
         isDragging = false;
         transform.localScale = originalScale;
 
-        // Check for overlapping colliders
+        // Update zones this chip covers
+        BetChip betChip = GetComponent<BetChip>();
+        if (betChip == null)
+        {
+            betChip = gameObject.AddComponent<BetChip>();
+        }
+        betChip.UpdateBetZones();
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.1f);
         Debug.Log($"🔍 Chip dropped at {transform.position}, detecting {hits.Length} overlaps:");
-
         int count = 0;
         foreach (var hit in hits)
         {
