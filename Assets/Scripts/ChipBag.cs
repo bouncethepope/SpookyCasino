@@ -10,6 +10,12 @@ public class ChipBag : MonoBehaviour
 
     private BettingChipDragger currentDragger;
     private GameObject currentChip;
+    private Collider2D bagCollider;
+
+    private void Awake()
+    {
+        bagCollider = GetComponent<Collider2D>();
+    }
 
     private void OnMouseDown()
     {
@@ -53,6 +59,24 @@ public class ChipBag : MonoBehaviour
         if (currentDragger != null)
         {
             currentDragger.EndDrag();
+
+            bool returned = false;
+            if (currentChip != null && bagCollider != null)
+            {
+                Collider2D chipCol = currentChip.GetComponent<Collider2D>();
+                if (chipCol != null && chipCol.bounds.Intersects(bagCollider.bounds))
+                {
+                    PlayerCurrency.Instance?.AddCurrency(chipValue);
+                    Destroy(currentChip);
+                    returned = true;
+                }
+            }
+
+            if (!returned)
+            {
+                // allow chip to remain in scene
+            }
+
             currentDragger = null;
             currentChip = null;
         }

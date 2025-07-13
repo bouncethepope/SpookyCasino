@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameTester : MonoBehaviour
@@ -9,24 +8,17 @@ public class GameTester : MonoBehaviour
     public BetManager betManager;
     public BetEvaluator betEvaluator;
 
-    private List<(Transform tf, Vector3 pos, Quaternion rot)> chipStarts = new();
     private Vector3 ballStartPos;
     private Quaternion ballStartRot;
 
     private void Awake()
     {
-        foreach (var chip in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
-        {
-            chipStarts.Add((chip.transform, chip.transform.position, chip.transform.rotation));
-        }
-
         if (ballLauncher != null)
         {
             ballStartPos = ballLauncher.transform.position;
             ballStartRot = ballLauncher.transform.rotation;
         }
     }
-
 
     [ContextMenu("Launch Ball")]
     public void LaunchBall()
@@ -58,12 +50,12 @@ public class GameTester : MonoBehaviour
             wheelSpinner.ResetSpin();
         }
 
-        foreach (var info in chipStarts)
+        // Destroy all chips in the scene
+        foreach (var chip in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
         {
-            if (info.tf != null)
+            if (chip != null)
             {
-                info.tf.position = info.pos;
-                info.tf.rotation = info.rot;
+                Destroy(chip.gameObject);
             }
         }
 
@@ -88,5 +80,4 @@ public class GameTester : MonoBehaviour
             ResetGame();
         }
     }
-
 }
