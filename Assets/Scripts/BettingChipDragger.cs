@@ -13,6 +13,8 @@ public class BettingChipDragger : MonoBehaviour
 
     private Camera mainCamera;
     private Collider2D selfCollider;
+    [Tooltip("Collider of the chip bag this chip can be returned to")]
+    public Collider2D bagCollider;
 
     private void Awake()
     {
@@ -60,6 +62,26 @@ public class BettingChipDragger : MonoBehaviour
                 Debug.Log($"    [{count}] {hit.gameObject.name} (Tag: {hit.gameObject.tag}, Layer: {LayerMask.LayerToName(hit.gameObject.layer)})");
             }
         }
+
+        // Check if the chip should return to the bag
+        TryReturnToBag();
+    }
+
+    private bool TryReturnToBag()
+    {
+        if (bagCollider == null)
+            return false;
+
+        if (selfCollider != null && selfCollider.bounds.Intersects(bagCollider.bounds))
+        {
+            if (TryGetComponent(out BetChip betChip))
+            {
+                PlayerCurrency.Instance?.AddCurrency(betChip.chipValue);
+            }
+            Destroy(gameObject);
+            return true;
+        }
+        return false;
     }
 
     void OnMouseDown()
@@ -82,15 +104,9 @@ public class BettingChipDragger : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0f;
-        return mainCamera.ScreenToWorldPoint(mousePos).WithZ(0f);
-    }
-}
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(mousePos);
+        worldPos.z = 0f;
+        return worldPos;
 
-// Extension to set Z to 0
-public static class Vector3Extensions
-{
-    public static Vector3 WithZ(this Vector3 v, float z)
-    {
-        return new Vector3(v.x, v.y, z);
     }
 }

@@ -43,6 +43,7 @@ public class ChipBag : MonoBehaviour
         if (currentDragger == null)
             currentDragger = currentChip.AddComponent<BettingChipDragger>();
 
+        currentDragger.bagCollider = bagCollider;
         currentDragger.BeginDrag();
     }
 
