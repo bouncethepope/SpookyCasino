@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class BetChip : MonoBehaviour
 {
+    [Header("Chip Value")]
+    [Tooltip("Monetary value of this chip")]
+    public int chipValue = 1;
     [HideInInspector]
     public List<BetZone> betZones = new List<BetZone>();
 

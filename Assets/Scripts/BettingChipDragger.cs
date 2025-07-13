@@ -21,15 +21,14 @@ public class BettingChipDragger : MonoBehaviour
         selfCollider = GetComponent<Collider2D>();
     }
 
-    void OnMouseDown()
+    public void BeginDrag()
     {
-        Debug.Log($"🖱️ Clicked on chip: {gameObject.name}");
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
         transform.localScale = originalScale * heldScaleMultiplier;
     }
 
-    void OnMouseDrag()
+    public void DragUpdate()
     {
         if (isDragging)
         {
@@ -37,7 +36,7 @@ public class BettingChipDragger : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    public void EndDrag()
     {
         isDragging = false;
         transform.localScale = originalScale;
@@ -61,6 +60,22 @@ public class BettingChipDragger : MonoBehaviour
                 Debug.Log($"    [{count}] {hit.gameObject.name} (Tag: {hit.gameObject.tag}, Layer: {LayerMask.LayerToName(hit.gameObject.layer)})");
             }
         }
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log($"🖱️ Clicked on chip: {gameObject.name}");
+        BeginDrag();
+    }
+
+    void OnMouseDrag()
+    {
+        DragUpdate();
+    }
+
+    void OnMouseUp()
+    {
+        EndDrag();
     }
 
     private Vector3 GetMouseWorldPosition()
