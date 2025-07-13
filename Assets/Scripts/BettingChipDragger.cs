@@ -13,6 +13,8 @@ public class BettingChipDragger : MonoBehaviour
 
     private Camera mainCamera;
     private Collider2D selfCollider;
+    [Tooltip("Collider of the chip bag this chip can be returned to")]
+    public Collider2D bagCollider;
 
     private void Awake()
     {
@@ -21,15 +23,14 @@ public class BettingChipDragger : MonoBehaviour
         selfCollider = GetComponent<Collider2D>();
     }
 
-    void OnMouseDown()
+    public void BeginDrag()
     {
-        Debug.Log($"🖱️ Clicked on chip: {gameObject.name}");
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
         transform.localScale = originalScale * heldScaleMultiplier;
     }
 
-    void OnMouseDrag()
+    public void DragUpdate()
     {
         if (isDragging)
         {
@@ -37,7 +38,7 @@ public class BettingChipDragger : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    public void EndDrag()
     {
         isDragging = false;
         transform.localScale = originalScale;
@@ -61,6 +62,42 @@ public class BettingChipDragger : MonoBehaviour
                 Debug.Log($"    [{count}] {hit.gameObject.name} (Tag: {hit.gameObject.tag}, Layer: {LayerMask.LayerToName(hit.gameObject.layer)})");
             }
         }
+
+        // Check if the chip should return to the bag
+        TryReturnToBag();
+    }
+
+    private bool TryReturnToBag()
+    {
+        if (bagCollider == null)
+            return false;
+
+        if (selfCollider != null && selfCollider.bounds.Intersects(bagCollider.bounds))
+        {
+            if (TryGetComponent(out BetChip betChip))
+            {
+                PlayerCurrency.Instance?.AddCurrency(betChip.chipValue);
+            }
+            Destroy(gameObject);
+            return true;
+        }
+        return false;
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log($"🖱️ Clicked on chip: {gameObject.name}");
+        BeginDrag();
+    }
+
+    void OnMouseDrag()
+    {
+        DragUpdate();
+    }
+
+    void OnMouseUp()
+    {
+        EndDrag();
     }
 
     private Vector3 GetMouseWorldPosition()
