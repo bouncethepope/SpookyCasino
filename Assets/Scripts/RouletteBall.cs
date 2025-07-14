@@ -6,6 +6,16 @@ public class RouletteBall : MonoBehaviour
     [Tooltip("Seconds the ball must remain in a slot before locking in.")]
     public float timeToConfirm = 3f;
     public WheelSpinner wheelSpinner; // Optional reference to spinner
+    [Tooltip("Wheel spin speed below which final slot will be checked (deg/sec)")]
+    public float spinLockThreshold = 30f;
+    [Tooltip("Velocity magnitude that counts as the ball starting to move")] 
+    public float movementStartThreshold = 0.1f;
+
+    private readonly System.Collections.Generic.List<Collider2D> touchingSlots = new();
+    private int lastSlotCount = -1;
+
+    private bool hasStartedMoving = false;
+    private Vector3 initialScale;
 
     private Collider2D currentSlot = null;
     private float timeInSlot = 0f;
@@ -17,52 +27,79 @@ public class RouletteBall : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialScale = transform.localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isLocked) return;
+        if (isLocked || !hasStartedMoving) return;
 
         if (other.gameObject.name.StartsWith("Slot_"))
         {
-            Debug.Log($"🎯 Entered slot collider: {other.gameObject.name}");
-            currentSlot = other;
-            timeInSlot = 0f;
-            resultSent = false;
+            if (!touchingSlots.Contains(other))
+            {
+                touchingSlots.Add(other);
+            }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    // OnTriggerStay left intentionally empty; locking handled in Update based on
+    // wheel speed and slot contact count.
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (isLocked || !hasStartedMoving) return;
+
+        if (other.gameObject.name.StartsWith("Slot_"))
+        {
+            touchingSlots.Remove(other);
+        }
+    }
+
+    private void Update()
     {
         if (isLocked) return;
 
-        if (other == currentSlot)
+        if (!hasStartedMoving)
         {
-            if (wheelSpinner != null && wheelSpinner.IsSpinning())
+            if (rb.velocity.magnitude >= movementStartThreshold)
             {
-                timeInSlot = 0f;
+                hasStartedMoving = true;
+            }
+            else
+            {
                 return;
             }
+        }
 
+        if (wheelSpinner != null && Mathf.Abs(wheelSpinner.GetCurrentSpinSpeed()) > spinLockThreshold)
+        {
+            timeInSlot = 0f;
+            return;
+        }
+
+        int count = touchingSlots.Count;
+        if (count != lastSlotCount && count != 1)
+        {
+            if (count == 0)
+                Debug.Log("⚠️ Wheel slow but no slot detected. Waiting...");
+            else
+                Debug.Log("⚠️ Wheel slow but multiple slots detected. Waiting...");
+        }
+        lastSlotCount = count;
+
+        if (count == 1)
+        {
+            currentSlot = touchingSlots[0];
             timeInSlot += Time.deltaTime;
-
             if (timeInSlot >= timeToConfirm)
             {
                 LockIntoSlot();
             }
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (isLocked) return;
-
-        if (other == currentSlot)
+        else
         {
-            Debug.Log($"❌ Exited slot: {other.gameObject.name}");
-            currentSlot = null;
             timeInSlot = 0f;
-            resultSent = false;
         }
     }
 
@@ -79,8 +116,12 @@ public class RouletteBall : MonoBehaviour
         rb.angularVelocity = 0f;
         rb.bodyType = RigidbodyType2D.Kinematic;
 
+        touchingSlots.Clear();
+        lastSlotCount = -1;
+
         transform.SetParent(currentSlot.transform, true);
         transform.localPosition = Vector3.zero;
+        transform.localScale = initialScale;
 
         Debug.Log($"✅ Ball locked in slot: {currentSlot.gameObject.name}");
 
@@ -110,7 +151,11 @@ public class RouletteBall : MonoBehaviour
         timeInSlot = 0f;
         resultSent = false;
         isLocked = false;
+        hasStartedMoving = false;
+        touchingSlots.Clear();
+        lastSlotCount = -1;
         transform.SetParent(null, true);
+        transform.localScale = initialScale;
     }
 
     public GameObject GetWinningSlot()
