@@ -104,15 +104,9 @@ public class BettingChipDragger : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0f;
-        return mainCamera.ScreenToWorldPoint(mousePos).WithZ(0f);
-    }
-}
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(mousePos);
+        worldPos.z = 0f;
+        return worldPos;
 
-// Extension to set Z to 0
-public static class Vector3Extensions
-{
-    public static Vector3 WithZ(this Vector3 v, float z)
-    {
-        return new Vector3(v.x, v.y, z);
     }
 }
