@@ -7,6 +7,10 @@ public class BettingChipDragger : MonoBehaviour
     [Header("Drag Settings")]
     public float heldScaleMultiplier = 1.2f;
 
+    /// Global flag used to lock chip movement when bets are closed.
+    public static bool betsLocked = false;
+
+
     private bool isDragging = false;
     private Vector3 originalScale;
     private Vector3 offset;
@@ -25,13 +29,22 @@ public class BettingChipDragger : MonoBehaviour
 
     public void BeginDrag()
     {
+        if (betsLocked)
+            return;
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
         transform.localScale = originalScale * heldScaleMultiplier;
     }
 
+
     public void DragUpdate()
     {
+        if (betsLocked && isDragging)
+        {
+            EndDrag();
+            return;
+        }
+
         if (isDragging)
         {
             transform.position = GetMouseWorldPosition() + offset;
@@ -67,6 +80,12 @@ public class BettingChipDragger : MonoBehaviour
         TryReturnToBag();
     }
 
+    public void ForceEndDrag()
+    {
+        if (isDragging)
+            EndDrag();
+    }
+
     private bool TryReturnToBag()
     {
         if (bagCollider == null)
@@ -86,6 +105,9 @@ public class BettingChipDragger : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (betsLocked)
+            return;
+
         Debug.Log($"🖱️ Clicked on chip: {gameObject.name}");
         BeginDrag();
     }

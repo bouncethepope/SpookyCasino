@@ -27,10 +27,8 @@ public class WheelSpinner : MonoBehaviour
         return Mathf.Abs(currentSpinSpeed) > spinThreshold;
     }
 
-    /// <summary>
     /// Current angular speed of the wheel in degrees per second.
     /// Useful for UI prompts or game rules based on wheel movement.
-    /// </summary>
     public float GetCurrentSpinSpeed()
     {
         return currentSpinSpeed;

@@ -7,6 +7,7 @@ public class GameTester : MonoBehaviour
     public WheelSpinner wheelSpinner;
     public BetManager betManager;
     public BetEvaluator betEvaluator;
+    public BetCutoffManager betCutoffManager; 
 
     private Vector3 ballStartPos;
     private Quaternion ballStartRot;
@@ -61,6 +62,11 @@ public class GameTester : MonoBehaviour
 
         betManager?.ClearAllBets();
         betEvaluator?.placedChips.Clear();
+
+        if (betCutoffManager != null)
+        {
+            betCutoffManager.UnlockBets(); 
+        }
     }
 
     private void Update()

@@ -8,6 +8,9 @@ public class ChipBag : MonoBehaviour
     public int chipValue = 1;
     public Transform chipParent;
 
+    /// Global flag to lock chip bag interaction when bets are closed.
+    public static bool betsLocked = false;
+
     private BettingChipDragger currentDragger;
     private GameObject currentChip;
     private Collider2D bagCollider;
@@ -19,6 +22,9 @@ public class ChipBag : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (betsLocked)
+            return;
+
         if (currentChip != null) return;
 
         if (PlayerCurrency.Instance != null && !PlayerCurrency.Instance.TrySpend(chipValue))
@@ -49,6 +55,7 @@ public class ChipBag : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (betsLocked) return;
         if (currentDragger != null)
         {
             currentDragger.DragUpdate();
