@@ -61,26 +61,6 @@ public class ChipBag : MonoBehaviour
         {
             currentDragger.EndDrag();
 
-<<<<<<< HEAD
-=======
-            bool returned = false;
-            if (currentChip != null && bagCollider != null)
-            {
-                Collider2D chipCol = currentChip.GetComponent<Collider2D>();
-                if (chipCol != null && chipCol.bounds.Intersects(bagCollider.bounds))
-                {
-                    PlayerCurrency.Instance?.AddCurrency(chipValue);
-                    Destroy(currentChip);
-                    returned = true;
-                }
-            }
-
-            if (!returned)
-            {
-                // allow chip to remain in scene
-            }
-
->>>>>>> 84072e044300087380675e99b853ced5af16d6a6
             currentDragger = null;
             currentChip = null;
         }
