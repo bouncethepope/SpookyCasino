@@ -1114,6 +1114,7 @@ MonoBehaviour:
   wheelSpinner: {fileID: 728783514}
   betManager: {fileID: 265894426}
   betEvaluator: {fileID: 265894425}
+  betCutoffManager: {fileID: 265894429}
 --- !u!114 &265894428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,8 +1142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelSpinner: {fileID: 728783514}
-  noMoreBetsUI: {fileID: 0}
-  cutoffSpeed: 200
+  noMoreBetsUI: {fileID: 1214918295}
+  cutoffSpeed: 300
 --- !u!1 &268391442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 278.177, y: 164.68127}
+  m_AnchoredPosition: {x: -359, y: -206}
   m_SizeDelta: {x: 288.3541, y: 52.6375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492162625
@@ -1732,7 +1733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No More bets.
+  m_text: Currency XXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4227,7 +4228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -396, y: -168}
+  m_AnchoredPosition: {x: 284, y: 150}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214918297
@@ -4250,7 +4251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: No More Bets
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4315,7 +4316,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -61.98047, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6843,6 +6844,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.125
       objectReference: {fileID: 0}
+    - target: {fileID: 6935789128528480132, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935789128528480132, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.16
+      objectReference: {fileID: 0}
     - target: {fileID: 7271116693426293516, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_Material
       value: 
@@ -6886,6 +6895,14 @@ PrefabInstance:
     - target: {fileID: 7478958385507028930, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.953
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519259028478976402, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519259028478976402, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.87
       objectReference: {fileID: 0}
     - target: {fileID: 7648630051991939347, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_LocalPosition.x
