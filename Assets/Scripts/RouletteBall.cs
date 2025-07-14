@@ -8,9 +8,13 @@ public class RouletteBall : MonoBehaviour
     public WheelSpinner wheelSpinner; // Optional reference to spinner
     [Tooltip("Wheel spin speed below which final slot will be checked (deg/sec)")]
     public float spinLockThreshold = 30f;
+    [Tooltip("Velocity magnitude that counts as the ball starting to move")] 
+    public float movementStartThreshold = 0.1f;
 
     private readonly System.Collections.Generic.List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
+
+    private bool hasStartedMoving = false;
 
     private Collider2D currentSlot = null;
     private float timeInSlot = 0f;
@@ -26,7 +30,7 @@ public class RouletteBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isLocked) return;
+        if (isLocked || !hasStartedMoving) return;
 
         if (other.gameObject.name.StartsWith("Slot_"))
         {
@@ -42,7 +46,7 @@ public class RouletteBall : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (isLocked) return;
+        if (isLocked || !hasStartedMoving) return;
 
         if (other.gameObject.name.StartsWith("Slot_"))
         {
@@ -53,6 +57,18 @@ public class RouletteBall : MonoBehaviour
     private void Update()
     {
         if (isLocked) return;
+
+        if (!hasStartedMoving)
+        {
+            if (rb.velocity.magnitude >= movementStartThreshold)
+            {
+                hasStartedMoving = true;
+            }
+            else
+            {
+                return;
+            }
+        }
 
         if (wheelSpinner != null && Mathf.Abs(wheelSpinner.GetCurrentSpinSpeed()) > spinLockThreshold)
         {
@@ -132,6 +148,7 @@ public class RouletteBall : MonoBehaviour
         timeInSlot = 0f;
         resultSent = false;
         isLocked = false;
+        hasStartedMoving = false;
         touchingSlots.Clear();
         lastSlotCount = -1;
         transform.SetParent(null, true);
