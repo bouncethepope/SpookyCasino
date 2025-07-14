@@ -22,7 +22,18 @@ public class WheelSpinner : MonoBehaviour
 
     public bool IsSpinning()
     {
-        return Mathf.Abs(rb.angularVelocity) > spinThreshold;
+        // Check the internally tracked spin speed rather than the rigidbody's
+        // angular velocity since the wheel is rotated manually.
+        return Mathf.Abs(currentSpinSpeed) > spinThreshold;
+    }
+
+    /// <summary>
+    /// Current angular speed of the wheel in degrees per second.
+    /// Useful for UI prompts or game rules based on wheel movement.
+    /// </summary>
+    public float GetCurrentSpinSpeed()
+    {
+        return currentSpinSpeed;
     }
 
     void Start()
