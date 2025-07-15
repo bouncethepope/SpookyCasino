@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class RouletteBall : MonoBehaviour
 {
     [Header("Detection Settings")]
     [Tooltip("Seconds the ball must remain in a slot before locking in.")]
     public float timeToConfirm = 3f;
-    public WheelSpinner wheelSpinner; // Optional reference to spinner
+    public WheelSpinner wheelSpinner;
+
     [Tooltip("Wheel spin speed below which final slot will be checked (deg/sec)")]
     public float spinLockThreshold = 30f;
 
-    private readonly System.Collections.Generic.List<Collider2D> touchingSlots = new();
+    [Tooltip("Velocity magnitude that counts as the ball starting to move")]
+    public float movementStartThreshold = 0.1f;
+
+    private readonly List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
+
+    private bool hasStartedMoving = false;
+    private Vector3 initialScale;
 
     private Collider2D currentSlot = null;
     private float timeInSlot = 0f;
@@ -19,30 +27,27 @@ public class RouletteBall : MonoBehaviour
     private GameObject lockedSlot = null;
     private Rigidbody2D rb;
 
+    private Transform followAnchor = null;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialScale = transform.localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isLocked) return;
+        if (isLocked || !hasStartedMoving) return;
 
-        if (other.gameObject.name.StartsWith("Slot_"))
+        if (other.gameObject.name.StartsWith("Slot_") && !touchingSlots.Contains(other))
         {
-            if (!touchingSlots.Contains(other))
-            {
-                touchingSlots.Add(other);
-            }
+            touchingSlots.Add(other);
         }
     }
 
-    // OnTriggerStay left intentionally empty; locking handled in Update based on
-    // wheel speed and slot contact count.
-
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (isLocked) return;
+        if (isLocked || !hasStartedMoving) return;
 
         if (other.gameObject.name.StartsWith("Slot_"))
         {
@@ -52,31 +57,51 @@ public class RouletteBall : MonoBehaviour
 
     private void Update()
     {
-        if (isLocked) return;
-
-        if (wheelSpinner != null && Mathf.Abs(wheelSpinner.GetCurrentSpinSpeed()) > spinLockThreshold)
+        if (isLocked)
         {
-            timeInSlot = 0f;
+            // If locked, follow the anchor if available
+            if (followAnchor != null)
+            {
+                transform.position = followAnchor.position;
+            }
+
             return;
         }
 
-        int count = touchingSlots.Count;
-        if (count != lastSlotCount && count != 1)
+        // ✅ Check movement to unlock detection
+        if (!hasStartedMoving && rb.linearVelocity.magnitude > movementStartThreshold)
         {
-            if (count == 0)
-                Debug.Log("⚠️ Wheel slow but no slot detected. Waiting...");
-            else
-                Debug.Log("⚠️ Wheel slow but multiple slots detected. Waiting...");
+            hasStartedMoving = true;
+            Debug.Log("🟢 Ball has started moving");
         }
-        lastSlotCount = count;
 
-        if (count == 1)
+        if (!hasStartedMoving) return;
+
+        float wheelSpeed = 0f;
+        // wheelSpeed = wheelSpinner?.GetCurrentSpeed() ?? 0f;
+
+        if (wheelSpeed > spinLockThreshold || touchingSlots.Count != 1)
         {
-            currentSlot = touchingSlots[0];
-            timeInSlot += Time.deltaTime;
-            if (timeInSlot >= timeToConfirm)
+            timeInSlot = 0f;
+            currentSlot = null;
+            return;
+        }
+
+        if (touchingSlots.Count == 1)
+        {
+            if (currentSlot == touchingSlots[0])
             {
-                LockIntoSlot();
+                timeInSlot += Time.deltaTime;
+
+                if (timeInSlot >= timeToConfirm)
+                {
+                    LockIntoSlot();
+                }
+            }
+            else
+            {
+                currentSlot = touchingSlots[0];
+                timeInSlot = 0f;
             }
         }
         else
@@ -84,6 +109,7 @@ public class RouletteBall : MonoBehaviour
             timeInSlot = 0f;
         }
     }
+
 
     private void LockIntoSlot()
     {
@@ -101,20 +127,35 @@ public class RouletteBall : MonoBehaviour
         touchingSlots.Clear();
         lastSlotCount = -1;
 
-        transform.SetParent(currentSlot.transform, true);
-        transform.localPosition = Vector3.zero;
+        // Find BallAnchor under the slot
+        followAnchor = currentSlot.transform.Find("BallAnchor");
 
-        Debug.Log($"✅ Ball locked in slot: {currentSlot.gameObject.name}");
+        if (followAnchor != null)
+        {
+            transform.SetParent(null); // Stay in world space
+            transform.position = followAnchor.position;
+            transform.rotation = Quaternion.identity;
+            transform.localScale = initialScale;
+            Debug.Log($"✅ Ball locked to anchor under: {currentSlot.name}");
+        }
+        else
+        {
+            followAnchor = null;
+            transform.SetParent(null);
+            transform.position = currentSlot.transform.position;
+            transform.rotation = Quaternion.identity;
+            transform.localScale = initialScale;
+            Debug.LogWarning($"⚠️ BallAnchor not found under {currentSlot.name}, snapped to slot center.");
+        }
 
         if (currentSlot.TryGetComponent(out RouletteSlot slot))
         {
-            Debug.Log($"Final result number: {slot.number}");
+            Debug.Log($"🎯 Final result number: {slot.number}");
 
-            // 🔽 Simple call to BetEvaluator
             var evaluator = FindAnyObjectByType<BetEvaluator>();
             if (evaluator != null)
             {
-                evaluator.GatherChipsFromScene(); // Optional: ensures fresh chip list
+                evaluator.GatherChipsFromScene();
                 evaluator.EvaluateBets();
             }
             else
@@ -122,7 +163,6 @@ public class RouletteBall : MonoBehaviour
                 Debug.LogWarning("⚠️ No BetEvaluator found in the scene.");
             }
         }
-
     }
 
     public void ResetBall()
@@ -132,9 +172,12 @@ public class RouletteBall : MonoBehaviour
         timeInSlot = 0f;
         resultSent = false;
         isLocked = false;
+        hasStartedMoving = false;
+        followAnchor = null;
         touchingSlots.Clear();
         lastSlotCount = -1;
         transform.SetParent(null, true);
+        transform.localScale = initialScale;
     }
 
     public GameObject GetWinningSlot()
