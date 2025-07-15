@@ -57,27 +57,20 @@ public class RouletteBall : MonoBehaviour
 
     private void Update()
     {
-        if (isLocked)
+        if (isLocked && followAnchor != null)
         {
-            // If locked, follow the anchor if available
-            if (followAnchor != null)
-            {
-                transform.position = followAnchor.position;
-            }
-
+            transform.position = followAnchor.position;
             return;
         }
 
-        // ✅ Check movement to unlock detection
         if (!hasStartedMoving && rb.linearVelocity.magnitude > movementStartThreshold)
         {
             hasStartedMoving = true;
-            Debug.Log("🟢 Ball has started moving");
         }
 
-        if (!hasStartedMoving) return;
-
         float wheelSpeed = 0f;
+
+        // If you implement GetCurrentSpeed() in wheelSpinner, use it here:
         // wheelSpeed = wheelSpinner?.GetCurrentSpeed() ?? 0f;
 
         if (wheelSpeed > spinLockThreshold || touchingSlots.Count != 1)
@@ -110,7 +103,6 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
-
     private void LockIntoSlot()
     {
         if (currentSlot == null || isLocked)
@@ -127,15 +119,17 @@ public class RouletteBall : MonoBehaviour
         touchingSlots.Clear();
         lastSlotCount = -1;
 
-        // Find BallAnchor under the slot
-        followAnchor = currentSlot.transform.Find("BallAnchor");
+        // 🔍 Look for BallAnchor under the slot
+        Transform anchor = currentSlot.transform.Find("BallAnchor");
 
-        if (followAnchor != null)
+        if (anchor != null)
         {
+            followAnchor = anchor;
             transform.SetParent(null); // Stay in world space
-            transform.position = followAnchor.position;
+            transform.position = anchor.position;
             transform.rotation = Quaternion.identity;
             transform.localScale = initialScale;
+
             Debug.Log($"✅ Ball locked to anchor under: {currentSlot.name}");
         }
         else
@@ -145,6 +139,7 @@ public class RouletteBall : MonoBehaviour
             transform.position = currentSlot.transform.position;
             transform.rotation = Quaternion.identity;
             transform.localScale = initialScale;
+
             Debug.LogWarning($"⚠️ BallAnchor not found under {currentSlot.name}, snapped to slot center.");
         }
 
@@ -176,6 +171,7 @@ public class RouletteBall : MonoBehaviour
         followAnchor = null;
         touchingSlots.Clear();
         lastSlotCount = -1;
+
         transform.SetParent(null, true);
         transform.localScale = initialScale;
     }
