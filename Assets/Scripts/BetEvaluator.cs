@@ -81,22 +81,31 @@ public class BetEvaluator : MonoBehaviour
             }
 
             bool isWinning = false;
+            int payoutMultiplier = 0;
 
-            foreach (var betZone in zones)
+            // ----- Number Bets -----
+            HashSet<GameObject> numberSlots = new HashSet<GameObject>();
+            foreach (var z in zones)
             {
-                if (betZone == null) continue;
+                if (z != null && z.linkedSlot != null)
+                    numberSlots.Add(z.linkedSlot);
+            }
 
-                // Direct match
-                if (betZone.linkedSlot == winningSlot)
-                {
-                    isWinning = true;
-                    break;
-                }
+            if (numberSlots.Count > 0)
+            {
+                payoutMultiplier = Mathf.RoundToInt(36f / numberSlots.Count);
+                isWinning = numberSlots.Contains(winningSlot);
+            }
 
-                // Grouped match
-                if (betZone.groupType != BetGroupType.None)
+            // ----- Group Bets -----
+            if (!isWinning)
+            {
+                foreach (var betZone in zones)
                 {
-                    isWinning = betZone.groupType switch
+                    if (betZone == null || betZone.groupType == BetGroupType.None)
+                        continue;
+
+                    bool groupWin = betZone.groupType switch
                     {
                         BetGroupType.Red => slotComponent.color == RouletteColor.Red,
                         BetGroupType.Black => slotComponent.color == RouletteColor.Black,
@@ -113,12 +122,43 @@ public class BetEvaluator : MonoBehaviour
                         _ => false
                     };
 
-                    if (isWinning) break;
+                    if (groupWin)
+                    {
+                        isWinning = true;
+                        payoutMultiplier = GetGroupPayout(betZone.groupType);
+                        break;
+                    }
                 }
+            }
+
+            if (isWinning && payoutMultiplier > 0)
+            {
+                int chipValue = chipInfo != null ? chipInfo.chipValue : 1;
+                PlayerCurrency.Instance?.AddCurrency(chipValue * payoutMultiplier);
             }
 
             Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
         }
+    }
+
+    private int GetGroupPayout(BetGroupType type)
+    {
+        return type switch
+        {
+            BetGroupType.Red => 2,
+            BetGroupType.Black => 2,
+            BetGroupType.Even => 2,
+            BetGroupType.Odd => 2,
+            BetGroupType.First_1_12 => 3,
+            BetGroupType.Second_13_24 => 3,
+            BetGroupType.Third_25_36 => 3,
+            BetGroupType.Low_1_18 => 2,
+            BetGroupType.High_19_36 => 2,
+            BetGroupType.Top => 3,
+            BetGroupType.Middle => 3,
+            BetGroupType.Bottom => 3,
+            _ => 0
+        };
     }
 
     [ContextMenu("Gather Chips From Scene")]
