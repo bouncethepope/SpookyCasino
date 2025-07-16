@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BetEvaluator : MonoBehaviour
 {
@@ -8,6 +10,16 @@ public class BetEvaluator : MonoBehaviour
 
     [Header("Chips")]
     public List<GameObject> placedChips = new List<GameObject>();
+
+    [Header("Chip Collection")]
+    [Tooltip("Target transform chips move to when the bet wins")]
+    public Transform winningChipDestination;
+    [Tooltip("Target transform chips move to when the bet loses")]
+    public Transform losingChipDestination;
+    [Tooltip("Delay after evaluation before chips start moving")]
+    public float chipCollectDelay = 1f;
+    [Tooltip("Duration of the chip movement tween")]
+    public float chipMoveDuration = 0.5f;
 
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
@@ -37,6 +49,9 @@ public class BetEvaluator : MonoBehaviour
             Debug.LogWarning("❌ Winning slot has no RouletteSlot component.");
             return;
         }
+
+        List<GameObject> winningChips = new List<GameObject>();
+        List<GameObject> losingChips = new List<GameObject>();
 
         foreach (var chip in placedChips)
         {
@@ -135,10 +150,52 @@ public class BetEvaluator : MonoBehaviour
             {
                 int chipValue = chipInfo != null ? chipInfo.chipValue : 1;
                 PlayerCurrency.Instance?.AddCurrency(chipValue * payoutMultiplier);
+                winningChips.Add(chip);
+            }
+            else
+            {
+                losingChips.Add(chip);
             }
 
             Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
         }
+
+        StartCoroutine(CollectChipsRoutine(winningChips, losingChips));
+    }
+
+    private IEnumerator CollectChipsRoutine(List<GameObject> winners, List<GameObject> losers)
+    {
+        yield return new WaitForSeconds(chipCollectDelay);
+
+        foreach (var chip in winners)
+        {
+            if (chip == null) continue;
+            if (winningChipDestination != null)
+            {
+                chip.transform.DOMove(winningChipDestination.position, chipMoveDuration)
+                    .OnComplete(() => Destroy(chip));
+            }
+            else
+            {
+                Destroy(chip);
+            }
+        }
+
+        foreach (var chip in losers)
+        {
+            if (chip == null) continue;
+            if (losingChipDestination != null)
+            {
+                chip.transform.DOMove(losingChipDestination.position, chipMoveDuration)
+                    .OnComplete(() => Destroy(chip));
+            }
+            else
+            {
+                Destroy(chip);
+            }
+        }
+
+        placedChips.Clear();
     }
 
     private int GetGroupPayout(BetGroupType type)
