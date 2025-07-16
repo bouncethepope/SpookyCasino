@@ -27,6 +27,9 @@ public class RouletteBall : MonoBehaviour
     private GameObject lockedSlot = null;
     private Rigidbody2D rb;
 
+    [Header("Result Display")]
+    [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
+
     private Transform followAnchor = null;
 
     private void Awake()
@@ -157,6 +160,11 @@ public class RouletteBall : MonoBehaviour
             {
                 Debug.LogWarning("⚠️ No BetEvaluator found in the scene.");
             }
+
+            if (slotDisplay != null)
+            {
+                slotDisplay.ShowResult(slot);
+            }
         }
     }
 
@@ -174,6 +182,9 @@ public class RouletteBall : MonoBehaviour
 
         transform.SetParent(null, true);
         transform.localScale = initialScale;
+
+        if (slotDisplay != null)
+            slotDisplay.ResetDisplay();
     }
 
     public GameObject GetWinningSlot()
