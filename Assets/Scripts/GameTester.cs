@@ -9,6 +9,7 @@ public class GameTester : MonoBehaviour
     public BetManager betManager;
     public BetEvaluator betEvaluator;
     public BetCutoffManager betCutoffManager;
+    public WinningSlotDisplay slotDisplay;
 
     [Header("Dynamic Launch Settings")]
     [Tooltip("Random range added to the wheel spin speed (\u00b1 value).")]
@@ -122,8 +123,10 @@ public class GameTester : MonoBehaviour
 
         if (betCutoffManager != null)
         {
-            betCutoffManager.UnlockBets(); 
+            betCutoffManager.UnlockBets();
         }
+
+        slotDisplay?.ResetDisplay();
     }
 
     private void Update()
