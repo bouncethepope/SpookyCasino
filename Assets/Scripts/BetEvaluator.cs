@@ -21,6 +21,9 @@ public class BetEvaluator : MonoBehaviour
     [Tooltip("Duration of the chip movement tween")]
     public float chipMoveDuration = 0.5f;
 
+    [Tooltip("Delay between collecting winning chips and losing chips")]
+    public float chipLossCollectDelay = 0.5f;
+
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
     {
@@ -180,6 +183,8 @@ public class BetEvaluator : MonoBehaviour
                 Destroy(chip);
             }
         }
+
+        yield return new WaitForSeconds(chipLossCollectDelay);
 
         foreach (var chip in losers)
         {
