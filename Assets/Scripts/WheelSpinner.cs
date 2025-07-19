@@ -14,6 +14,7 @@ public class WheelSpinner : MonoBehaviour
     private bool isSpinning = false;
     private Quaternion initialRotation;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
