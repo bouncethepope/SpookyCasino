@@ -24,6 +24,10 @@ public class GameTester : MonoBehaviour
     [Tooltip("Possible spawn positions for the ball.")]
     public Transform[] launchPositions;
 
+    [Header("Auto Reset")]
+    [Tooltip("Seconds to wait after bet evaluation before resetting the game")]
+    public float autoResetDelay = 3f;
+
     private float baseSpinSpeed;
     private float baseLaunchForce;
 
@@ -93,7 +97,7 @@ public class GameTester : MonoBehaviour
     }
 
     [ContextMenu("Reset Game")]
-    public void ResetGame()
+    public void ResetGame(bool resetWheel = true)
     {
         if (ballLauncher != null)
         {
@@ -103,7 +107,7 @@ public class GameTester : MonoBehaviour
             ballLauncher.launchForce = baseLaunchForce;
         }
 
-        if (wheelSpinner != null)
+        if (resetWheel && wheelSpinner != null)
         {
             wheelSpinner.ResetSpin();
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
@@ -127,6 +131,18 @@ public class GameTester : MonoBehaviour
         }
 
         slotDisplay?.ResetDisplay();
+    }
+
+    public void StartAutoReset()
+    {
+        StopCoroutine(AutoResetRoutine());
+        StartCoroutine(AutoResetRoutine());
+    }
+
+    private IEnumerator AutoResetRoutine()
+    {
+        yield return new WaitForSeconds(autoResetDelay);
+        ResetGame(false);
     }
 
     private void Update()

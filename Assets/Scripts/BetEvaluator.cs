@@ -7,6 +7,8 @@ public class BetEvaluator : MonoBehaviour
 {
     [Header("References")]
     public RouletteBall rouletteBall;
+    [Tooltip("Optional game manager for automatic resets after evaluation")]
+    public GameTester gameManager;
 
     [Header("Chips")]
     public List<GameObject> placedChips = new List<GameObject>();
@@ -212,6 +214,10 @@ public class BetEvaluator : MonoBehaviour
         }
 
         placedChips.Clear();
+
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameTester>();
+        gameManager?.StartAutoReset();
     }
 
     private void RewardPlayer(GameObject chip, int amount)
