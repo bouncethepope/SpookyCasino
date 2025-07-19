@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameTester : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class GameTester : MonoBehaviour
 
     private Vector3 ballStartPos;
     private Quaternion ballStartRot;
+
+    private bool isResetting = false;
 
     private void Awake()
     {
@@ -101,6 +104,11 @@ public class GameTester : MonoBehaviour
 
     public void ResetGame(bool resetWheel)
     {
+        if (isResetting)
+            return;
+
+        isResetting = true;
+
         if (ballLauncher != null)
         {
             ballLauncher.ResetLaunch();
@@ -116,7 +124,8 @@ public class GameTester : MonoBehaviour
         }
 
         // Destroy all chips in the scene
-        foreach (var chip in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
+        List<BettingChipDragger> chips = new List<BettingChipDragger>(FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None));
+        foreach (var chip in chips)
         {
             if (chip != null)
             {
@@ -133,6 +142,8 @@ public class GameTester : MonoBehaviour
         }
 
         slotDisplay?.ResetDisplay();
+
+        isResetting = false;
     }
 
     private void Update()
