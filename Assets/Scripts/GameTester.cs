@@ -123,14 +123,12 @@ public class GameTester : MonoBehaviour
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
         }
 
-        // Destroy all chips in the scene
-        List<BettingChipDragger> chips = new List<BettingChipDragger>(FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None));
+        // Destroy all chips in the scene using a snapshot to avoid collection
+        // modification issues when many chips are present
+        var chips = FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None);
         foreach (var chip in chips)
         {
-            if (chip != null)
-            {
-                Destroy(chip.gameObject);
-            }
+            Destroy(chip.gameObject);
         }
 
         betManager?.ClearAllBets();

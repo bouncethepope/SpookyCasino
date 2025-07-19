@@ -43,7 +43,8 @@ public class BetCutoffManager : MonoBehaviour
         ChipBag.betsLocked = true;
         BettingChipDragger.betsLocked = true;
 
-        foreach (var dragger in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
+        var chips = FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None);
+        foreach (var dragger in chips)
         {
             dragger.ForceEndDrag();
         }
