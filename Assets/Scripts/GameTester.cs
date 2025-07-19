@@ -92,8 +92,14 @@ public class GameTester : MonoBehaviour
         }
     }
 
+
     [ContextMenu("Reset Game")]
     public void ResetGame()
+    {
+        ResetGame(true);
+    }
+
+    public void ResetGame(bool resetWheel)
     {
         if (ballLauncher != null)
         {
@@ -103,7 +109,7 @@ public class GameTester : MonoBehaviour
             ballLauncher.launchForce = baseLaunchForce;
         }
 
-        if (wheelSpinner != null)
+        if (wheelSpinner != null && resetWheel)
         {
             wheelSpinner.ResetSpin();
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
