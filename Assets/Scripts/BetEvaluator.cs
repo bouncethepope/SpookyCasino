@@ -268,7 +268,8 @@ public class BetEvaluator : MonoBehaviour
     public void GatherChipsFromScene()
     {
         placedChips.Clear();
-        foreach (var dragger in FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None))
+        var chips = FindObjectsByType<BettingChipDragger>(FindObjectsSortMode.None);
+        foreach (var dragger in chips)
         {
             placedChips.Add(dragger.gameObject);
         }
