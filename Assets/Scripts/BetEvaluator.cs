@@ -7,6 +7,13 @@ public class BetEvaluator : MonoBehaviour
 {
     [Header("References")]
     public RouletteBall rouletteBall;
+    [Tooltip("Game tester used to reset the table")] public GameTester gameTester;
+
+    [Header("Table Reset")]
+    [Tooltip("Delay before resetting the game once chips are collected")]
+    public float tableResetDelay = 1f;
+    [Tooltip("Skip resetting the wheel when resetting from this script")]
+    public bool skipWheelReset = true;
 
     [Header("Chips")]
     public List<GameObject> placedChips = new List<GameObject>();
@@ -212,6 +219,23 @@ public class BetEvaluator : MonoBehaviour
         }
 
         placedChips.Clear();
+
+        TableReset();
+    }
+
+    private void TableReset()
+    {
+        if (gameTester == null)
+            return;
+
+        StartCoroutine(TableResetRoutine());
+    }
+
+    private IEnumerator TableResetRoutine()
+    {
+        yield return new WaitForSeconds(tableResetDelay);
+
+        gameTester.ResetGame(!skipWheelReset);
     }
 
     private void RewardPlayer(GameObject chip, int amount)
