@@ -20,10 +20,11 @@ public class BetEvaluator : MonoBehaviour
     public float chipCollectDelay = 1f;
     [Tooltip("Duration of the chip movement tween")]
     public float chipMoveDuration = 0.5f;
-
     [Tooltip("Delay between collecting winning chips and losing chips")]
     public float chipLossCollectDelay = 0.5f;
 
+    // Store rewards per chip to process after movement
+    private Dictionary<GameObject, int> rewardAmounts = new();
 
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
@@ -56,6 +57,7 @@ public class BetEvaluator : MonoBehaviour
 
         List<GameObject> winningChips = new List<GameObject>();
         List<GameObject> losingChips = new List<GameObject>();
+        rewardAmounts.Clear();
 
         foreach (var chip in placedChips)
         {
@@ -153,7 +155,8 @@ public class BetEvaluator : MonoBehaviour
             if (isWinning && payoutMultiplier > 0)
             {
                 int chipValue = chipInfo != null ? chipInfo.chipValue : 1;
-                PlayerCurrency.Instance?.AddCurrency(chipValue * payoutMultiplier);
+                int reward = chipValue * payoutMultiplier;
+                rewardAmounts[chip] = reward;
                 winningChips.Add(chip);
             }
             else
@@ -177,16 +180,22 @@ public class BetEvaluator : MonoBehaviour
             if (winningChipDestination != null)
             {
                 chip.transform.DOMove(winningChipDestination.position, chipMoveDuration)
-                    .OnComplete(() => Destroy(chip));
+                    .OnComplete(() =>
+                    {
+                        if (rewardAmounts.TryGetValue(chip, out int reward))
+                            RewardPlayer(chip, reward);
+                        Destroy(chip);
+                    });
             }
             else
             {
+                if (rewardAmounts.TryGetValue(chip, out int reward))
+                    RewardPlayer(chip, reward);
                 Destroy(chip);
             }
         }
 
         yield return new WaitForSeconds(chipLossCollectDelay);
-
 
         foreach (var chip in losers)
         {
@@ -203,6 +212,12 @@ public class BetEvaluator : MonoBehaviour
         }
 
         placedChips.Clear();
+    }
+
+    private void RewardPlayer(GameObject chip, int amount)
+    {
+        PlayerCurrency.Instance?.AddCurrency(amount);
+        Debug.Log($"💵 Rewarded {amount} for chip '{chip.name}'.");
     }
 
     private int GetGroupPayout(BetGroupType type)
@@ -235,5 +250,4 @@ public class BetEvaluator : MonoBehaviour
         }
         Debug.Log($"Collected {placedChips.Count} chips from the scene.");
     }
-
 }
