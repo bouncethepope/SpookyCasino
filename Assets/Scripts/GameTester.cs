@@ -117,9 +117,14 @@ public class GameTester : MonoBehaviour
             ballLauncher.launchForce = baseLaunchForce;
         }
 
-        if (wheelSpinner != null && resetWheel)
+        if (wheelSpinner != null)
         {
-            wheelSpinner.ResetSpin();
+            if (resetWheel)
+            {
+                wheelSpinner.ResetSpin();
+            }
+
+            // Always restore the base spin speed for the next round
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
         }
 
@@ -137,6 +142,7 @@ public class GameTester : MonoBehaviour
         if (betCutoffManager != null)
         {
             betCutoffManager.UnlockBets();
+            betCutoffManager.ResetCutoff();
         }
 
         slotDisplay?.ResetDisplay();
@@ -167,3 +173,4 @@ public class GameTester : MonoBehaviour
         }
     }
 }
+

@@ -70,4 +70,15 @@ public class WheelSpinner : MonoBehaviour
         rb.angularVelocity = 0f;
         transform.rotation = initialRotation;
     }
+
+    /// <summary>
+    /// Stops the wheel from spinning without changing its current rotation.
+    /// Useful when the wheel orientation should persist between rounds.
+    /// </summary>
+    public void StopSpin()
+    {
+        isSpinning = false;
+        currentSpinSpeed = 0f;
+        rb.angularVelocity = 0f;
+    }
 }

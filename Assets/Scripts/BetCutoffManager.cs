@@ -15,6 +15,9 @@ public class BetCutoffManager : MonoBehaviour
     public float cutoffSpeed = 200f;
 
     private bool betsLocked = false;
+    // Indicates whether the cutoff was triggered this round so it isn't
+    // continually checked after locking bets
+    private bool cutoffTriggered = false;
 
     private void Start()
     {
@@ -24,7 +27,7 @@ public class BetCutoffManager : MonoBehaviour
 
     private void Update()
     {
-        if (betsLocked || wheelSpinner == null)
+        if (betsLocked || wheelSpinner == null || cutoffTriggered)
             return;
 
         // Only lock bets if the wheel has started spinning and is now slowing down
@@ -40,6 +43,7 @@ public class BetCutoffManager : MonoBehaviour
     public void LockBets()
     {
         betsLocked = true;
+        cutoffTriggered = true;
         ChipBag.betsLocked = true;
         BettingChipDragger.betsLocked = true;
 
@@ -65,4 +69,13 @@ public class BetCutoffManager : MonoBehaviour
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
     }
+
+    /// <summary>
+    /// Resets the cutoff trigger so bets can be locked again next round.
+    /// </summary>
+    public void ResetCutoff()
+    {
+        cutoffTriggered = false;
+    }
 }
+
