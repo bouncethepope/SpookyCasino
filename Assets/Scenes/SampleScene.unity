@@ -587,6 +587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rouletteBall: {fileID: 1580235285}
+  gameTester: {fileID: 265894427}
+  tableResetDelay: 1
+  skipWheelReset: 1
   placedChips:
   - {fileID: 0}
   - {fileID: 0}
