@@ -117,9 +117,19 @@ public class GameTester : MonoBehaviour
             ballLauncher.launchForce = baseLaunchForce;
         }
 
-        if (wheelSpinner != null && resetWheel)
+        if (wheelSpinner != null)
         {
-            wheelSpinner.ResetSpin();
+            if (resetWheel)
+            {
+                wheelSpinner.ResetSpin();
+            }
+            else
+            {
+                // Stop the wheel without resetting its rotation so the next round
+                // begins from the same orientation.
+                wheelSpinner.StopSpin();
+            }
+
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
         }
 
