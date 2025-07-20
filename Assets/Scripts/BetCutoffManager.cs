@@ -62,6 +62,10 @@ public class BetCutoffManager : MonoBehaviour
         ChipBag.betsLocked = false;
         BettingChipDragger.betsLocked = false;
 
+        // Stop the wheel when a new round begins so the cutoff logic
+        // doesn't immediately relock bets.
+        wheelSpinner?.StopSpin();
+
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
     }
