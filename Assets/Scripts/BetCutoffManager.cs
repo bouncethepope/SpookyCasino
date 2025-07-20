@@ -15,6 +15,8 @@ public class BetCutoffManager : MonoBehaviour
     public float cutoffSpeed = 200f;
 
     private bool betsLocked = false;
+    private bool cutoffTriggered = false;
+    private bool monitorSpin = false;
 
     private void Start()
     {
@@ -24,22 +26,20 @@ public class BetCutoffManager : MonoBehaviour
 
     private void Update()
     {
-        if (betsLocked || wheelSpinner == null)
+        if (betsLocked || wheelSpinner == null || cutoffTriggered || !monitorSpin)
             return;
 
-        // Only lock bets if the wheel has started spinning and is now slowing down
         if (wheelSpinner.IsSpinning() && Mathf.Abs(wheelSpinner.GetCurrentSpinSpeed()) <= cutoffSpeed)
         {
             LockBets();
         }
     }
 
-
-
-    /// Locks all chip and bag interactions and shows the "no more bets" prompt.
     public void LockBets()
     {
         betsLocked = true;
+        cutoffTriggered = true;
+        monitorSpin = false;
         ChipBag.betsLocked = true;
         BettingChipDragger.betsLocked = true;
 
@@ -53,9 +53,6 @@ public class BetCutoffManager : MonoBehaviour
             noMoreBetsUI.SetActive(true);
     }
 
-    /// <summary>
-    /// Unlocks betting so chips can be moved again.
-    /// </summary>
     public void UnlockBets()
     {
         betsLocked = false;
@@ -64,5 +61,19 @@ public class BetCutoffManager : MonoBehaviour
 
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
+    }
+
+    public void ResetCutoff()
+    {
+        cutoffTriggered = false;
+        monitorSpin = false;
+    }
+
+    /// <summary>
+    /// Called when the ball is launched to begin checking for cutoff conditions.
+    /// </summary>
+    public void BeginCutoffMonitoring()
+    {
+        monitorSpin = true;
     }
 }

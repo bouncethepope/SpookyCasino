@@ -123,13 +123,7 @@ public class GameTester : MonoBehaviour
             {
                 wheelSpinner.ResetSpin();
             }
-            else
-            {
-                // Stop the wheel without resetting its rotation so the next round
-                // begins from the same orientation.
-                wheelSpinner.StopSpin();
-            }
-
+            // Always restore the base spin speed for the next round
             wheelSpinner.initialSpinSpeed = baseSpinSpeed;
         }
 
@@ -146,7 +140,9 @@ public class GameTester : MonoBehaviour
 
         if (betCutoffManager != null)
         {
+            betCutoffManager.ResetCutoff();
             betCutoffManager.UnlockBets();
+         
         }
 
         slotDisplay?.ResetDisplay();
