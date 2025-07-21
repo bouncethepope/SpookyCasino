@@ -55,6 +55,9 @@ TagManager:
   - name: Betting Chip
     uniqueID: 2946994423
     locked: 0
+  - name: Dolly
+    uniqueID: 1610884957
+    locked: 0
   m_RenderingLayers:
   - Default
   - Ball
