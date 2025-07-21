@@ -56,18 +56,22 @@ public class RouletteBall : MonoBehaviour
 
     private IEnumerator SnapToSlot(Transform target)
     {
-        Vector3 start = transform.position;
-        Vector3 end = target.position;
+        // capture the current offset so we can account for the wheel still
+        // moving during the snap animation
+        Vector3 startOffset = transform.position - target.position;
         float elapsed = 0f;
 
         while (elapsed < snapDuration)
         {
-            transform.position = Vector3.Lerp(start, end, elapsed / snapDuration);
             elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / snapDuration);
+
+            // continue to update the position relative to the moving target
+            transform.position = target.position + Vector3.Lerp(startOffset, Vector3.zero, t);
             yield return null;
         }
 
-        transform.position = end;
+        transform.position = target.position;
         followAnchor = target;
     }
 
