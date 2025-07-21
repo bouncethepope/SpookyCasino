@@ -12,9 +12,13 @@ public class WinningSlotDisplay : MonoBehaviour
     [Tooltip("Transform moved to highlight the winning bet")] public Transform dolly;
     [Tooltip("Where the dolly rests when idle")] public Transform dollyHome;
     public float dollyMoveDuration = 1f;
+    [Tooltip("Delay before dolly moves")]
+    public float dollyMoveDelay = 0.5f;
 
     [Header("Effects")]
     [Tooltip("Prefab spawned at the winning bet location")] public GameObject flashPrefab;
+    [Tooltip("Delay after dolly arrives before showing flash effect")]
+    public float flashSpawnDelay = 0.3f;
     [Tooltip("Transforms representing bet positions indexed by number")] public Transform[] tablePositions;
 
     private GameObject currentFlash;
@@ -62,18 +66,22 @@ public class WinningSlotDisplay : MonoBehaviour
             target = tablePositions[slot.number];
 
         if (target != null && dolly != null)
+        {
+            yield return new WaitForSeconds(dollyMoveDelay);
             dolly.DOMove(target.position, dollyMoveDuration);
+        }
+
+        yield return new WaitForSeconds(dollyMoveDuration + flashSpawnDelay);
 
         if (flashPrefab != null && target != null)
             currentFlash = Instantiate(flashPrefab, target.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(dollyMoveDuration);
 
         if (resultText != null)
         {
             resultText.text = $"Result: {slot.number}";
             resultText.gameObject.SetActive(true);
         }
+
         routine = null;
     }
 }
