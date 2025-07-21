@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class RouletteBall : MonoBehaviour
@@ -13,6 +14,10 @@ public class RouletteBall : MonoBehaviour
 
     [Tooltip("Velocity magnitude that counts as the ball starting to move")]
     public float movementStartThreshold = 0.1f;
+
+    [Header("Snap Settings")]
+    [Tooltip("Duration of the snap animation when locking into the winning slot.")]
+    public float snapDuration = 0.1f;
 
     private readonly List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
@@ -31,6 +36,7 @@ public class RouletteBall : MonoBehaviour
     [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
 
     private Transform followAnchor = null;
+    private Coroutine snapRoutine = null;
 
     private void Awake()
     {
@@ -48,6 +54,23 @@ public class RouletteBall : MonoBehaviour
         }
     }
 
+    private IEnumerator SnapToSlot(Transform target)
+    {
+        Vector3 start = transform.position;
+        Vector3 end = target.position;
+        float elapsed = 0f;
+
+        while (elapsed < snapDuration)
+        {
+            transform.position = Vector3.Lerp(start, end, elapsed / snapDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = end;
+        followAnchor = target;
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (isLocked || !hasStartedMoving) return;
@@ -60,9 +83,10 @@ public class RouletteBall : MonoBehaviour
 
     private void Update()
     {
-        if (isLocked && followAnchor != null)
+        if (isLocked)
         {
-            transform.position = followAnchor.position;
+            if (followAnchor != null)
+                transform.position = followAnchor.position;
             return;
         }
 
@@ -124,25 +148,22 @@ public class RouletteBall : MonoBehaviour
 
         // 🔍 Look for BallAnchor under the slot
         Transform anchor = currentSlot.transform.Find("BallAnchor");
+        Transform target = anchor != null ? anchor : currentSlot.transform;
+
+        transform.SetParent(null); // Stay in world space
+        transform.rotation = Quaternion.identity;
+        transform.localScale = initialScale;
+
+        if (snapRoutine != null)
+            StopCoroutine(snapRoutine);
+        snapRoutine = StartCoroutine(SnapToSlot(target));
 
         if (anchor != null)
         {
-            followAnchor = anchor;
-            transform.SetParent(null); // Stay in world space
-            transform.position = anchor.position;
-            transform.rotation = Quaternion.identity;
-            transform.localScale = initialScale;
-
             Debug.Log($"✅ Ball locked to anchor under: {currentSlot.name}");
         }
         else
         {
-            followAnchor = null;
-            transform.SetParent(null);
-            transform.position = currentSlot.transform.position;
-            transform.rotation = Quaternion.identity;
-            transform.localScale = initialScale;
-
             Debug.LogWarning($"⚠️ BallAnchor not found under {currentSlot.name}, snapped to slot center.");
         }
 
@@ -177,6 +198,11 @@ public class RouletteBall : MonoBehaviour
         isLocked = false;
         hasStartedMoving = false;
         followAnchor = null;
+        if (snapRoutine != null)
+        {
+            StopCoroutine(snapRoutine);
+            snapRoutine = null;
+        }
         touchingSlots.Clear();
         lastSlotCount = -1;
 
