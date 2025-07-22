@@ -1,4 +1,4 @@
-// Recompile at 22/07/2025 12:56:56
+﻿// Recompile at 22/07/2025 12:56:56
 
 // Copyright (c) Pixel Crushers. All rights reserved.
 
@@ -251,7 +251,6 @@ namespace PixelCrushers.DialogueSystem
                 textComponent.text = textComponent.text.Replace("<br>", "\n");
                 fromIndex = StripRPGMakerCodes(Tools.StripTextMeshProTags(textComponent.text)).Substring(0, fromIndex).Length;
                 ProcessRPGMakerCodes();
-                if (runtimeAudioSource != null) runtimeAudioSource.clip = audioClip;
                 onBegin.Invoke();
                 paused = false;
                 float delay = 1 / charactersPerSecond;
@@ -265,9 +264,10 @@ namespace PixelCrushers.DialogueSystem
                 TMPro.TMP_TextInfo textInfo = textComponent.textInfo;
                 if (textInfo == null) yield break;
                 var parsedText = textComponent.GetParsedText();
-                int totalVisibleCharacters = textInfo.characterCount; // Get # of Visible Character in text object
+                int totalVisibleCharacters = textInfo.characterCount;
                 charactersTyped = fromIndex;
                 int skippedCharacters = 0;
+
                 while (charactersTyped < totalVisibleCharacters)
                 {
                     if (!paused)
@@ -280,9 +280,8 @@ namespace PixelCrushers.DialogueSystem
                             if (rpgMakerTokens.ContainsKey(charactersTyped))
                             {
                                 var tokens = rpgMakerTokens[charactersTyped];
-                                for (int i = 0; i < tokens.Count; i++)
+                                foreach (var token in tokens)
                                 {
-                                    var token = tokens[i];
                                     switch (token)
                                     {
                                         case RPGMakerTokenType.QuarterPause:
@@ -300,7 +299,8 @@ namespace PixelCrushers.DialogueSystem
                                             {
                                                 charactersTyped++;
                                                 skippedCharacters++;
-                                                if (rpgMakerTokens.ContainsKey(charactersTyped) && rpgMakerTokens[charactersTyped].Contains(RPGMakerTokenType.InstantClose))
+                                                if (rpgMakerTokens.ContainsKey(charactersTyped) &&
+                                                    rpgMakerTokens[charactersTyped].Contains(RPGMakerTokenType.InstantClose))
                                                 {
                                                     close = true;
                                                 }
@@ -309,30 +309,41 @@ namespace PixelCrushers.DialogueSystem
                                     }
                                 }
                             }
+
                             var typedCharacter = (0 <= charactersTyped && charactersTyped < parsedText.Length) ? parsedText[charactersTyped] : ' ';
                             if (charactersTyped < totalVisibleCharacters)
                             {
-                                if (IsSilentCharacter(typedCharacter))
+                                if (!IsSilentCharacter(typedCharacter))
                                 {
-                                    if (stopAudioOnSilentCharacters) StopCharacterAudio();
-                                }
-                                else
-                                {
-                                    PlayCharacterAudio(typedCharacter);
+                                    if (runtimeAudioSource != null && audioClip != null)
+                                    {
+                                        if (!runtimeAudioSource.isPlaying)
+                                        {
+                                            runtimeAudioSource.clip = audioClip;
+
+                                            // Optional: randomize pitch slightly for variety
+                                            // runtimeAudioSource.pitch = Random.Range(0.95f, 1.05f);
+
+                                            runtimeAudioSource.Play();
+                                        }
+                                    }
+
                                 }
                             }
+
                             onCharacter.Invoke();
                             charactersTyped++;
                             textComponent.maxVisibleCharacters = charactersTyped;
+
                             if (IsFullPauseCharacter(typedCharacter)) yield return DialogueTime.WaitForSeconds(fullPauseDuration);
                             else if (IsQuarterPauseCharacter(typedCharacter)) yield return DialogueTime.WaitForSeconds(quarterPauseDuration);
                         }
                     }
+
                     textComponent.maxVisibleCharacters = charactersTyped;
                     HandleAutoScroll();
-                    textComponent.ForceMeshUpdate(); // Must force every time in case something is animating TMPro (e.g., scale).
-                    //---Uncomment the line below to debug: 
-                    //Debug.Log(textComponent.text.Substring(0, charactersTyped).Replace("<", "[").Replace(">", "]") + " (typed=" + charactersTyped + ")");
+                    textComponent.ForceMeshUpdate();
+
                     lastTime = DialogueTime.time;
                     var delayTime = DialogueTime.time + delay;
                     int delaySafeguard = 0;
@@ -343,8 +354,10 @@ namespace PixelCrushers.DialogueSystem
                     }
                 }
             }
+
             Stop();
         }
+
 
         protected void ProcessRPGMakerCodes()
         {

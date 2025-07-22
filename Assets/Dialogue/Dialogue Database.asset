@@ -121,11 +121,25 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Initial Value
-      value: false
+      value: False
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Description
-      value: 
+      value: Player knows the rules of roulette
+      type: 0
+      typeString: 
+  - id: 4
+    fields:
+    - title: Name
+      value: IntroductionTalkDone
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: Player had intro talk
       type: 0
       typeString: 
   conversations:
@@ -219,6 +233,12 @@ MonoBehaviour:
         destinationDialogueID: 1
         isConnector: 0
         priority: 2
+      - originConversationID: 1
+        originDialogueID: 0
+        destinationConversationID: 1
+        destinationDialogueID: 23
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -274,8 +294,8 @@ MonoBehaviour:
         destinationDialogueID: 2
         isConnector: 0
         priority: 2
-      conditionsString: 
-      userScript: 
+      conditionsString: Variable["IntroductionTalkDone"] == false
+      userScript: Variable["IntroductionTalkDone"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -308,7 +328,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Welcome to my underwater game
+        value: Welcome to my underwater game \.
         type: 0
         typeString: 
       - title: Sequence
@@ -1404,9 +1424,58 @@ MonoBehaviour:
         y: 801.7129
         width: 160
         height: 30
+    - id: 23
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: Fuck off.
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: Variable["IntroductionTalkDone"] == true
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 911.3579
+        y: 72.917816
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 65.62125}
-    canvasZoom: 0.5800006
+    canvasScrollPosition: {x: 53.013016, y: 31.271667}
+    canvasZoom: 0.7600004
   syncInfo:
     syncActors: 0
     syncItems: 0
