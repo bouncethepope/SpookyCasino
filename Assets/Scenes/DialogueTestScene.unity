@@ -248,11 +248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4627916657377806876, guid: 81c78e3e93f57c3479e00e263410c299, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.26
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 4627916657377806876, guid: 81c78e3e93f57c3479e00e263410c299, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.52
+      value: -1.8199999
       objectReference: {fileID: 0}
     - target: {fileID: 4627916657377806876, guid: 81c78e3e93f57c3479e00e263410c299, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1362,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 743022021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.45, y: 0, z: -4.5253954}
+  m_LocalPosition: {x: 3.17, y: 0.45, z: -4.5253954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   runRaycasts: 0
   raycastAll: 1
   selectBehindUIObjects: 1
-  useDefaultGUI: 1
+  useDefaultGUI: 0
   guiSkin: {fileID: 0}
   guiStyleName: label
   alignment: 1
@@ -1588,7 +1588,7 @@ Transform:
   m_GameObject: {fileID: 847395850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6273522, w: 0.7787357}
-  m_LocalPosition: {x: -5.76, y: 1.7600002, z: -0.072639994}
+  m_LocalPosition: {x: -6.59, y: 1.66, z: -0.072639994}
   m_LocalScale: {x: 0.81325215, y: 0.81325215, z: 0.81325215}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1641,7 +1641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 126, y: 83}
+  m_AnchoredPosition: {x: 140, y: -11}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &925140970
@@ -1691,8 +1691,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 22.11
+  m_fontSizeBase: 22.11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1897,7 +1897,7 @@ Transform:
   m_GameObject: {fileID: 969421704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: -3.02, z: 0}
+  m_LocalPosition: {x: 9.18, y: -2.44, z: 0}
   m_LocalScale: {x: 0.894376, y: 0.894376, z: 0.894376}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1986,7 +1986,8 @@ MonoBehaviour:
   trigger: 32
   delayOneFrame: 0
   condition:
-    luaConditions: []
+    luaConditions:
+    - Variable["Table.EightChatComplete"] ~= true
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
@@ -2184,7 +2185,7 @@ Transform:
   m_GameObject: {fileID: 1072803289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: -1.13, z: 0}
+  m_LocalPosition: {x: 9.18, y: -0.55, z: 0}
   m_LocalScale: {x: 0.894376, y: 0.894376, z: 0.894376}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2364,7 +2365,7 @@ Transform:
   m_GameObject: {fileID: 1097075012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: -2.06, z: 0}
+  m_LocalPosition: {x: 9.18, y: -1.48, z: 0}
   m_LocalScale: {x: 0.894376, y: 0.894376, z: 0.894376}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2424,7 +2425,7 @@ Transform:
   m_GameObject: {fileID: 1213499697}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.5253954}
+  m_LocalPosition: {x: 9.17, y: 4.22, z: -4.5253954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2661,16 +2662,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214918295}
-  m_LocalRotation: {x: -0, y: -0, z: -0.14726707, w: 0.9890968}
+  m_LocalRotation: {x: -0, y: -0, z: -0.002587987, w: 0.99999666}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.758503, y: 2.758503, z: 2.758503}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1418692371}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.297}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: 140}
+  m_AnchoredPosition: {x: 189, y: 122}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214918297
@@ -3144,7 +3145,7 @@ Transform:
   m_GameObject: {fileID: 1580235280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.57, y: 6.77, z: 0}
+  m_LocalPosition: {x: -4.3999996, y: 6.6699996, z: 0}
   m_LocalScale: {x: 0.15993963, y: 0.15993963, z: 0.15993963}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3438,11 +3439,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872300289723669517, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.76
+      value: -6.59
       objectReference: {fileID: 0}
     - target: {fileID: 1872300289723669517, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7600002
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 1872300289723669517, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3505,16 +3506,8 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2750949005354602294, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
-      propertyPath: initialDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: ed381d772cf5bec478e78fbdcf3b10d5, type: 2}
-    - target: {fileID: 2750949005354602294, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
-      propertyPath: displaySettings.dialogueUI
-      value: 
-      objectReference: {fileID: 101180, guid: a5b4dc18ac65b8d4aa58af9b95d65f77, type: 3}
-    - target: {fileID: 2750949005354602294, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
-      propertyPath: displaySettings.subtitleSettings.skipPCSubtitleAfterResponseMenu
+    - target: {fileID: 3016036859514403321, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
+      propertyPath: m_position
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5038723395652044366, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
@@ -3527,7 +3520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048396437831640069, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.92
       objectReference: {fileID: 0}
     - target: {fileID: 5048396437831640069, guid: 6d28236e021868a47a11e8a43767bfe7, type: 3}
       propertyPath: m_LocalPosition.z
