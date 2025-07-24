@@ -49,6 +49,9 @@ public class BetCutoffManager : MonoBehaviour
             dragger.ForceEndDrag();
         }
 
+        // capture starting currency for the upcoming spin
+        BetHistorySign.Instance?.StartRound();
+
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(true);
     }
