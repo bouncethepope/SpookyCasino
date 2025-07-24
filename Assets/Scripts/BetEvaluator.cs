@@ -33,6 +33,8 @@ public class BetEvaluator : MonoBehaviour
     // Store rewards per chip to process after movement
     private Dictionary<GameObject, int> rewardAmounts = new();
 
+    private RouletteSlot lastWinningSlot;
+
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
     {
@@ -61,6 +63,8 @@ public class BetEvaluator : MonoBehaviour
             Debug.LogWarning("❌ Winning slot has no RouletteSlot component.");
             return;
         }
+
+        lastWinningSlot = slotComponent;
 
         List<GameObject> winningChips = new List<GameObject>();
         List<GameObject> losingChips = new List<GameObject>();
@@ -234,6 +238,12 @@ public class BetEvaluator : MonoBehaviour
     private IEnumerator TableResetRoutine()
     {
         yield return new WaitForSeconds(tableResetDelay);
+
+        if (lastWinningSlot != null)
+        {
+            BetHistorySign.Instance?.EndRound(lastWinningSlot);
+            lastWinningSlot = null;
+        }
 
         gameTester.ResetGame(!skipWheelReset);
     }
