@@ -83,7 +83,10 @@ MonoBehaviour:
     spritePortrait: {fileID: 3622792381989719942, guid: f2f405460aab6ef41a2cb68ee73442e3, type: 3}
     alternatePortraits: []
     spritePortraits:
-    - {fileID: 0}
+    - {fileID: -3924190032742187860, guid: f742d37d4616e2545b84228815939e76, type: 3}
+    - {fileID: 7985626363670038235, guid: 9492f04dee5a8c54ea278f878e0f1f94, type: 3}
+    - {fileID: 3119831310234545571, guid: 40d0f17cb5905854c8f1d414f6337045, type: 3}
+    - {fileID: 621222158458474870, guid: 9b6c29c768b855c4c9156bba13a548c1, type: 3}
   items: []
   locations: []
   variables:
@@ -1878,7 +1881,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Lucky number eight, the best number.
+        value: 'Lucky number eight, the best number. '
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1906,7 +1909,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 156.19998
+        x: 157.14117
         y: 83.148926
         width: 160
         height: 30
