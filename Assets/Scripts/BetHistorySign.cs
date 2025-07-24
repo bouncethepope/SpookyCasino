@@ -51,14 +51,19 @@ public class BetHistorySign : MonoBehaviour
         int endCurrency = PlayerCurrency.Instance?.CurrentCurrency ?? 0;
         int delta = endCurrency - startCurrency;
 
-        string color = slot.color switch
+        // choose a hex color so the number text matches the slot color
+        string hex = slot.color switch
         {
-            RouletteColor.Red => "Red",
-            RouletteColor.Black => "Black",
-            _ => "Green"
+            RouletteColor.Red => "#ff0000",
+            RouletteColor.Black => "#000000",
+            _ => "#00ff00" // treat 0 as green
         };
 
-        string entry = $"{slot.number} ({color})  {(delta >= 0 ? "+" : "-")}{Mathf.Abs(delta)}";
+        // format currency change, showing minus numbers when appropriate
+        string deltaText = delta > 0 ? $"+{delta}" : delta.ToString();
+
+        // apply rich text color tags to the winning number
+        string entry = $"<color={hex}>{slot.number}</color>  {deltaText}";
         entries.Insert(0, entry);
         if (entries.Count > maxEntries)
             entries.RemoveAt(entries.Count - 1);
