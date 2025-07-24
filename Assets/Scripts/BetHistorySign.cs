@@ -6,8 +6,9 @@ using TMPro;
 /// Simple helper that records the result of each spin and displays it
 /// in a scrolling history list. Attach this to a UI object and assign a
 /// TMP_Text component for <see cref="historyText"/>. Call
-/// <see cref="StartRound"/> when bets are locked and
-/// <see cref="EndRound"/> once rewards have been paid out.
+/// <see cref="StartRound"/> when a new betting round begins (e.g., when
+/// bets are unlocked) and <see cref="EndRound"/> once rewards have been
+/// paid out.
 /// </summary>
 public class BetHistorySign : MonoBehaviour
 {

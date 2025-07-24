@@ -22,6 +22,7 @@ public class BetCutoffManager : MonoBehaviour
     {
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
+
     }
 
     private void Update()
@@ -49,8 +50,7 @@ public class BetCutoffManager : MonoBehaviour
             dragger.ForceEndDrag();
         }
 
-        // capture starting currency for the upcoming spin
-        BetHistorySign.Instance?.StartRound();
+        // bets are locked; chips can't be moved anymore
 
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(true);
@@ -64,6 +64,9 @@ public class BetCutoffManager : MonoBehaviour
 
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
+
+        // capture currency baseline for the upcoming round
+        BetHistorySign.Instance?.StartRound();
     }
 
     public void ResetCutoff()
