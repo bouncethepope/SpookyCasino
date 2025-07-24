@@ -20,7 +20,7 @@ public class BetHistorySign : MonoBehaviour
     [Tooltip("Maximum number of entries to keep in history")] public int maxEntries = 10;
 
     private readonly List<string> entries = new();
-    private int startCurrency = 0;
+    private int startCurrency = 500;
 
     private void Awake()
     {
