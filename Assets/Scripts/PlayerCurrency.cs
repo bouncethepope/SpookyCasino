@@ -1,5 +1,6 @@
-using UnityEngine;
+using PixelCrushers.DialogueSystem;
 using TMPro;
+using UnityEngine;
 
 public class PlayerCurrency : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerCurrency : MonoBehaviour
         }
         Instance = this;
         CurrentCurrency = startingCurrency;
+        DialogueLua.SetVariable("IngameValues.Currency", CurrentCurrency);
         UpdateUI();
     }
 
@@ -30,6 +32,7 @@ public class PlayerCurrency : MonoBehaviour
 
         CurrentCurrency -= amount;
         UpdateUI();
+        DialogueLua.SetVariable("IngameValues.Currency", CurrentCurrency);
         return true;
     }
 
@@ -37,6 +40,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         CurrentCurrency += amount;
         UpdateUI();
+        DialogueLua.SetVariable("IngameValues.Currency", CurrentCurrency);
     }
 
     private void UpdateUI()
