@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8032333032166751261}
   - component: {fileID: 8374576418603004352}
   m_Layer: 11
-  m_Name: Betting Chip
+  m_Name: Betting Chip 500
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heldScaleMultiplier: 1.2
+  bagCollider: {fileID: 0}
 --- !u!212 &8032333032166751261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: -1347972873
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 8347464530014201097, guid: 167c4cb854a6edc4bb9192822b584521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

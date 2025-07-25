@@ -80,13 +80,13 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 3622792381989719942, guid: f2f405460aab6ef41a2cb68ee73442e3, type: 3}
+    spritePortrait: {fileID: 2855717944606493345, guid: 8d0aeaf3101242c4aa73cd634eba019f, type: 3}
     alternatePortraits: []
     spritePortraits:
-    - {fileID: -3924190032742187860, guid: f742d37d4616e2545b84228815939e76, type: 3}
-    - {fileID: 7985626363670038235, guid: 9492f04dee5a8c54ea278f878e0f1f94, type: 3}
-    - {fileID: 3119831310234545571, guid: 40d0f17cb5905854c8f1d414f6337045, type: 3}
-    - {fileID: 621222158458474870, guid: 9b6c29c768b855c4c9156bba13a548c1, type: 3}
+    - {fileID: 3695423212802335037, guid: a147d98fa6eac8b4989c98a74773c4d9, type: 3}
+    - {fileID: 5867026871364970776, guid: 50a447cbe76fd9f449ad7a8a607eb8f7, type: 3}
+    - {fileID: -1460691163605821898, guid: 0868d040d2582784b858496213bbecdf, type: 3}
+    - {fileID: 5185330175524913131, guid: d38a0edfe1af1f84199ff7fb903e5d26, type: 3}
   items: []
   locations: []
   variables:
@@ -1506,8 +1506,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 74.21553}
-    canvasZoom: 0.94000024
+    canvasScrollPosition: {x: 28.613579, y: 380.9151}
+    canvasZoom: 0.8500003
   - id: 2
     fields:
     - title: Title
@@ -1769,8 +1769,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 76.08149, y: 22.265598}
-    canvasZoom: 0.9100001
+    canvasScrollPosition: {x: 52.54574, y: 0}
+    canvasZoom: 0.85000014
   - id: 3
     fields:
     - title: Title
@@ -2197,8 +2197,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 1.8823547}
-    canvasZoom: 0.85000014
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.8200002
   - id: 4
     fields:
     - title: Title
@@ -2449,7 +2449,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Not
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 4
@@ -2466,14 +2466,15 @@ MonoBehaviour:
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
-      conditionsString: Variable["IngameValues.Currency"] <= 100
+      conditionsString: Variable["IngameValues.Currency"] >= 1 and Variable["IngameValues.Currency"]
+        <= 150
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 489.19092
+        x: 490.3338
         y: 67.76515
         width: 160
         height: 30
@@ -2528,7 +2529,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 489.19092
+        x: 490.33374
         y: 117.76515
         width: 160
         height: 30
@@ -2781,7 +2782,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: I'm not suprised your betting is as bad as your
+        value: I'm not suprised. You gamble like you look\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2799,7 +2800,7 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 9
         destinationConversationID: 4
-        destinationDialogueID: 10
+        destinationDialogueID: 15
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -2864,8 +2865,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 909.19434
-        y: 243.54553
+        x: 910.24695
+        y: 379.335
         width: 160
         height: 30
     - id: 11
@@ -2891,7 +2892,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: But don't forget...\. [em1]Even the sharks owe me money[/em1].\.\.
+        value: '[pic=4]But don''t forget...\. [em1]Even the sharks owe me money[/em1].\.\.'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2913,8 +2914,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 909.19434
-        y: 293.54553
+        x: 910.24695
+        y: 429.335
         width: 160
         height: 30
     - id: 12
@@ -2940,7 +2941,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: They take any extra out of my paycheck
+        value: They take any extras you might need out of my paycheck\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2954,7 +2955,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 12
+        destinationConversationID: 4
+        destinationDialogueID: 17
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -2989,7 +2996,62 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
+        value: '[pic=3]I like the optimism landy.'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
         value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 13
+        destinationConversationID: 4
+        destinationDialogueID: 14
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 396.1342
+        y: 283.06067
+        width: 160
+        height: 30
+    - id: 14
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: I'll be here for you when you blow it all.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -3011,13 +3073,173 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 393.84848
-        y: 284.2035
+        x: 395.91373
+        y: 335.29938
+        width: 160
+        height: 30
+    - id: 15
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[em1]Spineless[/em1]'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 15
+        destinationConversationID: 4
+        destinationDialogueID: 16
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 909.19434
+        y: 153.01918
+        width: 160
+        height: 30
+    - id: 16
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=3]And that''s coming from me!'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 16
+        destinationConversationID: 4
+        destinationDialogueID: 10
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 909.19434
+        y: 203.01918
+        width: 160
+        height: 30
+    - id: 17
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=4]And you better be tipping [em1]hard[/em1] if it gets to that
+          point.'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 102.93616
+        y: 226.69875
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 53.413185, y: 23.881874}
-    canvasZoom: 0.7900002
+    canvasScrollPosition: {x: 168.29694, y: 0}
+    canvasZoom: 0.7000003
   syncInfo:
     syncActors: 0
     syncItems: 0
