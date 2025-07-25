@@ -193,7 +193,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 773025291}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &139866320
 MonoBehaviour:
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 3181142888096545749, guid: 403f1c2c830ed3d4fa647536bfa7d801, type: 3}
-  chipValue: 1
+  chipPrefab: {fileID: 3181142888096545749, guid: d9cf3b2290358744796b465a2ce1f45f, type: 3}
+  chipValue: 50
   chipParent: {fileID: 139866319}
 --- !u!58 &139866321
 CircleCollider2D:
@@ -484,6 +484,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7053903420148991751, guid: 81c78e3e93f57c3479e00e263410c299, type: 3}
   m_PrefabInstance: {fileID: 165966994}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &220824788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220824789}
+  m_Layer: 0
+  m_Name: ChipBags
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &220824789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220824788}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1072803293}
+  - {fileID: 1814692052}
+  - {fileID: 1612045268}
+  - {fileID: 139866319}
+  - {fileID: 576759204}
+  - {fileID: 346441919}
+  - {fileID: 967600668}
+  m_Father: {fileID: 1896970308}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &236515444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4153354078695115520, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
@@ -1012,7 +1050,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1690114134}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &346441920
 MonoBehaviour:
@@ -1026,8 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 3181142888096545749, guid: 403f1c2c830ed3d4fa647536bfa7d801, type: 3}
-  chipValue: 1
+  chipPrefab: {fileID: 3181142888096545749, guid: 52d68777fad43ae489fdcf61c3db76b1, type: 3}
+  chipValue: 500
   chipParent: {fileID: 346441919}
 --- !u!58 &346441921
 CircleCollider2D:
@@ -1474,7 +1512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &492162624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1492,7 +1530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 679, y: 3}
+  m_AnchoredPosition: {x: 679, y: 100}
   m_SizeDelta: {x: 288.3541, y: 52.6375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492162625
@@ -1778,7 +1816,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2017915907}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &576759205
 MonoBehaviour:
@@ -1792,8 +1830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 3181142888096545749, guid: 403f1c2c830ed3d4fa647536bfa7d801, type: 3}
-  chipValue: 1
+  chipPrefab: {fileID: 3181142888096545749, guid: c7cd0dc2e64e57943aad3a2ab42a902d, type: 3}
+  chipValue: 100
   chipParent: {fileID: 576759204}
 --- !u!58 &576759206
 CircleCollider2D:
@@ -2530,7 +2568,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 253522443}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &967600669
 MonoBehaviour:
@@ -2826,7 +2864,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1909830858}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1072803294
 MonoBehaviour:
@@ -3954,7 +3992,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199514403}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1612045269
 MonoBehaviour:
@@ -3968,8 +4006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 3181142888096545749, guid: 403f1c2c830ed3d4fa647536bfa7d801, type: 3}
-  chipValue: 1
+  chipPrefab: {fileID: 3181142888096545749, guid: e8b2cafdf3fbd2046866fd409b019a54, type: 3}
+  chipValue: 20
   chipParent: {fileID: 1612045268}
 --- !u!58 &1612045270
 CircleCollider2D:
@@ -4172,7 +4210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1438878438}
-  m_Father: {fileID: 1896970308}
+  m_Father: {fileID: 220824789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1814692053
 MonoBehaviour:
@@ -4186,8 +4224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 3181142888096545749, guid: 403f1c2c830ed3d4fa647536bfa7d801, type: 3}
-  chipValue: 1
+  chipPrefab: {fileID: 3181142888096545749, guid: 4903df9ab09257840a37114faab1aedc, type: 3}
+  chipValue: 5
   chipParent: {fileID: 1814692052}
 --- !u!58 &1814692054
 CircleCollider2D:
@@ -4300,13 +4338,7 @@ Transform:
   m_Children:
   - {fileID: 1012051618}
   - {fileID: 74427298}
-  - {fileID: 1072803293}
-  - {fileID: 1814692052}
-  - {fileID: 1612045268}
-  - {fileID: 139866319}
-  - {fileID: 576759204}
-  - {fileID: 346441919}
-  - {fileID: 967600668}
+  - {fileID: 220824789}
   - {fileID: 2121351541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
