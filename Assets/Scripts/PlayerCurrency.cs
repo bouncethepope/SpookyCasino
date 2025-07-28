@@ -50,4 +50,23 @@ public class PlayerCurrency : MonoBehaviour
             currencyText.text = $"Currency: {CurrentCurrency}";
         }
     }
+
+    //Opens Currency Addition in Lua
+    private void OnEnable()
+    {
+        Lua.RegisterFunction("AddCurrency", this, SymbolExtensions.GetMethodInfo(() => AddCurrencyLua(0)));
+    }
+
+    private void OnDisable()
+    {
+        Lua.UnregisterFunction("AddCurrency");
+    }
+
+    // Wrapper for Lua — must take a single `double` argument
+    public void AddCurrencyLua(double amount)
+    {
+        AddCurrency((int)amount);
+    }
+
+
 }

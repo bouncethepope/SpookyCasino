@@ -1419,7 +1419,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Money Conversations
+  conversation: Going Bust
   conversationConversant: {fileID: 415038142}
   conversationActor: {fileID: 743022022}
   startConversationEntryID: -1
