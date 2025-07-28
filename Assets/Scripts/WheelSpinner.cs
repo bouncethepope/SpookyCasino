@@ -14,11 +14,31 @@ public class WheelSpinner : MonoBehaviour
     private bool isSpinning = false;
     private Quaternion initialRotation;
 
+    [Header("Audio")]
+    [Tooltip("Sound played while the wheel is spinning")] public AudioClip spinSound;
+    [Tooltip("Minimum pitch when the wheel slows to a stop")]
+    [Range(0.1f, 3f)] public float minSpinPitch = 0.5f;
+    [Tooltip("Maximum pitch when the wheel is at full speed")]
+    [Range(0.1f, 3f)] public float maxSpinPitch = 1f;
+
+    private AudioSource audioSource;
+
+
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         initialRotation = transform.rotation;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.loop = true;
+            audioSource.playOnAwake = false;
+            audioSource.pitch = maxSpinPitch;
+        }
     }
 
     public bool IsSpinning()
@@ -50,10 +70,31 @@ public class WheelSpinner : MonoBehaviour
 
             // Apply friction
             currentSpinSpeed = Mathf.MoveTowards(currentSpinSpeed, 0f, friction * Time.deltaTime);
+            float normalized = Mathf.Clamp01(Mathf.Abs(currentSpinSpeed) / Mathf.Max(1f, initialSpinSpeed));
+
+            if (audioSource != null)
+            {
+                if (!audioSource.isPlaying && spinSound != null)
+                {
+                    audioSource.clip = spinSound;
+                    audioSource.Play();
+                }
+
+                audioSource.volume = normalized;
+                audioSource.pitch = Mathf.Lerp(minSpinPitch, maxSpinPitch, normalized);
+            }
 
             // Stop spinning when speed is near zero
             if (Mathf.Approximately(currentSpinSpeed, 0f))
+            {
                 isSpinning = false;
+                if (audioSource != null && audioSource.isPlaying)
+                    audioSource.Stop();
+            }
+        }
+        else if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
         }
     }
 
@@ -61,6 +102,14 @@ public class WheelSpinner : MonoBehaviour
     {
         currentSpinSpeed = initialSpinSpeed;
         isSpinning = true;
+        if (audioSource != null && spinSound != null)
+        {
+            audioSource.clip = spinSound;
+            audioSource.volume = 1f;
+            audioSource.pitch = maxSpinPitch;
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
     }
 
     public void ResetSpin()
@@ -69,6 +118,11 @@ public class WheelSpinner : MonoBehaviour
         currentSpinSpeed = 0f;
         rb.angularVelocity = 0f;
         transform.rotation = initialRotation;
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.pitch = maxSpinPitch;
+        }
     }
 
     /// <summary>
@@ -80,5 +134,10 @@ public class WheelSpinner : MonoBehaviour
         isSpinning = false;
         currentSpinSpeed = 0f;
         rb.angularVelocity = 0f;
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.pitch = maxSpinPitch;
+        }
     }
 }

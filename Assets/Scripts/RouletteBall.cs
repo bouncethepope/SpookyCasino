@@ -22,6 +22,15 @@ public class RouletteBall : MonoBehaviour
     [Header("Audio")]
     [Tooltip("Possible clack sounds when the ball collides with something")] public AudioClip[] collisionClacks;
     [Tooltip("Possible sounds when the ball settles into a slot")] public AudioClip[] slotDropSounds;
+    [Tooltip("Minimum seconds between consecutive clack sounds")]
+    public float clackCooldown = 0.05f;
+    [Tooltip("Collider that stops clack sounds once touched")]
+    public Collider2D clackDisableCollider;
+
+    [Header("Clack Exclusion")]
+    [Tooltip("GameObjects that will not trigger clack sounds on collision")]
+    public GameObject[] clackExclusionObjects;
+
 
     private readonly List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
@@ -36,6 +45,21 @@ public class RouletteBall : MonoBehaviour
     private GameObject lockedSlot = null;
     private Rigidbody2D rb;
     private AudioSource audioSource;
+    private float lastClackTime = -Mathf.Infinity;
+    private bool clacksEnabled = true;
+
+    private bool IsExclusion(GameObject obj)
+    {
+        if (clackExclusionObjects == null)
+            return false;
+
+        foreach (var go in clackExclusionObjects)
+        {
+            if (go != null && obj == go)
+                return true;
+        }
+        return false;
+    }
 
     [Header("Result Display")]
     [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
@@ -55,6 +79,17 @@ public class RouletteBall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (isLocked || !hasStartedMoving) return;
+
+        if (clackDisableCollider != null && other == clackDisableCollider)
+        {
+            if (clacksEnabled)
+            {
+                PlayRandomClip(collisionClacks);
+                lastClackTime = Time.time;
+            }
+            clacksEnabled = false;
+            return;
+        }
 
         if (other.gameObject.name.StartsWith("Slot_") && !touchingSlots.Contains(other))
         {
@@ -92,6 +127,7 @@ public class RouletteBall : MonoBehaviour
             audioSource.PlayOneShot(clip);
     }
 
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (isLocked || !hasStartedMoving) return;
@@ -104,8 +140,31 @@ public class RouletteBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayRandomClip(collisionClacks);
+        if (clackDisableCollider != null && collision.collider == clackDisableCollider)
+        {
+            if (clacksEnabled)
+            {
+                PlayRandomClip(collisionClacks);
+                lastClackTime = Time.time;
+            }
+            clacksEnabled = false;
+            return;
+        }
+
+        if (IsExclusion(collision.collider.gameObject))
+            return;
+
+        if (!clacksEnabled)
+            return;
+
+        if (Time.time - lastClackTime >= clackCooldown)
+        {
+            PlayRandomClip(collisionClacks);
+            lastClackTime = Time.time;
+        }
     }
+
+
 
     private void Update()
     {
@@ -232,6 +291,8 @@ public class RouletteBall : MonoBehaviour
         }
         touchingSlots.Clear();
         lastSlotCount = -1;
+        clacksEnabled = true;
+        lastClackTime = -Mathf.Infinity;
 
         transform.SetParent(null, true);
         transform.localScale = initialScale;
