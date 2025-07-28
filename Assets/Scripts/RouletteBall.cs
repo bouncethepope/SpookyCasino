@@ -22,6 +22,8 @@ public class RouletteBall : MonoBehaviour
     [Header("Audio")]
     [Tooltip("Possible clack sounds when the ball collides with something")] public AudioClip[] collisionClacks;
     [Tooltip("Possible sounds when the ball settles into a slot")] public AudioClip[] slotDropSounds;
+    [Tooltip("Minimum seconds between consecutive clack sounds")]
+    public float clackCooldown = 0.05f;
 
     private readonly List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
@@ -36,6 +38,7 @@ public class RouletteBall : MonoBehaviour
     private GameObject lockedSlot = null;
     private Rigidbody2D rb;
     private AudioSource audioSource;
+    private float lastClackTime = -Mathf.Infinity;
 
     [Header("Result Display")]
     [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
@@ -104,7 +107,11 @@ public class RouletteBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayRandomClip(collisionClacks);
+        if (Time.time - lastClackTime >= clackCooldown)
+        {
+            PlayRandomClip(collisionClacks);
+            lastClackTime = Time.time;
+        }
     }
 
     private void Update()
