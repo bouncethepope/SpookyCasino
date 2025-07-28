@@ -19,6 +19,10 @@ public class RouletteBall : MonoBehaviour
     [Tooltip("Duration of the snap animation when locking into the winning slot.")]
     public float snapDuration = 0.1f;
 
+    [Header("Audio")]
+    [Tooltip("Possible clack sounds when the ball collides with something")] public AudioClip[] collisionClacks;
+    [Tooltip("Possible sounds when the ball settles into a slot")] public AudioClip[] slotDropSounds;
+
     private readonly List<Collider2D> touchingSlots = new();
     private int lastSlotCount = -1;
 
@@ -31,6 +35,7 @@ public class RouletteBall : MonoBehaviour
     private bool isLocked = false;
     private GameObject lockedSlot = null;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     [Header("Result Display")]
     [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
@@ -42,6 +47,9 @@ public class RouletteBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         initialScale = transform.localScale;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -75,6 +83,15 @@ public class RouletteBall : MonoBehaviour
         followAnchor = target;
     }
 
+    private void PlayRandomClip(AudioClip[] clips)
+    {
+        if (clips == null || clips.Length == 0 || audioSource == null)
+            return;
+        var clip = clips[Random.Range(0, clips.Length)];
+        if (clip != null)
+            audioSource.PlayOneShot(clip);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (isLocked || !hasStartedMoving) return;
@@ -83,6 +100,11 @@ public class RouletteBall : MonoBehaviour
         {
             touchingSlots.Remove(other);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayRandomClip(collisionClacks);
     }
 
     private void Update()
@@ -140,6 +162,7 @@ public class RouletteBall : MonoBehaviour
             return;
 
         isLocked = true;
+        PlayRandomClip(slotDropSounds);
         resultSent = true;
         lockedSlot = currentSlot.gameObject;
 
