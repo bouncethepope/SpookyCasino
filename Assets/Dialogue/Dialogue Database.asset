@@ -3238,7 +3238,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: ' [pic=5]Even the sharks payback their loans.\.\.'
+        value: ' [pic=5]Even the sharks owe me money.\.\.'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -3700,8 +3700,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 629.0208, y: 38.681335}
-    canvasZoom: 0.91
+    canvasScrollPosition: {x: 482.2735, y: 416.03992}
+    canvasZoom: 0.8200001
   - id: 5
     fields:
     - title: Title

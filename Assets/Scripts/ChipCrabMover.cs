@@ -18,12 +18,16 @@ public class ChipCrabMover : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
-    private bool moved = false;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
+    }
+
+    private void Start()
+    {
+        moveOffset = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
     }
 
     private void Update()
@@ -41,10 +45,8 @@ public class ChipCrabMover : MonoBehaviour
     [ContextMenu("Move With Crab")]
     public void MoveWithCrab()
     {
-        if (moved || RouletteBall.BallLocked)
+        if (RouletteBall.BallLocked)
             return;
-
-        moved = true;
 
         if (crabSprite != null)
             spriteRenderer.sprite = crabSprite;
