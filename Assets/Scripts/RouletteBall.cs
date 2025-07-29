@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class RouletteBall : MonoBehaviour
 {
+    /// <summary>
+    /// True once the ball has locked into a slot for the current round.
+    /// </summary>
+    public static bool BallLocked { get; private set; } = false;
     [Header("Detection Settings")]
     [Tooltip("Seconds the ball must remain in a slot before locking in.")]
     public float timeToConfirm = 3f;
@@ -221,6 +225,7 @@ public class RouletteBall : MonoBehaviour
             return;
 
         isLocked = true;
+        BallLocked = true;
         PlayRandomClip(slotDropSounds);
         resultSent = true;
         lockedSlot = currentSlot.gameObject;
@@ -282,6 +287,7 @@ public class RouletteBall : MonoBehaviour
         timeInSlot = 0f;
         resultSent = false;
         isLocked = false;
+        BallLocked = false;
         hasStartedMoving = false;
         followAnchor = null;
         if (snapRoutine != null)

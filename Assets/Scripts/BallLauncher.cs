@@ -47,6 +47,8 @@ public class BallLauncher : MonoBehaviour
             cutoffManager.BeginCutoffMonitoring(); // Start watching wheel
         }
 
+        CrabMovementManager.Instance?.OnBallLaunched();
+
         Debug.Log("🚀 Ball launched!");
     }
 

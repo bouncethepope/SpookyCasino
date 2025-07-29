@@ -50,6 +50,8 @@ public class BetCutoffManager : MonoBehaviour
             dragger.ForceEndDrag();
         }
 
+        CrabMovementManager.Instance?.OnNoMoreBets();
+
         // bets are locked; chips can't be moved anymore
 
         if (noMoreBetsUI != null)
