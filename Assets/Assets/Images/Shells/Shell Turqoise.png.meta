@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Shell Turqoise_0: 6036563256573147432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

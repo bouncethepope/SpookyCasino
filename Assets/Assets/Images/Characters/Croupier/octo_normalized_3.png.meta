@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      octo_normalized_3_0: 5185330175524913131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
