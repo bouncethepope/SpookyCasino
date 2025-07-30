@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minValue: 1
-  maxValue: 10
+  maxValue: 5
 --- !u!1 &3123695969191999313
 GameObject:
   m_ObjectHideFlags: 0

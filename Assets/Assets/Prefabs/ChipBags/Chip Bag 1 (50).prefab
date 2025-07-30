@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1048961406177924452}
   - component: {fileID: 7866532752004216602}
   - component: {fileID: 188079128277134010}
+  - component: {fileID: 2958611954280477989}
   m_Layer: 0
   m_Name: Chip Bag 1 (50)
   m_TagString: Untagged
@@ -85,6 +86,20 @@ MonoBehaviour:
   chipPrefab: {fileID: 3181142888096545749, guid: d9cf3b2290358744796b465a2ce1f45f, type: 3}
   chipValue: 50
   chipParent: {fileID: 1048961406177924452}
+--- !u!114 &2958611954280477989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176141573726198663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdefabcfd37992e42ae7d70ac0a92394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minValue: 95
+  maxValue: 120
 --- !u!1 &5749849756798691367
 GameObject:
   m_ObjectHideFlags: 0
