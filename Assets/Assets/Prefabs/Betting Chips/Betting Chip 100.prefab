@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7523257589334865348}
   - component: {fileID: 8032333032166751261}
   - component: {fileID: 8374576418603004352}
+  - component: {fileID: 2675890975111380630}
   m_Layer: 11
   m_Name: Betting Chip 100
   m_TagString: Untagged
@@ -84,6 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heldScaleMultiplier: 1.2
+  releaseVelocityMultiplier: 1
+  chipDrag: 5
+  enableChipCollisions: 0
   bagCollider: {fileID: 0}
 --- !u!212 &8032333032166751261
 SpriteRenderer:
@@ -155,3 +159,30 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: d9f8a88975fd60c4ebb1fcf3f4889aac, type: 2}
   conflictMaterial: {fileID: 2100000, guid: 95f4093ad8f12ac49a4ffa7a6af5ce7b, type: 2}
   overlapRadius: 0.1
+--- !u!50 &2675890975111380630
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181142888096545749}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 5
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
