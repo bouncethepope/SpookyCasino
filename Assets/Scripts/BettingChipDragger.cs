@@ -10,27 +10,24 @@ public class BettingChipDragger : MonoBehaviour
     public static bool betsLocked = false;
 
     [Header("Physics Settings")]
-    [Tooltip("Multiplier applied to the chip's release velocity")]
-    public float releaseVelocityMultiplier = 1f;
-
-    [Tooltip("Linear damping applied to the chip's Rigidbody2D after release")]
-    public float chipDrag = 5f;
-
+    [Tooltip("Multiplier applied to the chip's release velocity")] public float releaseVelocityMultiplier = 1f;
+    [Tooltip("Linear damping applied to the chip's Rigidbody2D after release")] public float chipDrag = 5f;
     [Tooltip("When enabled chips will collide with one another")]
     public bool enableChipCollisions = false;
-
-    [Tooltip("Collider of the chip bag this chip can be returned to")]
-    public Collider2D bagCollider;
 
     private bool isDragging = false;
     private Vector3 originalScale;
     private Vector3 offset;
+
     private Vector3 lastPosition;
     private Vector2 currentVelocity;
 
     private Camera mainCamera;
     private Collider2D selfCollider;
     private Rigidbody2D rb;
+
+    [Tooltip("Collider of the chip bag this chip can be returned to")]
+    public Collider2D bagCollider;
 
     private void Awake()
     {
@@ -48,11 +45,12 @@ public class BettingChipDragger : MonoBehaviour
         UpdateCollisionSettings();
     }
 
+    public bool IsDragging => isDragging;
+
     public void BeginDrag()
     {
         if (betsLocked)
             return;
-
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
         transform.localScale = originalScale * heldScaleMultiplier;
@@ -121,24 +119,6 @@ public class BettingChipDragger : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    void OnMouseDown()
-    {
-        if (betsLocked)
-            return;
-
-        BeginDrag();
-    }
-
-    void OnMouseDrag()
-    {
-        DragUpdate();
-    }
-
-    void OnMouseUp()
-    {
-        EndDrag();
     }
 
     private Vector3 GetMouseWorldPosition()
