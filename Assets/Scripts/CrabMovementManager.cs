@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Controls random chip movements by hidden crabs during a round.
@@ -14,6 +15,10 @@ public class CrabMovementManager : MonoBehaviour
     [Tooltip("Chance a chip moves when bets are locked")]
     [Range(0f, 1f)] public float noMoreBetsChance = 0.2f;
 
+    [Header("Crab Settings")]
+    [Tooltip("Number of crabs to check when an event occurs")]
+    public int crabsToCheck = 1;
+
     private void Awake()
     {
         Instance = this;
@@ -21,25 +26,35 @@ public class CrabMovementManager : MonoBehaviour
 
     public void OnBallLaunched()
     {
-        TryTriggerCrab(spinStartChance);
+        TryTriggerCrabs(spinStartChance);
     }
 
     public void OnNoMoreBets()
     {
-        TryTriggerCrab(noMoreBetsChance);
+        TryTriggerCrabs(noMoreBetsChance);
     }
 
-    private void TryTriggerCrab(float chance)
+    private void TryTriggerCrabs(float chance)
     {
-        if (Random.value > chance)
-            return;
-
         var movers = FindObjectsByType<ChipCrabMover>(FindObjectsSortMode.None);
         if (movers == null || movers.Length == 0)
             return;
 
-        var mover = movers[Random.Range(0, movers.Length)];
-        if (mover != null)
-            mover.MoveWithCrab();
+        int count = Mathf.Min(crabsToCheck, movers.Length);
+        List<int> chosenIndices = new List<int>();
+
+        while (chosenIndices.Count < count)
+        {
+            int randomIndex = Random.Range(0, movers.Length);
+            if (chosenIndices.Contains(randomIndex))
+                continue;
+
+            chosenIndices.Add(randomIndex);
+
+            if (Random.value <= chance)
+            {
+                movers[randomIndex].MoveWithCrab();
+            }
+        }
     }
 }
