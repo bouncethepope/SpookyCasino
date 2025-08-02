@@ -19,6 +19,9 @@ public class FishDisruptionEvent : MonoBehaviour
     private Vector2 direction;
     private Vector2 perpendicular;
     private float time;
+    private bool ignoreCollisions;
+    [Tooltip("Speed used once the fish drops its collider and heads straight to the exit")]
+    [SerializeField] private float autoMoveSpeed = 3f;
 
     /// <summary>
     /// Initializes the fish disruption event with movement settings.
@@ -55,10 +58,25 @@ public class FishDisruptionEvent : MonoBehaviour
     {
         time += Time.fixedDeltaTime;
 
+        if (time >= 10f && !ignoreCollisions)
+        {
+            ignoreCollisions = true;
+            col.enabled = false;
+            speed = autoMoveSpeed;
+        }
+
         // Calculate velocity for straight movement plus sine wave offset
-        float wave = Mathf.Cos(time * waveFrequency) * waveFrequency * waveAmplitude;
-        Vector2 velocity = direction * speed + perpendicular * wave;
-        rb.linearVelocity = velocity;
+        if (ignoreCollisions)
+        {
+            Vector2 toEnd = (endPoint - (Vector2)transform.position).normalized;
+            rb.linearVelocity = toEnd * speed;
+        }
+        else
+        {
+            float wave = Mathf.Cos(time * waveFrequency) * waveFrequency * waveAmplitude;
+            Vector2 velocity = direction * speed + perpendicular * wave;
+            rb.linearVelocity = velocity;
+        }
 
         // Destroy once past end point
         float travelled = Vector2.Dot((Vector2)transform.position - startPoint, direction);

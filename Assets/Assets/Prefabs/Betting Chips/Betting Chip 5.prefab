@@ -87,7 +87,7 @@ MonoBehaviour:
   heldScaleMultiplier: 1.2
   releaseVelocityMultiplier: 0.3
   chipDrag: 30
-  enableChipCollisions: 1
+  enableChipCollisions: 0
   bagCollider: {fileID: 0}
 --- !u!212 &8032333032166751261
 SpriteRenderer:
