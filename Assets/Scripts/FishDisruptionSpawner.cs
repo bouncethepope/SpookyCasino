@@ -3,9 +3,8 @@ using UnityEngine;
 /// <summary>
 /// Spawns fish disruption events that swim across the table and bump into betting chips.
 /// Configure the ranges to control start/end points, speed, and wave motion.
-/// Right-clicking the spawner will trigger a manual spawn at runtime.
+/// Can be triggered from a UI button.
 /// </summary>
-[RequireComponent(typeof(Collider2D))]
 public class FishDisruptionSpawner : MonoBehaviour
 {
     [Header("Fish Disruption Settings")]
@@ -40,7 +39,9 @@ public class FishDisruptionSpawner : MonoBehaviour
             SpawnFishDisruptions();
     }
 
-    [ContextMenu("Spawn Fish Disruptions")]
+    /// <summary>
+    /// Public method to be called from UI button
+    /// </summary>
     public void SpawnFishDisruptions()
     {
         if (fishPrefab == null)
@@ -78,11 +79,5 @@ public class FishDisruptionSpawner : MonoBehaviour
 
             disruption.Initialize(start, end, speed, amp, freq, ignoreColliders);
         }
-    }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1))
-            SpawnFishDisruptions();
     }
 }
