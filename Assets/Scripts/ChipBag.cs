@@ -20,6 +20,12 @@ public class ChipBag : MonoBehaviour
     private readonly List<BettingChipDragger> multiDraggers = new();
     private bool isMultiDrag = false;
 
+    [Header("Chip Scale Range")]
+    public bool useChipScaleRange = false;
+    public float minChipScale = 1f;
+    public float maxChipScale = 1f;
+
+
     [Header("Right Click Settings")]
     [Tooltip("Force applied to chips when dropping multiple chips with right click.")]
     public float rightClickDropForce = 2f;
@@ -51,6 +57,12 @@ public class ChipBag : MonoBehaviour
         }
 
         currentChip = Instantiate(chipPrefab, transform.position, Quaternion.identity, chipParent);
+        if (useChipScaleRange)
+        {
+            float scale = Random.Range(minChipScale, maxChipScale);
+            currentChip.transform.localScale = Vector3.one * scale;
+        }
+
 
         if (currentChip.TryGetComponent(out BetChip betChip))
         {

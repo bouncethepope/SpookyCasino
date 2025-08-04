@@ -173,6 +173,11 @@ MonoBehaviour:
   chipPrefab: {fileID: 3181142888096545749, guid: 52d68777fad43ae489fdcf61c3db76b1, type: 3}
   chipValue: 500
   chipParent: {fileID: 5619063798255808606}
+  minChipScale: 0.34
+  maxChipScale: 0.34
+  rightClickDropForce: 2
+  rightClickFanRadius: 0.2
+  rightClickFanAngleStep: 10
 --- !u!114 &-9127940646547192962
 MonoBehaviour:
   m_ObjectHideFlags: 0

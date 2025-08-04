@@ -187,3 +187,8 @@ MonoBehaviour:
   chipPrefab: {fileID: 0}
   chipValue: 1
   chipParent: {fileID: 0}
+  minChipScale: 0.34
+  maxChipScale: 0.34
+  rightClickDropForce: 2
+  rightClickFanRadius: 0.2
+  rightClickFanAngleStep: 10

@@ -32,7 +32,6 @@ public class BettingChipDragger : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        originalScale = transform.localScale;
         selfCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -49,10 +48,17 @@ public class BettingChipDragger : MonoBehaviour
 
     public void BeginDrag()
     {
-        if (betsLocked)
+        // Prevent re-entry if another BeginDrag is triggered while already dragging,
+        // which could otherwise update the original scale and leave the chip enlarged.
+        if (betsLocked || isDragging)
             return;
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
+
+        // Cache the current scale as the "resting" size before applying the
+        // drag multiplier. This ensures chips spawned with a custom scale
+        // return to that size after being released.
+        originalScale = transform.localScale;
         transform.localScale = originalScale * heldScaleMultiplier;
 
         rb.bodyType = RigidbodyType2D.Kinematic;
