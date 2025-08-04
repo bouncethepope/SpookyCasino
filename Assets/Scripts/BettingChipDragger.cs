@@ -79,6 +79,9 @@ public class BettingChipDragger : MonoBehaviour
 
     public void EndDrag()
     {
+        if (!isDragging)
+            return;
+
         isDragging = false;
         transform.localScale = originalScale;
 
