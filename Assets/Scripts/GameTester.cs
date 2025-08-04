@@ -11,6 +11,7 @@ public class GameTester : MonoBehaviour
     public BetEvaluator betEvaluator;
     public BetCutoffManager betCutoffManager;
     public WinningSlotDisplay slotDisplay;
+    public BagDistributionButton bagDistributionButton;
 
     [Header("Dynamic Launch Settings")]
     [Tooltip("Random range added to the wheel spin speed (\u00b1 value).")]
@@ -146,6 +147,8 @@ public class GameTester : MonoBehaviour
         }
 
         slotDisplay?.ResetDisplay();
+
+        bagDistributionButton?.ResetButtonState();
 
         isResetting = false;
     }
