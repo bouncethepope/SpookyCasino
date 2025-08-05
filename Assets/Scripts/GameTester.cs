@@ -13,6 +13,15 @@ public class GameTester : MonoBehaviour
     public WinningSlotDisplay slotDisplay;
     public BagDistributionButton bagDistributionButton;
 
+    [Header("Animation")]
+    [Tooltip("Animator that plays when the wheel spins and the ball launches")]
+    public Animator spinLaunchAnimator;
+    [Tooltip("Trigger name used to start the spin & launch animation")]
+    public string spinLaunchTrigger = "SpinLaunch";
+    [Tooltip("Delay after triggering the spin & launch animation before spinning the wheel.")]
+    public float spinLaunchAnimationDelay = 0.5f;
+
+
     [Header("Dynamic Launch Settings")]
     [Tooltip("Random range added to the wheel spin speed (\u00b1 value).")]
     public float spinSpeedVariance = 50f;
@@ -67,11 +76,27 @@ public class GameTester : MonoBehaviour
     [ContextMenu("Spin & Launch")]
     public void SpinAndLaunch()
     {
+        PlaySpinLaunchAnimation();
         StartCoroutine(SpinAndLaunchRoutine());
     }
 
+    private void PlaySpinLaunchAnimation()
+    {
+        if (spinLaunchAnimator != null)
+        {
+            spinLaunchAnimator.SetTrigger(spinLaunchTrigger);
+        }
+    }
+
+
     private System.Collections.IEnumerator SpinAndLaunchRoutine()
     {
+
+        if (spinLaunchAnimationDelay > 0f)
+        {
+            yield return new WaitForSeconds(spinLaunchAnimationDelay);
+        }
+
         if (wheelSpinner != null)
         {
             float spin = baseSpinSpeed + Random.Range(-spinSpeedVariance, spinSpeedVariance);
