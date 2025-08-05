@@ -15,9 +15,11 @@ public class BetChip : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col == null) return;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(col.bounds.center, 0.1f);
+        float radius = Mathf.Max(col.bounds.extents.x, col.bounds.extents.y);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(col.bounds.center, radius);
         foreach (var hit in hits)
         {
+            Debug.Log(hit);
             if (!hit.CompareTag("BetZone")) continue;
             if (hit.TryGetComponent(out BetZone zone))
             {

@@ -87,7 +87,7 @@ MonoBehaviour:
   chipValue: 20
   chipParent: {fileID: 1536506653023138979}
   useChipScaleRange: 1
-  minChipScale: 1
+  minChipScale: 1.5
   maxChipScale: 1.5
   rightClickDropForce: 2
   rightClickFanRadius: 0.2

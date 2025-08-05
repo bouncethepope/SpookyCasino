@@ -89,7 +89,8 @@ public class BetEvaluator : MonoBehaviour
             {
                 Collider2D chipCollider = chip.GetComponent<Collider2D>();
                 if (chipCollider == null) continue;
-                Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, 0.1f);
+                float radius = Mathf.Max(chipCollider.bounds.extents.x, chipCollider.bounds.extents.y);
+                Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, radius);
                 foreach (var hit in hits)
                 {
                     if (!hit.CompareTag("BetZone")) continue;
