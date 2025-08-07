@@ -26,7 +26,9 @@ public class ChipBag : MonoBehaviour
     public float maxChipScale = 1f;
 
 
+
     [Header("Right Click Settings")]
+    public bool enableRightClickDrag = true; // Toggle for right-click drag
     [Tooltip("Force applied to chips when dropping multiple chips with right click.")]
     public float rightClickDropForce = 2f;
     [Tooltip("Radius of the fan spread when dragging multiple chips.")]
@@ -137,7 +139,7 @@ public class ChipBag : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (betsLocked)
+        if (betsLocked || !enableRightClickDrag)
             return;
 
         if (!isMultiDrag && Input.GetMouseButtonDown(1))
@@ -146,9 +148,10 @@ public class ChipBag : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        if (betsLocked)
+        if (betsLocked || !enableRightClickDrag)
             return;
 
         if (isMultiDrag)
@@ -164,6 +167,7 @@ public class ChipBag : MonoBehaviour
             }
         }
     }
+
 
     private void OnMouseDrag()
     {

@@ -89,6 +89,7 @@ MonoBehaviour:
   useChipScaleRange: 1
   minChipScale: 1.5
   maxChipScale: 1.5
+  enableRightClickDrag: 0
   rightClickDropForce: 2
   rightClickFanRadius: 0.2
   rightClickFanAngleStep: 10

@@ -19,7 +19,7 @@ public class BetChip : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(col.bounds.center, radius);
         foreach (var hit in hits)
         {
-            Debug.Log(hit);
+            //Debug.Log(hit);  - Print line for testing chip table collisions
             if (!hit.CompareTag("BetZone")) continue;
             if (hit.TryGetComponent(out BetZone zone))
             {
