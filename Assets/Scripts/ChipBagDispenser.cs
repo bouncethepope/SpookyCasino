@@ -1,19 +1,29 @@
 using UnityEngine;
-
 using DG.Tweening;
 
 public class ChipBagDispenser : MonoBehaviour
 {
     [Header("Bag Setup")]
-    [Tooltip("Possible prefabs used when spawning chip bags")] public ChipBagValueRandomizer[] bagPrefabs;
+    [Tooltip("Possible prefabs used when spawning chip bags")]
+    public ChipBagValueRandomizer[] bagPrefabs;
 
-    [Tooltip("Where bags start off screen before moving in")] public Transform startPoint;
+    [Tooltip("Specific bag prefab that triggers the pufferfish disruption when spawned")]
+    public ChipBagValueRandomizer pufferfishBagPrefab;
 
-    [Tooltip("All available bag slots")] public Transform[] bagSlots;
+    [Tooltip("Spawner used to trigger the pufferfish disruption")]
+    public PufferfishSpawner pufferfishSpawner;
 
-    [Tooltip("Slots filled at the beginning of the game")] public Transform[] startingSlots;
+    [Tooltip("Where bags start off screen before moving in")]
+    public Transform startPoint;
 
-    [Tooltip("Seconds bags take to move from the start point")] public float moveDuration = 1f;
+    [Tooltip("All available bag slots")]
+    public Transform[] bagSlots;
+
+    [Tooltip("Slots filled at the beginning of the game")]
+    public Transform[] startingSlots;
+
+    [Tooltip("Seconds bags take to move from the start point")]
+    public float moveDuration = 1f;
 
     private GameObject[] spawnedBags;
 
@@ -30,7 +40,7 @@ public class ChipBagDispenser : MonoBehaviour
 
         foreach (Transform slot in startingSlots)
         {
-            int index = FindSlotIndex(slot);
+            int index = System.Array.IndexOf(bagSlots, slot);
             if (index >= 0)
                 SpawnBagAtSlot(slot, index);
         }
@@ -51,18 +61,6 @@ public class ChipBagDispenser : MonoBehaviour
         }
     }
 
-    private int FindSlotIndex(Transform slot)
-    {
-        if (bagSlots == null || slot == null)
-            return -1;
-        for (int i = 0; i < bagSlots.Length; i++)
-        {
-            if (bagSlots[i] == slot)
-                return i;
-        }
-        return -1;
-    }
-
     private void SpawnBagAtSlot(Transform slot, int slotIndex)
     {
         if (bagPrefabs == null || slotIndex < 0 || slotIndex >= bagPrefabs.Length)
@@ -72,6 +70,12 @@ public class ChipBagDispenser : MonoBehaviour
 
         ChipBagValueRandomizer bag = Instantiate(prefab, startPoint.position, startPoint.rotation);
         spawnedBags[slotIndex] = bag.gameObject;
+
+        if (prefab == pufferfishBagPrefab && pufferfishSpawner != null)
+        {
+            pufferfishSpawner.Spawn();
+        }
+
         bag.RandomizeValue();
         bag.transform.DOMove(slot.position, moveDuration);
     }

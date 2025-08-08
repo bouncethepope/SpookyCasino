@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Locks chip interaction once the wheel slows below a configured speed.
@@ -9,6 +10,8 @@ public class BetCutoffManager : MonoBehaviour
     [Header("References")]
     [Tooltip("Wheel spinner used to determine current speed")] public WheelSpinner wheelSpinner;
     [Tooltip("UI element shown when bets are locked")] public GameObject noMoreBetsUI;
+    [UnityEngine.Serialization.FormerlySerializedAs("noMoreBetsUI")]
+    [Tooltip("Sign shown when bets are locked")] public NoMoreBetsSign noMoreBetsSign;
 
     [Header("Cutoff Settings")]
     [Tooltip("When the wheel speed goes below this value, betting is locked")]
@@ -22,6 +25,8 @@ public class BetCutoffManager : MonoBehaviour
     {
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
+        if (noMoreBetsSign != null)
+            noMoreBetsSign.ResetSign();
 
     }
 
@@ -56,6 +61,8 @@ public class BetCutoffManager : MonoBehaviour
 
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(true);
+        if (noMoreBetsSign != null)
+            noMoreBetsSign.Show();
     }
 
     public void UnlockBets()
@@ -66,6 +73,8 @@ public class BetCutoffManager : MonoBehaviour
 
         if (noMoreBetsUI != null)
             noMoreBetsUI.SetActive(false);
+        if (noMoreBetsSign != null)
+            noMoreBetsSign.ResetSign();
 
         // capture currency baseline for the upcoming round
         BetHistorySign.Instance?.StartRound();
