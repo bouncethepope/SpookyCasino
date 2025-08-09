@@ -25,6 +25,10 @@ public class ChipBagDispenser : MonoBehaviour
     [Tooltip("Seconds bags take to move from the start point")]
     public float moveDuration = 1f;
 
+    [Header("Disruption Events")]
+    [Tooltip("Prefab that spawns bubbles for the disruption event")] public BubbleSpawner bubbleSpawnerPrefab;
+
+
     private GameObject[] spawnedBags;
 
     private void Awake()
@@ -74,6 +78,13 @@ public class ChipBagDispenser : MonoBehaviour
         if (prefab == pufferfishBagPrefab && pufferfishSpawner != null)
         {
             pufferfishSpawner.Spawn();
+        }
+
+
+        if (bag.triggerBubbleDisruption && bubbleSpawnerPrefab != null)
+        {
+            BubbleSpawner spawner = Instantiate(bubbleSpawnerPrefab);
+            spawner.Activate();
         }
 
         bag.RandomizeValue();

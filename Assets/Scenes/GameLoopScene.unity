@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 136007973}
   - component: {fileID: 136007974}
   - component: {fileID: 136007975}
-  - component: {fileID: 136007976}
+  - component: {fileID: 136007977}
   m_Layer: 0
   m_Name: DisruptionManager
   m_TagString: Untagged
@@ -298,7 +298,7 @@ MonoBehaviour:
   pufferfishPrefab: {fileID: 7595128835359955770, guid: bfe293fdd70d00c48a56aa28e7b43ae1, type: 3}
   startPoint: {fileID: 1255607312}
   endPoint: {fileID: 240433812}
---- !u!114 &136007976
+--- !u!114 &136007977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,9 +307,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 136007969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba189a1d9b5564b47ac8bbc00c7082f7, type: 3}
+  m_Script: {fileID: 11500000, guid: e0226bae8c086ad4aa506411d6c00967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 5993814987521449328, guid: 6ffc939fcf03c814faeb04f599cb5078, type: 3}
+  spawnInterval: 1
+  maxBubbles: 6
+  sizeRange: {x: 0.5, y: 1.5}
+  speedRange: {x: 0.5, y: 2}
+  spawnActive: 0
 --- !u!1 &154910448 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1244947174015737499, guid: 88e0d0fc8c0fddf49ac8b55ca649baf1, type: 3}
@@ -1352,6 +1358,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   moveDuration: 1
+  bubbleSpawnerPrefab: {fileID: 136007977}
 --- !u!114 &265894433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,7 +2230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
