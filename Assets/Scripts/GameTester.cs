@@ -87,6 +87,7 @@ public class GameTester : MonoBehaviour
             return;
 
         spinStarted = true;
+        PlaySpinLaunchAnimation();
         StartCoroutine(SpinAndLaunchRoutine());
     }
 

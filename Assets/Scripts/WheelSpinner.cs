@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WheelSpinner : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class WheelSpinner : MonoBehaviour
     private float currentSpinSpeed = 0f;
     private bool isSpinning = false;
     private Quaternion initialRotation;
+
+    [Header("Events")]
+    [Tooltip("Invoked when a new spin begins")]
+    public UnityEvent onSpinStart;
+
 
     [Header("Audio")]
     [Tooltip("Sound played while the wheel is spinning")] public AudioClip spinSound;
@@ -102,6 +108,8 @@ public class WheelSpinner : MonoBehaviour
     {
         currentSpinSpeed = initialSpinSpeed;
         isSpinning = true;
+        onSpinStart?.Invoke();
+
         if (audioSource != null && spinSound != null)
         {
             audioSource.clip = spinSound;
