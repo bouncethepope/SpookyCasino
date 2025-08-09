@@ -42,6 +42,8 @@ public class GameTester : MonoBehaviour
     private Quaternion ballStartRot;
 
     private bool isResetting = false;
+    private bool spinStarted = false;
+
 
     private void Awake()
     {
@@ -61,24 +63,33 @@ public class GameTester : MonoBehaviour
     [ContextMenu("Launch Ball")]
     public void LaunchBall()
     {
-        if (ballLauncher != null)
-        {
-            ballLauncher.launchNow = true;
-        }
+        if (spinStarted || ballLauncher == null)
+            return;
+
+        ballLauncher.launchNow = true;
     }
+
 
     [ContextMenu("Spin Wheel")]
     public void SpinWheel()
     {
+        if (spinStarted)
+            return;
+
+        spinStarted = true;
         wheelSpinner?.StartSpin();
     }
 
     [ContextMenu("Spin & Launch")]
     public void SpinAndLaunch()
     {
-        PlaySpinLaunchAnimation();
+        if (spinStarted)
+            return;
+
+        spinStarted = true;
         StartCoroutine(SpinAndLaunchRoutine());
     }
+
 
     private void PlaySpinLaunchAnimation()
     {
@@ -134,6 +145,7 @@ public class GameTester : MonoBehaviour
             return;
 
         isResetting = true;
+        spinStarted = false;
 
         if (ballLauncher != null)
         {
