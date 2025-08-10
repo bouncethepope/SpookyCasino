@@ -33,6 +33,11 @@ public class GameTester : MonoBehaviour
 
     private bool isResetting = false;
 
+    [Header("Developer Controls")]
+    [Tooltip("Sound played when developer controls are activated.")]
+    public AudioClip devActivateClip;
+    private bool devControlsActive = false;
+
     private void Awake()
     {
         if (ballLauncher != null)
@@ -152,12 +157,21 @@ public class GameTester : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            devControlsActive = !devControlsActive;
+            if (devControlsActive && devActivateClip != null)
+            {
+                AudioSource.PlayClipAtPoint(devActivateClip, transform.position);
+            }
+        }
+
+        if (devControlsActive && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             LaunchBall();
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (devControlsActive && Input.GetKeyDown(KeyCode.UpArrow))
         {
             SpinWheel();
         }
@@ -167,7 +181,7 @@ public class GameTester : MonoBehaviour
             SpinAndLaunch();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (devControlsActive && Input.GetKeyDown(KeyCode.RightArrow))
         {
             ResetGame();
         }
