@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1f152e7071e5f9447980d4d8a065a77d
+guid: 9a46da2e8c4c74543ae3bb6c058ca904
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -151198630233454713
-    second: Pufferfish Swim_00019_0
+      213: -1281491865104824306
+    second: Down Key_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pufferfish Swim_00019_0
+      name: Down Key_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 64
-        width: 975
-        height: 875
+        x: 99
+        y: 63
+        width: 819
+        height: 899
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 787c86a95a5d6edf0800000000000000
-      internalID: -151198630233454713
+      spriteID: e08cfd530f9373ee0800000000000000
+      internalID: -1281491865104824306
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Pufferfish Swim_00019_0: -151198630233454713
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
