@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System.Collections;
 
 public class WheelSpinner : MonoBehaviour
 {
@@ -15,11 +15,6 @@ public class WheelSpinner : MonoBehaviour
     private bool isSpinning = false;
     private Quaternion initialRotation;
 
-    [Header("Events")]
-    [Tooltip("Invoked when a new spin begins")]
-    public UnityEvent onSpinStart;
-
-
     [Header("Audio")]
     [Tooltip("Sound played while the wheel is spinning")] public AudioClip spinSound;
     [Tooltip("Minimum pitch when the wheel slows to a stop")]
@@ -27,7 +22,18 @@ public class WheelSpinner : MonoBehaviour
     [Tooltip("Maximum pitch when the wheel is at full speed")]
     [Range(0.1f, 3f)] public float maxSpinPitch = 1f;
 
+    [Header("Ball Hit Audio")]
+    [Tooltip("Sound played when the ball first hits the wheel")]
+    public AudioClip ballHitSound;
+    [Tooltip("Maximum volume of the ball hit sound at full speed")]
+    [Range(0f, 1f)] public float maxBallHitVolume = 1f;
+    [Tooltip("Number of times to play the ball hit sound when spin starts")]
+    public int ballHitLoopCount = 1;
+
     private AudioSource audioSource;
+    private AudioSource ballHitAudioSource;
+    private Coroutine ballHitRoutine;
+    private float ballHitFade = 0f;
 
 
 
@@ -45,6 +51,10 @@ public class WheelSpinner : MonoBehaviour
             audioSource.playOnAwake = false;
             audioSource.pitch = maxSpinPitch;
         }
+
+        ballHitAudioSource = gameObject.AddComponent<AudioSource>();
+        ballHitAudioSource.playOnAwake = false;
+        ballHitAudioSource.loop = false;
     }
 
     public bool IsSpinning()
@@ -90,6 +100,11 @@ public class WheelSpinner : MonoBehaviour
                 audioSource.pitch = Mathf.Lerp(minSpinPitch, maxSpinPitch, normalized);
             }
 
+            if (ballHitAudioSource != null && ballHitAudioSource.isPlaying)
+            {
+                ballHitAudioSource.volume = normalized * maxBallHitVolume * ballHitFade;
+            }
+
             // Stop spinning when speed is near zero
             if (Mathf.Approximately(currentSpinSpeed, 0f))
             {
@@ -98,18 +113,28 @@ public class WheelSpinner : MonoBehaviour
                     audioSource.Stop();
             }
         }
-        else if (audioSource != null && audioSource.isPlaying)
-        {
-            audioSource.Stop();
-        }
+        else
+                {
+                    if (audioSource != null && audioSource.isPlaying)
+                        audioSource.Stop();
+                    if (ballHitAudioSource != null && ballHitAudioSource.isPlaying)
+                    {
+                        ballHitAudioSource.Stop();
+                        ballHitAudioSource.loop = false;
+                        ballHitFade = 0f;
+                        if (ballHitRoutine != null)
+                        {
+                            StopCoroutine(ballHitRoutine);
+                            ballHitRoutine = null;
+                        }
+                    }
+                }
     }
 
     public void StartSpin()
     {
         currentSpinSpeed = initialSpinSpeed;
         isSpinning = true;
-        onSpinStart?.Invoke();
-
         if (audioSource != null && spinSound != null)
         {
             audioSource.clip = spinSound;
@@ -117,6 +142,13 @@ public class WheelSpinner : MonoBehaviour
             audioSource.pitch = maxSpinPitch;
             if (!audioSource.isPlaying)
                 audioSource.Play();
+        }
+
+        if (ballHitAudioSource != null && ballHitSound != null && ballHitLoopCount > 0)
+        {
+            if (ballHitRoutine != null)
+                StopCoroutine(ballHitRoutine);
+            ballHitRoutine = StartCoroutine(PlayBallHitSound());
         }
     }
 
@@ -130,6 +162,18 @@ public class WheelSpinner : MonoBehaviour
         {
             audioSource.Stop();
             audioSource.pitch = maxSpinPitch;
+        }
+
+        if (ballHitAudioSource != null)
+        {
+            ballHitAudioSource.Stop();
+            ballHitAudioSource.loop = false;
+            ballHitFade = 0f;
+        }
+        if (ballHitRoutine != null)
+        {
+            StopCoroutine(ballHitRoutine);
+            ballHitRoutine = null;
         }
     }
 
@@ -147,5 +191,40 @@ public class WheelSpinner : MonoBehaviour
             audioSource.Stop();
             audioSource.pitch = maxSpinPitch;
         }
+        if (ballHitAudioSource != null)
+        {
+            ballHitAudioSource.Stop();
+            ballHitAudioSource.loop = false;
+            ballHitFade = 0f;
+        }
+        if (ballHitRoutine != null)
+        {
+            StopCoroutine(ballHitRoutine);
+            ballHitRoutine = null;
+        }
+    }
+
+    private IEnumerator PlayBallHitSound()
+    {
+        ballHitFade = 1f;
+        ballHitAudioSource.clip = ballHitSound;
+        ballHitAudioSource.loop = true;
+        float normalized = Mathf.Clamp01(Mathf.Abs(currentSpinSpeed) / Mathf.Max(1f, initialSpinSpeed));
+        ballHitAudioSource.volume = normalized * maxBallHitVolume;
+        ballHitAudioSource.Play();
+
+        float totalDuration = ballHitSound.length * ballHitLoopCount;
+        float elapsed = 0f;
+        while (elapsed < totalDuration)
+        {
+            elapsed += Time.deltaTime;
+            ballHitFade = Mathf.Clamp01(1f - (elapsed / totalDuration));
+            yield return null;
+        }
+
+        ballHitAudioSource.Stop();
+        ballHitAudioSource.loop = false;
+        ballHitFade = 0f;
+        ballHitRoutine = null;
     }
 }
