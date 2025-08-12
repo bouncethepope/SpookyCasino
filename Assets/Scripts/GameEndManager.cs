@@ -54,6 +54,9 @@ public class GameEndManager : MonoBehaviour
     /// </summary>
     public void ResetGame()
     {
+        ChipBag.betsLocked = false;
+        BettingChipDragger.betsLocked = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
