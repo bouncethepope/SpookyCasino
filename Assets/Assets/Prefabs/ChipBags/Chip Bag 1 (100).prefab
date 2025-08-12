@@ -192,6 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdefabcfd37992e42ae7d70ac0a92394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minValue: 210
-  maxValue: 300
+  minValue: 500
+  maxValue: 500
   triggerBubbleDisruption: 1

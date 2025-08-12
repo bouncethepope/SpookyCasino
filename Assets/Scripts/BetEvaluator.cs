@@ -179,10 +179,29 @@ public class BetEvaluator : MonoBehaviour
             Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
         }
 
-        StartCoroutine(CollectChipsRoutine(winningChips, losingChips));
+        EvaluateAllInChip(winningChips, out bool hasAllInChip, out bool allInChipWon);
+        StartCoroutine(CollectChipsRoutine(winningChips, losingChips, hasAllInChip, allInChipWon));
     }
 
-    private IEnumerator CollectChipsRoutine(List<GameObject> winners, List<GameObject> losers)
+    private void EvaluateAllInChip(List<GameObject> winningChips, out bool hasAllInChip, out bool allInChipWon)
+    {
+        hasAllInChip = AllInChip.IsInScene;
+        allInChipWon = false;
+
+        if (hasAllInChip)
+        {
+            foreach (var chip in winningChips)
+            {
+                if (chip != null && chip.GetComponent<AllInChip>() != null)
+                {
+                    allInChipWon = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    private IEnumerator CollectChipsRoutine(List<GameObject> winners, List<GameObject> losers, bool hasAllInChip, bool allInChipWon)
     {
         yield return new WaitForSeconds(chipCollectDelay);
 
@@ -225,7 +244,14 @@ public class BetEvaluator : MonoBehaviour
 
         placedChips.Clear();
 
-        TableReset();
+        if (hasAllInChip)
+        {
+            GameEndManager.Instance?.ShowEndScreen(allInChipWon);
+        }
+        else
+        {
+            TableReset();
+        }
     }
 
     private void TableReset()

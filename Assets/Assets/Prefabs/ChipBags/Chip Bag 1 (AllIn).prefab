@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6036563256573147432, guid: 724bb6180ac687f4394442be85a8b64d, type: 3}
+  m_Sprite: {fileID: -2427630093543589642, guid: 0a163d8a826c95d48a05d5b2a15a2487, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,11 +184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c3e6ff30c16f45b77f8c11a283036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 0}
+  chipPrefab: {fileID: 3181142888096545749, guid: b03eab712de06d140aa091fec799d78e, type: 3}
   chipValue: 1
-  chipParent: {fileID: 0}
+  chipParent: {fileID: 4159634847379717334}
+  useChipScaleRange: 0
   minChipScale: 0.34
   maxChipScale: 0.34
+  enableRightClickDrag: 0
   rightClickDropForce: 2
   rightClickFanRadius: 0.2
   rightClickFanAngleStep: 10

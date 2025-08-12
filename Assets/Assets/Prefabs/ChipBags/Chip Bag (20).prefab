@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdefabcfd37992e42ae7d70ac0a92394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minValue: 30
-  maxValue: 70
+  minValue: 100
+  maxValue: 100
+  triggerBubbleDisruption: 0
 --- !u!1 &5274446717849039697
 GameObject:
   m_ObjectHideFlags: 0
