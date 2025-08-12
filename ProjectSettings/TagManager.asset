@@ -58,6 +58,9 @@ TagManager:
   - name: Dolly
     uniqueID: 1610884957
     locked: 0
+  - name: Endgame
+    uniqueID: 3902050129
+    locked: 0
   m_RenderingLayers:
   - Default
   - Ball

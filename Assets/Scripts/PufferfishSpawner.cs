@@ -3,7 +3,12 @@ using System.Collections;
 
 public class PufferfishSpawner : MonoBehaviour
 {
+    [Header("Pufferfish Prefabs")]
     public Pufferfish pufferfishPrefab;
+    [Tooltip("Optional: Special pufferfish with hat for win condition.")]
+    public Pufferfish pufferfishWithHatPrefab;
+
+    [Header("Path Points")]
     public Transform startPoint;
     public Transform endPoint;
 
@@ -11,13 +16,26 @@ public class PufferfishSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        if (pufferfishPrefab == null || startPoint == null || endPoint == null)
+        if (startPoint == null || endPoint == null)
             return;
 
         if (current != null)
             return;
 
-        current = Instantiate(pufferfishPrefab, startPoint.position, Quaternion.identity);
+        // Decide which prefab to use
+        Pufferfish prefabToSpawn = pufferfishPrefab;
+
+        if (pufferfishWithHatPrefab != null &&
+            PersistentGameState.Instance != null &&
+            PersistentGameState.Instance.playerHasWon)
+        {
+            prefabToSpawn = pufferfishWithHatPrefab;
+        }
+
+        if (prefabToSpawn == null)
+            return;
+
+        current = Instantiate(prefabToSpawn, startPoint.position, Quaternion.identity);
         current.startPoint = startPoint;
         current.endPoint = endPoint;
 

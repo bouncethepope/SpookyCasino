@@ -2,13 +2,15 @@ using UnityEngine;
 
 /// <summary>
 /// Spawns fish disruption events that swim across the table and bump into betting chips.
+/// Chooses between a normal fish and a party-hat variant based on the persistent win state.
 /// Configure the ranges to control start/end points, speed, and wave motion.
 /// Can be triggered from a UI button.
 /// </summary>
 public class FishDisruptionSpawner : MonoBehaviour
 {
     [Header("Fish Disruption Settings")]
-    [Tooltip("Prefab for the fish disruption event to spawn")] public GameObject fishPrefab;
+    [Tooltip("Prefab to spawn when the player has not won yet")] public GameObject normalFishPrefab;
+    [Tooltip("Prefab to spawn after the player has won")] public GameObject hatFishPrefab;
     [Tooltip("Minimum number of fish disruptions to spawn")] public int minFish = 1;
     [Tooltip("Maximum number of fish disruptions to spawn")] public int maxFish = 3;
 
@@ -44,9 +46,13 @@ public class FishDisruptionSpawner : MonoBehaviour
     /// </summary>
     public void SpawnFishDisruptions()
     {
-        if (fishPrefab == null)
+        GameObject chosenPrefab = PersistentGameState.Instance != null && PersistentGameState.Instance.playerHasWon
+            ? hatFishPrefab
+            : normalFishPrefab;
+
+        if (chosenPrefab == null)
         {
-            Debug.LogWarning("FishDisruptionSpawner has no fish prefab assigned.");
+            Debug.LogWarning("FishDisruptionSpawner has no fish prefab assigned for the current state.");
             return;
         }
 
@@ -72,7 +78,7 @@ public class FishDisruptionSpawner : MonoBehaviour
             float amp = Random.Range(minWaveAmplitude, maxWaveAmplitude);
             float freq = Random.Range(minWaveFrequency, maxWaveFrequency);
 
-            GameObject fishObj = Instantiate(fishPrefab, start, Quaternion.identity);
+            GameObject fishObj = Instantiate(chosenPrefab, start, Quaternion.identity);
             FishDisruptionEvent disruption = fishObj.GetComponent<FishDisruptionEvent>();
             if (disruption == null)
                 disruption = fishObj.AddComponent<FishDisruptionEvent>();
