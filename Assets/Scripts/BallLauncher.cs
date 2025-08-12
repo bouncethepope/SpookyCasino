@@ -50,6 +50,13 @@ public class BallLauncher : MonoBehaviour
         CrabMovementManager.Instance?.OnBallLaunched();
 
         Debug.Log("🚀 Ball launched!");
+
+
+        // Trigger tension effects only if the all-in prefab exists in the scene
+        if (FinalSpinManager.Instance != null && GameObject.Find(FinalSpinManager.AllInPrefabName) != null)
+        {
+            FinalSpinManager.Instance.OnBallLaunched(transform);
+        }
     }
 
     public void ResetLaunch()

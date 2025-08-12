@@ -279,6 +279,9 @@ public class RouletteBall : MonoBehaviour
             {
                 slotDisplay.ShowResult(slot);
             }
+
+            // Final spin is complete once the ball locks into a slot
+            FinalSpinManager.Instance?.OnBallLocked();
         }
     }
 
