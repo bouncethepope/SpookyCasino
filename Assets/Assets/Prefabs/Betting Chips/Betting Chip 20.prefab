@@ -71,7 +71,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.62
+  m_Radius: 0.65
 --- !u!114 &7523257589334865348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMaterial: {fileID: 2100000, guid: d9f8a88975fd60c4ebb1fcf3f4889aac, type: 2}
   conflictMaterial: {fileID: 2100000, guid: 95f4093ad8f12ac49a4ffa7a6af5ce7b, type: 2}
-  overlapRadius: 0.1
+  overlapRadius: 1
 --- !u!50 &2675890975111380630
 Rigidbody2D:
   serializedVersion: 5
