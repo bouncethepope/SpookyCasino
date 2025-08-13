@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -30,6 +31,16 @@ public class FinalSpinManager : MonoBehaviour
     [Range(0f, 1f)]
     public float slowMotionScale = 0.3f;
 
+    [Header("Audio")]
+    [Tooltip("Audio source used to play final spin sounds")]
+    public AudioSource audioSource;
+    [Tooltip("Clip played once when the final spin begins")]
+    public AudioClip launchClip;
+    [Tooltip("Clip looped while the ball is spinning after the launch clip finishes")]
+    public AudioClip loopClip;
+    [Tooltip("Clip played once when the final spin ends")]
+    public AudioClip endClip;
+
     private float originalTimeScale = 1f;
     private float originalFixedDelta = 0.02f;
 
@@ -37,6 +48,7 @@ public class FinalSpinManager : MonoBehaviour
     private bool finalSpinActive = false;
     private Transform targetBall = null;
     private bool[] originalObjectStates;
+    private Coroutine audioRoutine;
 
     private void Awake()
     {
@@ -134,6 +146,10 @@ public class FinalSpinManager : MonoBehaviour
                     objectsToActivate[i].SetActive(true);
             }
         }
+
+        if (audioRoutine != null)
+            StopCoroutine(audioRoutine);
+        audioRoutine = StartCoroutine(PlayFinalSpinAudio());
     }
 
     private void EndFinalSpin()
@@ -169,8 +185,45 @@ public class FinalSpinManager : MonoBehaviour
             }
         }
 
+        if (audioRoutine != null)
+        {
+            StopCoroutine(audioRoutine);
+            audioRoutine = null;
+        }
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+            if (endClip != null)
+            {
+                audioSource.clip = endClip;
+                audioSource.Play();
+            }
+        }
+
         // Restore time scale
         Time.timeScale = originalTimeScale;
         Time.fixedDeltaTime = originalFixedDelta;
+    }
+
+    private IEnumerator PlayFinalSpinAudio()
+    {
+        if (audioSource == null)
+            yield break;
+
+        if (launchClip != null)
+        {
+            audioSource.loop = false;
+            audioSource.clip = launchClip;
+            audioSource.Play();
+            yield return new WaitWhile(() => audioSource.isPlaying);
+        }
+
+        if (loopClip != null && finalSpinActive)
+        {
+            audioSource.loop = true;
+            audioSource.clip = loopClip;
+            audioSource.Play();
+        }
     }
 }
