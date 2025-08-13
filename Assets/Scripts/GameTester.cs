@@ -12,6 +12,7 @@ public class GameTester : MonoBehaviour
     public BetCutoffManager betCutoffManager;
     public WinningSlotDisplay slotDisplay;
     public BagDistributionButton bagDistributionButton;
+    public GameEndManager gameEndManager;
 
     [Header("Animation")]
     [Tooltip("Animator that plays when the wheel spins and the ball launches")]
@@ -154,6 +155,8 @@ public class GameTester : MonoBehaviour
         isResetting = true;
         spinStarted = false;
 
+        StatsHandler.Instance?.Hide();
+
         if (ballLauncher != null)
         {
             ballLauncher.ResetLaunch();
@@ -227,6 +230,18 @@ public class GameTester : MonoBehaviour
         if (devControlsActive && Input.GetKeyDown(KeyCode.RightArrow))
         {
             ResetGame();
+        }
+
+        if (devControlsActive && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            gameEndManager?.TriggerWin();
+            Debug.Log("Win triggered!");
+        }
+
+        if (devControlsActive && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gameEndManager?.TriggerLose();
+            Debug.Log("Loss triggered!");
         }
     }
 }

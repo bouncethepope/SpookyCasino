@@ -35,6 +35,14 @@ public class BetEvaluator : MonoBehaviour
 
     private RouletteSlot lastWinningSlot;
 
+    private int successfulChipCount;
+    private int unsuccessfulChipCount;
+    private int rejectedChipCount;
+
+    public int totalSuccessful;
+    public int totalUnsuccessful;
+    public int totalRejected;
+
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
     {
@@ -68,6 +76,7 @@ public class BetEvaluator : MonoBehaviour
 
         List<GameObject> winningChips = new List<GameObject>();
         List<GameObject> losingChips = new List<GameObject>();
+        List<GameObject> rejectedChips = new List<GameObject>();
         rewardAmounts.Clear();
 
         foreach (var chip in placedChips)
@@ -110,6 +119,7 @@ public class BetEvaluator : MonoBehaviour
             if (nonSlotExclusive > 1)
             {
                 Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple incompatible zones. Ignoring bet.");
+                rejectedChips.Add(chip);
                 continue;
             }
 
@@ -178,6 +188,21 @@ public class BetEvaluator : MonoBehaviour
 
             Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
         }
+
+        successfulChipCount = winningChips.Count;
+        unsuccessfulChipCount = losingChips.Count;
+        rejectedChipCount = rejectedChips.Count;
+
+        totalSuccessful = winningChips.Count + totalSuccessful;
+        totalUnsuccessful= losingChips.Count + totalUnsuccessful;
+        totalRejected = rejectedChips.Count + totalRejected;
+
+
+
+        Debug.Log($"Successful: {successfulChipCount}, Unsuccessful: {unsuccessfulChipCount}, Rejected: {rejectedChipCount}");
+        Debug.Log($"Ttotal Successful: {totalSuccessful}, Ttotal Unsuccessful: {totalUnsuccessful}, TOtalRejected: {totalRejected}");
+
+
 
         EvaluateAllInChip(winningChips, out bool hasAllInChip, out bool allInChipWon);
         StartCoroutine(CollectChipsRoutine(winningChips, losingChips, hasAllInChip, allInChipWon));
@@ -256,6 +281,7 @@ public class BetEvaluator : MonoBehaviour
 
     private void TableReset()
     {
+
         if (gameTester == null)
             return;
 
