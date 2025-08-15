@@ -1897,11 +1897,11 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1909,7 +1909,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Lucky number eight, the best number. '
+        value: So\. octopus\. - is your favourite number eight?\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1937,8 +1937,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 157.14117
-        y: 83.148926
+        x: 159.02353
+        y: 82.20776
         width: 160
         height: 30
     - id: 2
@@ -1952,11 +1952,11 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -1964,7 +1964,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Because of your eight arms?
+        value: '[pic=4]That''s boarderline racist landy.\.'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1982,61 +1982,6 @@ MonoBehaviour:
       - originConversationID: 3
         originDialogueID: 2
         destinationConversationID: 3
-        destinationDialogueID: 3
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 160
-        y: 130
-        width: 160
-        height: 30
-    - id: 3
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: No\., because I [em1]'eight[/em1] how much you bore me.\.
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 3
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 3
-        originDialogueID: 3
-        destinationConversationID: 3
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
@@ -2047,8 +1992,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160
-        y: 180
+        x: 161.88235
+        y: 132.82353
         width: 160
         height: 30
     - id: 4
@@ -2074,7 +2019,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Just kidding landy, you alright
+        value: Besides, my favourite number is zero\.\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2102,8 +2047,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 157.65106
-        y: 228.34897
+        x: 160.99998
+        y: 229.05728
         width: 160
         height: 30
     - id: 5
@@ -2117,11 +2062,11 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -2129,7 +2074,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: You mean\. [em1]alr'eight?[/em1]\.\.
+        value: '[pic=4]Like your odds of winning today.\.'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2158,7 +2103,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 156.79999
-        y: 279.2
+        y: 278.25885
         width: 160
         height: 30
     - id: 6
@@ -2184,7 +2129,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Don't push it.
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2212,7 +2157,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.9100001
+    canvasZoom: 0.85000014
   - id: 4
     fields:
     - title: Title
@@ -3534,8 +3479,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 58.247597, y: 0}
-    canvasZoom: 0.6100004
+    canvasScrollPosition: {x: 246.29655, y: 150.90654}
+    canvasZoom: 0.64000034
   - id: 5
     fields:
     - title: Title
@@ -4170,8 +4115,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 220.73691, y: 0}
-    canvasZoom: 0.97
+    canvasScrollPosition: {x: 65.918945, y: 0}
+    canvasZoom: 0.73000026
   - id: 7
     fields:
     - title: Title
