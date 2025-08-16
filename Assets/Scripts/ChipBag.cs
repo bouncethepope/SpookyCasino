@@ -16,6 +16,12 @@ public class ChipBag : MonoBehaviour
     private GameObject currentChip;
     private Collider2D bagCollider;
 
+    [Header("Insufficient Funds Feedback")]
+    [Tooltip("Show an outline when the player can't afford a chip.")]
+    public bool showOutlineOnInsufficientFunds = true;
+    [Tooltip("Outline GameObject to toggle when player can't afford a chip.")]
+    public GameObject insufficientFundsOutline;
+
     // Track multiple chips when dragging with right click
     private readonly List<BettingChipDragger> multiDraggers = new();
     private bool isMultiDrag = false;
@@ -24,8 +30,6 @@ public class ChipBag : MonoBehaviour
     public bool useChipScaleRange = false;
     public float minChipScale = 1f;
     public float maxChipScale = 1f;
-
-
 
     [Header("Right Click Settings")]
     public bool enableRightClickDrag = true; // Toggle for right-click drag
@@ -39,6 +43,35 @@ public class ChipBag : MonoBehaviour
     private void Awake()
     {
         bagCollider = GetComponent<Collider2D>();
+        if (insufficientFundsOutline != null)
+            insufficientFundsOutline.SetActive(false);
+    }
+
+    private void OnMouseEnter()
+    {
+        UpdateOutline();
+    }
+
+    // MERGED: outline + right-click handling
+    private void OnMouseOver()
+    {
+        // Always update outline while hovering
+        UpdateOutline();
+
+        // Handle starting a right-click multi-drag
+        if (betsLocked || !enableRightClickDrag)
+            return;
+
+        if (!isMultiDrag && Input.GetMouseButtonDown(1))
+        {
+            StartMultiDrag();
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (insufficientFundsOutline != null)
+            insufficientFundsOutline.SetActive(false);
     }
 
     private void OnMouseDown()
@@ -65,7 +98,6 @@ public class ChipBag : MonoBehaviour
             currentChip.transform.localScale = Vector3.one * scale;
         }
 
-
         if (currentChip.TryGetComponent(out BetChip betChip))
         {
             betChip.chipValue = chipValue;
@@ -82,6 +114,16 @@ public class ChipBag : MonoBehaviour
 
         currentDragger.bagCollider = bagCollider;
         currentDragger.BeginDrag();
+    }
+
+    private void UpdateOutline()
+    {
+        if (!showOutlineOnInsufficientFunds || insufficientFundsOutline == null)
+            return;
+
+        bool insufficient = PlayerCurrency.Instance != null &&
+                             PlayerCurrency.Instance.CurrentCurrency < chipValue;
+        insufficientFundsOutline.SetActive(insufficient);
     }
 
     private void StartMultiDrag()
@@ -137,18 +179,6 @@ public class ChipBag : MonoBehaviour
         isMultiDrag = true;
     }
 
-    private void OnMouseOver()
-    {
-        if (betsLocked || !enableRightClickDrag)
-            return;
-
-        if (!isMultiDrag && Input.GetMouseButtonDown(1))
-        {
-            StartMultiDrag();
-        }
-    }
-
-
     private void Update()
     {
         if (betsLocked || !enableRightClickDrag)
@@ -167,7 +197,6 @@ public class ChipBag : MonoBehaviour
             }
         }
     }
-
 
     private void OnMouseDrag()
     {

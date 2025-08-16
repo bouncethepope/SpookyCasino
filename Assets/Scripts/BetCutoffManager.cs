@@ -92,5 +92,6 @@ public class BetCutoffManager : MonoBehaviour
     public void BeginCutoffMonitoring()
     {
         monitorSpin = true;
+        //FinalChipBag.LockBag();
     }
 }
