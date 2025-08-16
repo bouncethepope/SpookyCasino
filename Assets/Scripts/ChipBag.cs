@@ -40,6 +40,10 @@ public class ChipBag : MonoBehaviour
     [Tooltip("Angle step in degrees between chips in the fan spread.")]
     public float rightClickFanAngleStep = 10f;
 
+    [Header("Final Chip Bag Mode")]
+    [Tooltip("If true, this bag cannot give out chips.")]
+    public bool isFinalChipBag = false;
+
     private void Awake()
     {
         bagCollider = GetComponent<Collider2D>();
@@ -52,16 +56,16 @@ public class ChipBag : MonoBehaviour
         UpdateOutline();
     }
 
-    // MERGED: outline + right-click handling
     private void OnMouseOver()
     {
         // Always update outline while hovering
         UpdateOutline();
 
-        // Handle starting a right-click multi-drag
-        if (betsLocked || !enableRightClickDrag)
+        // Stop if final bag or locked
+        if (isFinalChipBag || betsLocked || !enableRightClickDrag)
             return;
 
+        // Handle starting a right-click multi-drag
         if (!isMultiDrag && Input.GetMouseButtonDown(1))
         {
             StartMultiDrag();
@@ -76,7 +80,7 @@ public class ChipBag : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (betsLocked)
+        if (isFinalChipBag || betsLocked)
             return;
 
         // Only handle left click in this method
@@ -128,7 +132,7 @@ public class ChipBag : MonoBehaviour
 
     private void StartMultiDrag()
     {
-        if (isMultiDrag) return;
+        if (isMultiDrag || isFinalChipBag) return;
 
         const int multiCount = 5;
         int totalCost = chipValue * multiCount;
@@ -181,7 +185,7 @@ public class ChipBag : MonoBehaviour
 
     private void Update()
     {
-        if (betsLocked || !enableRightClickDrag)
+        if (isFinalChipBag || betsLocked || !enableRightClickDrag)
             return;
 
         if (isMultiDrag)
@@ -200,7 +204,7 @@ public class ChipBag : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (betsLocked) return;
+        if (isFinalChipBag || betsLocked) return;
 
         if (currentDragger != null)
         {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3920203364218148634}
   - component: {fileID: 4417742811474611699}
   - component: {fileID: 5111759576145656515}
-  - component: {fileID: 1987770579794278683}
+  - component: {fileID: -5211329538517017756}
   m_Layer: 0
   m_Name: Chip Bag 1 (AllIn) 1
   m_TagString: Untagged
@@ -101,6 +101,8 @@ MonoBehaviour:
   chipPrefab: {fileID: 3181142888096545749, guid: b03eab712de06d140aa091fec799d78e, type: 3}
   chipValue: 1
   chipParent: {fileID: 6799596236845600772}
+  showOutlineOnInsufficientFunds: 0
+  insufficientFundsOutline: {fileID: 0}
   useChipScaleRange: 0
   minChipScale: 0.34
   maxChipScale: 0.34
@@ -108,20 +110,21 @@ MonoBehaviour:
   rightClickDropForce: 2
   rightClickFanRadius: 0.2
   rightClickFanAngleStep: 10
---- !u!114 &1987770579794278683
+  isFinalChipBag: 0
+--- !u!114 &-5211329538517017756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137039828582012130}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdefabcfd37992e42ae7d70ac0a92394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minValue: 1
-  maxValue: 10
+  minValue: 999999
+  maxValue: 999999
   triggerBubbleDisruption: 0
 --- !u!1 &5034097728970343852
 GameObject:

@@ -11,6 +11,19 @@ public class AllInChipBag : MonoBehaviour
     private GameObject currentChip;
     private Collider2D bagCollider;
 
+    private static bool spinLocked = false;
+
+    public static void LockBag()
+    {
+        spinLocked = true;
+    }
+
+    public static void ResetLock()
+    {
+        spinLocked = false;
+    }
+
+
     private void Awake()
     {
         bagCollider = GetComponent<Collider2D>();
@@ -18,7 +31,7 @@ public class AllInChipBag : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (ChipBag.betsLocked)
+        if (spinLocked || ChipBag.betsLocked)
             return;
 
         if (currentChip != null) return;
@@ -59,7 +72,7 @@ public class AllInChipBag : MonoBehaviour
     private void OnMouseDrag()
     {
         if (ChipBag.betsLocked) return;
-        if (currentDragger != null)
+        if (spinLocked || ChipBag.betsLocked) return;
         {
             currentDragger.DragUpdate();
         }

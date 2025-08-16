@@ -196,6 +196,7 @@ public class GameTester : MonoBehaviour
         slotDisplay?.ResetDisplay();
 
         bagDistributionButton?.ResetButtonState();
+        AllInChipBag.ResetLock();
 
         isResetting = false;
     }
