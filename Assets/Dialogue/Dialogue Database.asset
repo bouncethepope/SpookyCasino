@@ -216,6 +216,20 @@ MonoBehaviour:
       value: Third Load
       type: 0
       typeString: CustomFieldType_Text
+  - id: 11
+    fields:
+    - title: Name
+      value: Bust.AcceptedBailoutFinal
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: Final Loan
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 8
     fields:
     - title: Name
@@ -2290,24 +2304,6 @@ MonoBehaviour:
         destinationDialogueID: 3
         isConnector: 0
         priority: 2
-      - originConversationID: 4
-        originDialogueID: 0
-        destinationConversationID: 4
-        destinationDialogueID: 26
-        isConnector: 0
-        priority: 2
-      - originConversationID: 4
-        originDialogueID: 0
-        destinationConversationID: 4
-        destinationDialogueID: 31
-        isConnector: 0
-        priority: 2
-      - originConversationID: 4
-        originDialogueID: 0
-        destinationConversationID: 4
-        destinationDialogueID: 40
-        isConnector: 0
-        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -2367,18 +2363,35 @@ MonoBehaviour:
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
-      conditionsString: 'Variable["IngameValues.Currency"] == 0
+      - originConversationID: 4
+        originDialogueID: 3
+        destinationConversationID: 4
+        destinationDialogueID: 26
+        isConnector: 0
+        priority: 2
+      - originConversationID: 4
+        originDialogueID: 3
+        destinationConversationID: 4
+        destinationDialogueID: 31
+        isConnector: 0
+        priority: 2
+      - originConversationID: 4
+        originDialogueID: 3
+        destinationConversationID: 4
+        destinationDialogueID: 40
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["IngameValues.Currency"] == 0
+      userScript: '
 
-        Variable["Bust.AcceptedBailout"]
-        == false'
-      userScript: 
+'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 487.84955
-        y: 149.4895
+        x: 488.89124
+        y: 148.44785
         width: 160
         height: 30
     - id: 4
@@ -2425,14 +2438,14 @@ MonoBehaviour:
         destinationDialogueID: 7
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: Variable["Bust.AcceptedBailout"] == false
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 492.72736
+        x: 493.76898
         y: 248.07881
         width: 160
         height: 30
@@ -2600,7 +2613,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 494.48254
+        x: 493.44086
         y: 424.59152
         width: 160
         height: 30
@@ -2627,7 +2640,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=2]Back again?'
+        value: '[pic=2]Wait - Back again?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2651,17 +2664,15 @@ MonoBehaviour:
       conditionsString: 'Variable["Bust.AcceptedBailout"] == true and
 
         Variable["Bust.AcceptedBailoutTwo"]
-        == false and
-
-        Variable["IngameValues.Currency"] == 0'
+        == false'
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 911.4508
-        y: 243.01582
+        x: 863.5342
+        y: 297.18246
         width: 160
         height: 30
     - id: 27
@@ -2715,8 +2726,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 909.16077
-        y: 293.0158
+        x: 862.43823
+        y: 347.18243
         width: 160
         height: 30
     - id: 28
@@ -2773,8 +2784,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 913.0471
-        y: 357.4868
+        x: 863.81903
+        y: 412.84747
         width: 160
         height: 30
     - id: 29
@@ -2800,7 +2811,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: I'll make sure to ink 'loser' of your credit file.
+        value: I'll make sure to ink 'loser' on your credit file.\.\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2822,8 +2833,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 910.4243
-        y: 419.40744
+        x: 862.5077
+        y: 473.57407
         width: 160
         height: 30
     - id: 31
@@ -2849,7 +2860,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Can I get more than 200 this time?
+        value: Can\. I get 200 more?\.\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2875,15 +2886,15 @@ MonoBehaviour:
         Variable["Bust.AcceptedBailoutTwo"]
         == true and
 
-        Variable["IngameValues.Currency"] == 0'
+        Variable["Bust.AcceptedBailoutThree"] == false'
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1154.942
-        y: 252.09805
+        x: 1122.6503
+        y: 277.9874
         width: 160
         height: 30
     - id: 32
@@ -2909,7 +2920,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 200 brain cells? Sorry, you're maxxed out
+        value: 200 brain cells?\. Sorry, you're maxxed out
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2937,8 +2948,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1152.5491
-        y: 302.09805
+        x: 1120.2573
+        y: 328.13974
         width: 160
         height: 30
     - id: 33
@@ -2964,7 +2975,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Try breathing through your mouth less.
+        value: Try breathing through your mouth less.\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -2982,7 +2993,7 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 33
         destinationConversationID: 4
-        destinationDialogueID: 34
+        destinationDialogueID: 44
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -2992,60 +3003,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1152.5491
-        y: 352.09805
-        width: 160
-        height: 30
-    - id: 34
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: Here's 200 more coins to waste.
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 4
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks: []
-      conditionsString: 
-      userScript: 'AddCurrency(200);
-
-        Variable["Bust.AcceptedBailoutThree]
-        = true'
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 1154.415
-        y: 417.4125
+        x: 1120.2573
+        y: 379.18143
         width: 160
         height: 30
     - id: 35
@@ -3215,8 +3174,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 619.9689
-        y: 569.55835
+        x: 621.01056
+        y: 568.5167
         width: 160
         height: 30
     - id: 38
@@ -3366,18 +3325,15 @@ MonoBehaviour:
         Variable["Bust.AcceptedBailoutTwo"]
         == true and
 
-        Variable["Bust.AcceptedBailoutThree"] == true and
-
-        (Variable["IngameValues.Currency"]
-        == 0)'
+        Variable["Bust.AcceptedBailoutThree"] == true '
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1392.606
-        y: 244.08612
+        x: 1356.374
+        y: 257.12958
         width: 160
         height: 30
     - id: 41
@@ -3421,7 +3377,7 @@ MonoBehaviour:
       - originConversationID: 4
         originDialogueID: 41
         destinationConversationID: 4
-        destinationDialogueID: 42
+        destinationDialogueID: 45
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -3431,66 +3387,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1391.3561
-        y: 294.08612
-        width: 160
-        height: 30
-    - id: 42
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: Here's enough coin to get you over the line
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 4
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 4
-        originDialogueID: 42
-        destinationConversationID: 4
-        destinationDialogueID: 43
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 'AddCurrency(100000);
-
-        Variable["Bust.AcceptedBailoutThree]
-        = true'
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 1391.3561
-        y: 342.8921
+        x: 1355.1241
+        y: 307.12958
         width: 160
         height: 30
     - id: 43
@@ -3538,13 +3436,123 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1392.5499
-        y: 394.08612
+        x: 1353.1045
+        y: 473.51257
+        width: 160
+        height: 30
+    - id: 44
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: But here's 200 more coins to waste.
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 'AddCurrency(200);
+
+        Variable["Bust.AcceptedBailoutThree"]
+        = true'
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1126.3037
+        y: 431.19653
+        width: 160
+        height: 30
+    - id: 45
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: Here's enough coin to get you over the line
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 4
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 4
+        originDialogueID: 45
+        destinationConversationID: 4
+        destinationDialogueID: 43
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 'AddCurrency(99999);
+
+        Variable["Bust.AcceptedBailoutFinal"]
+        = true'
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 1356.2238
+        y: 395.031
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 141.96616, y: 21.818094}
-    canvasZoom: 0.5500007
+    canvasScrollPosition: {x: 619.2782, y: 155.91983}
+    canvasZoom: 0.7900005
   - id: 5
     fields:
     - title: Title

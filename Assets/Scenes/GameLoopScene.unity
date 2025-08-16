@@ -1749,7 +1749,7 @@ MonoBehaviour:
   startPoint: {fileID: 1087529723}
   endPoint: {fileID: 1525935571}
   moveDuration: 1
-  enterDelay: 10
+  enterDelay: 20
   jiggleAmplitude: 0.1
   jiggleFrequency: 2
 --- !u!4 &362616130 stripped
