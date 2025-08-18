@@ -1,6 +1,7 @@
 using PixelCrushers.DialogueSystem;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class PlayerCurrency : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class PlayerCurrency : MonoBehaviour
     public TMP_Text currencyText;
 
     public int CurrentCurrency { get; private set; }
+
+    /// <summary>
+    /// Invoked whenever the player's currency amount changes.
+    /// The current currency value is provided to subscribers.
+    /// </summary>
+    public event Action<int> CurrencyChanged;
 
     private void Awake()
     {
@@ -49,6 +56,9 @@ public class PlayerCurrency : MonoBehaviour
         {
             currencyText.text = $"Currency: {CurrentCurrency}";
         }
+
+        // Notify listeners that the currency value has changed.
+        CurrencyChanged?.Invoke(CurrentCurrency);
     }
 
     //Opens Currency Addition in Lua

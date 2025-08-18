@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7425632974989964922}
   - component: {fileID: 1023989130326539392}
   - component: {fileID: 4671564785943859949}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BubblePop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
