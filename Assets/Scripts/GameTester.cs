@@ -223,7 +223,7 @@ public class GameTester : MonoBehaviour
             SpinWheel();
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
         {
             SpinAndLaunch();
         }
