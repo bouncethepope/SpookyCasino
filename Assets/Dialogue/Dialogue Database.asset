@@ -4869,7 +4869,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Get all the bags, and win the final bet to escape \.\.
+        value: Get all the bags, and win the final bet to escape \.\.\.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -4887,7 +4887,7 @@ MonoBehaviour:
       - originConversationID: 10
         originDialogueID: 4
         destinationConversationID: 10
-        destinationDialogueID: 6
+        destinationDialogueID: 3
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -4948,61 +4948,6 @@ MonoBehaviour:
         serializedVersion: 2
         x: 596.88495
         y: 567.49695
-        width: 160
-        height: 30
-    - id: 6
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: But the fish won't make it easy.
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      conversationID: 10
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 10
-        originDialogueID: 6
-        destinationConversationID: 10
-        destinationDialogueID: 3
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 337.2477
-        y: 396.57782
         width: 160
         height: 30
     entryGroups: []
