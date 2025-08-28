@@ -85,8 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heldScaleMultiplier: 1.2
-  releaseVelocityMultiplier: 1
-  chipDrag: 5
+  releaseVelocityMultiplier: 0.3
+  chipDrag: 30
   enableChipCollisions: 0
   bagCollider: {fileID: 0}
 --- !u!212 &8032333032166751261
@@ -172,7 +172,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 5
+  m_LinearDamping: 30
   m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}

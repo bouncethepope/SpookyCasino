@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using PixelCrushers.DialogueSystem; // <-- Needed for DialogueLua
+using PixelCrushers.DialogueSystem;
 
 public class TutorialSpotlight : MonoBehaviour
 {
@@ -23,6 +23,9 @@ public class TutorialSpotlight : MonoBehaviour
         [Tooltip("Value to assign to the Lua variable")]
         public bool dialogueValue = true;
     }
+
+    // Session-only flag: resets to false every time you start the game
+    private static bool TutorialStarted = false;
 
     [Tooltip("Transform of the spotlight to move")] public Transform spotlight;
     [Tooltip("Ordered list of locations the spotlight will visit")] public SpotlightStep[] steps;
@@ -49,20 +52,45 @@ public class TutorialSpotlight : MonoBehaviour
 
     private void Start()
     {
+        if (!TutorialStarted)
+        {
+            BeginTutorial();
+        }
+        else
+        {
+            StartCoroutine(SkipSequence());
+        }
+    }
+
+    /// <summary>
+    /// Begin the tutorial sequence and set the session flag so it won't run again until next launch.
+    /// </summary>
+    public void BeginTutorial()
+    {
+        if (TutorialStarted) return;
+
+        TutorialStarted = true; // mark as started for this session only
+
         if (spotlight != null && steps != null && steps.Length > 0)
         {
             StartCoroutine(RunSequence());
+        }
+        else
+        {
+            StartCoroutine(FadeOutThenComplete());
         }
     }
 
     private IEnumerator RunSequence()
     {
+        currentStep = 0;
+
         while (currentStep < steps.Length)
         {
             var step = steps[currentStep];
             Transform target = step.location;
 
-            if (target != null)
+            if (target != null && spotlight != null)
             {
                 while (Vector3.Distance(spotlight.position, target.position) > 0.01f)
                 {
@@ -71,18 +99,13 @@ public class TutorialSpotlight : MonoBehaviour
                 }
             }
 
-            // Fire UnityEvent
             step.onReached?.Invoke();
 
-            // Optionally set a Dialogue System boolean
             if (step.setDialogueBool && !string.IsNullOrWhiteSpace(step.dialogueVariable))
             {
                 DialogueLua.SetVariable(step.dialogueVariable, step.dialogueValue);
-                // (Optional) Debug:
-                // Debug.Log($"TutorialSpotlight: Set Dialogue var '{step.dialogueVariable}' = {step.dialogueValue}");
             }
 
-            // Optional wait
             if (step.waitTime > 0f)
             {
                 yield return new WaitForSeconds(step.waitTime);
@@ -95,10 +118,25 @@ public class TutorialSpotlight : MonoBehaviour
         onSequenceComplete?.Invoke();
     }
 
+    private IEnumerator SkipSequence()
+    {
+        yield return StartCoroutine(FadeOut());
+        onSequenceComplete?.Invoke();
+    }
+
+    private IEnumerator FadeOutThenComplete()
+    {
+        yield return StartCoroutine(FadeOut());
+        onSequenceComplete?.Invoke();
+    }
+
     private IEnumerator FadeOut()
     {
+        bool anyFaded = false;
+
         if (spriteRenderer != null)
         {
+            anyFaded = true;
             Color c = spriteRenderer.color;
             while (c.a > 0f)
             {
@@ -107,15 +145,18 @@ public class TutorialSpotlight : MonoBehaviour
                 yield return null;
             }
         }
-        else if (spotLight != null)
+
+        if (spotLight != null)
         {
+            anyFaded = true;
             while (spotLight.intensity > 0f)
             {
                 spotLight.intensity = Mathf.MoveTowards(spotLight.intensity, 0f, fadeOutSpeed * Time.deltaTime);
                 yield return null;
             }
         }
-        else
+
+        if (!anyFaded)
         {
             yield return null;
         }
