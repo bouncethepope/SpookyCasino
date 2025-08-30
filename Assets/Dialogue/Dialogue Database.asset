@@ -5375,7 +5375,7 @@ MonoBehaviour:
         destinationDialogueID: 2
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: CountObjects("FinalBetChip") = 2
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -5436,7 +5436,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 4.7627563, y: 0}
     canvasZoom: 1
   - id: 13
     fields:
