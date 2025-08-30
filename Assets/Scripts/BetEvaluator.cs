@@ -43,6 +43,112 @@ public class BetEvaluator : MonoBehaviour
     public int totalUnsuccessful;
     public int totalRejected;
 
+    private enum ChipResult
+    {
+        Win,
+        Lose,
+        Reject
+    }
+
+    private ChipResult EvaluateChip(GameObject chip, GameObject winningSlot, RouletteSlot slotComponent, out int reward)
+    {
+        reward = 0;
+        if (chip == null) return ChipResult.Reject;
+
+        List<BetZone> zones = new List<BetZone>();
+        BetChip chipInfo = chip.GetComponent<BetChip>();
+        if (chipInfo != null)
+        {
+            chipInfo.UpdateBetZones();
+            zones.AddRange(chipInfo.betZones);
+        }
+        else
+        {
+            Collider2D chipCollider = chip.GetComponent<Collider2D>();
+            if (chipCollider == null) return ChipResult.Reject;
+            float radius = Mathf.Max(chipCollider.bounds.extents.x, chipCollider.bounds.extents.y);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, radius);
+            foreach (var hit in hits)
+            {
+                if (!hit.CompareTag("BetZone")) continue;
+                if (hit.TryGetComponent(out BetZone zone)) zones.Add(zone);
+            }
+        }
+
+        int nonSlotExclusive = 0;
+        foreach (var zone in zones)
+        {
+            if (zone.linkedSlot == null && !zone.allowOverlap)
+            {
+                nonSlotExclusive++;
+            }
+        }
+
+        if (nonSlotExclusive > 1)
+        {
+            Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple incompatible zones. Ignoring bet.");
+            return ChipResult.Reject;
+        }
+
+        bool isWinning = false;
+        int payoutMultiplier = 0;
+
+        HashSet<GameObject> numberSlots = new HashSet<GameObject>();
+        foreach (var z in zones)
+        {
+            if (z != null && z.linkedSlot != null)
+                numberSlots.Add(z.linkedSlot);
+        }
+
+        if (numberSlots.Count > 0)
+        {
+            payoutMultiplier = Mathf.RoundToInt(36f / numberSlots.Count);
+            isWinning = numberSlots.Contains(winningSlot);
+        }
+
+        if (!isWinning)
+        {
+            foreach (var betZone in zones)
+            {
+                if (betZone == null || betZone.groupType == BetGroupType.None)
+                    continue;
+
+                bool groupWin = betZone.groupType switch
+                {
+                    BetGroupType.Red => slotComponent.color == RouletteColor.Red,
+                    BetGroupType.Black => slotComponent.color == RouletteColor.Black,
+                    BetGroupType.Even => slotComponent.parity == RouletteParity.Even,
+                    BetGroupType.Odd => slotComponent.parity == RouletteParity.Odd,
+                    BetGroupType.First_1_12 => slotComponent.dozen == RouletteDozen.First_1_12,
+                    BetGroupType.Second_13_24 => slotComponent.dozen == RouletteDozen.Second_13_24,
+                    BetGroupType.Third_25_36 => slotComponent.dozen == RouletteDozen.Third_25_36,
+                    BetGroupType.Low_1_18 => slotComponent.half == RouletteHalf.Low_1_18,
+                    BetGroupType.High_19_36 => slotComponent.half == RouletteHalf.High_19_36,
+                    BetGroupType.Top => slotComponent.line == RouletteLine.Top,
+                    BetGroupType.Middle => slotComponent.line == RouletteLine.Middle,
+                    BetGroupType.Bottom => slotComponent.line == RouletteLine.Bottom,
+                    _ => false
+                };
+
+                if (groupWin)
+                {
+                    isWinning = true;
+                    payoutMultiplier = GetGroupPayout(betZone.groupType);
+                    break;
+                }
+            }
+        }
+
+        if (isWinning && payoutMultiplier > 0)
+        {
+            int chipValue = chipInfo != null ? chipInfo.chipValue : 1;
+            reward = chipValue * payoutMultiplier;
+            return ChipResult.Win;
+        }
+
+        return ChipResult.Lose;
+    }
+
     [ContextMenu("Evaluate Bets")]
     public void EvaluateBets()
     {
@@ -81,112 +187,23 @@ public class BetEvaluator : MonoBehaviour
 
         foreach (var chip in placedChips)
         {
-            if (chip == null)
+            ChipResult result = EvaluateChip(chip, winningSlot, slotComponent, out int reward);
+
+            if (result == ChipResult.Win)
             {
-                Debug.LogWarning("Found a null entry in placedChips list. Skipping.");
-                continue;
-            }
-
-            List<BetZone> zones = new List<BetZone>();
-            BetChip chipInfo = chip.GetComponent<BetChip>();
-            if (chipInfo != null)
-            {
-                chipInfo.UpdateBetZones();
-                zones.AddRange(chipInfo.betZones);
-            }
-            else
-            {
-                Collider2D chipCollider = chip.GetComponent<Collider2D>();
-                if (chipCollider == null) continue;
-                float radius = Mathf.Max(chipCollider.bounds.extents.x, chipCollider.bounds.extents.y);
-                Collider2D[] hits = Physics2D.OverlapCircleAll(chipCollider.bounds.center, radius);
-                foreach (var hit in hits)
-                {
-                    if (!hit.CompareTag("BetZone")) continue;
-                    if (hit.TryGetComponent(out BetZone zone)) zones.Add(zone);
-                }
-            }
-
-            int nonSlotExclusive = 0;
-            foreach (var zone in zones)
-            {
-                if (zone.linkedSlot == null && !zone.allowOverlap)
-                {
-                    nonSlotExclusive++;
-                }
-            }
-
-            if (nonSlotExclusive > 1)
-            {
-                Debug.LogWarning($"⚠️ Chip {chip.name} overlapped multiple incompatible zones. Ignoring bet.");
-                rejectedChips.Add(chip);
-                continue;
-            }
-
-            bool isWinning = false;
-            int payoutMultiplier = 0;
-
-            // ----- Number Bets -----
-            HashSet<GameObject> numberSlots = new HashSet<GameObject>();
-            foreach (var z in zones)
-            {
-                if (z != null && z.linkedSlot != null)
-                    numberSlots.Add(z.linkedSlot);
-            }
-
-            if (numberSlots.Count > 0)
-            {
-                payoutMultiplier = Mathf.RoundToInt(36f / numberSlots.Count);
-                isWinning = numberSlots.Contains(winningSlot);
-            }
-
-            // ----- Group Bets -----
-            if (!isWinning)
-            {
-                foreach (var betZone in zones)
-                {
-                    if (betZone == null || betZone.groupType == BetGroupType.None)
-                        continue;
-
-                    bool groupWin = betZone.groupType switch
-                    {
-                        BetGroupType.Red => slotComponent.color == RouletteColor.Red,
-                        BetGroupType.Black => slotComponent.color == RouletteColor.Black,
-                        BetGroupType.Even => slotComponent.parity == RouletteParity.Even,
-                        BetGroupType.Odd => slotComponent.parity == RouletteParity.Odd,
-                        BetGroupType.First_1_12 => slotComponent.dozen == RouletteDozen.First_1_12,
-                        BetGroupType.Second_13_24 => slotComponent.dozen == RouletteDozen.Second_13_24,
-                        BetGroupType.Third_25_36 => slotComponent.dozen == RouletteDozen.Third_25_36,
-                        BetGroupType.Low_1_18 => slotComponent.half == RouletteHalf.Low_1_18,
-                        BetGroupType.High_19_36 => slotComponent.half == RouletteHalf.High_19_36,
-                        BetGroupType.Top => slotComponent.line == RouletteLine.Top,
-                        BetGroupType.Middle => slotComponent.line == RouletteLine.Middle,
-                        BetGroupType.Bottom => slotComponent.line == RouletteLine.Bottom,
-                        _ => false
-                    };
-
-                    if (groupWin)
-                    {
-                        isWinning = true;
-                        payoutMultiplier = GetGroupPayout(betZone.groupType);
-                        break;
-                    }
-                }
-            }
-
-            if (isWinning && payoutMultiplier > 0)
-            {
-                int chipValue = chipInfo != null ? chipInfo.chipValue : 1;
-                int reward = chipValue * payoutMultiplier;
                 rewardAmounts[chip] = reward;
                 winningChips.Add(chip);
             }
-            else
+            else if (result == ChipResult.Lose)
             {
                 losingChips.Add(chip);
             }
+            else
+            {
+                rejectedChips.Add(chip);
+            }
 
-            Debug.Log($"💰 Chip '{chip.name}' => {(isWinning ? "WIN ✅" : "LOSE ❌")}");
+            Debug.Log($"💰 Chip '{chip?.name}' => {(result == ChipResult.Win ? "WIN ✅" : result == ChipResult.Lose ? "LOSE ❌" : "REJECTED ⚠️")}");
         }
 
         successfulChipCount = winningChips.Count;
@@ -253,7 +270,56 @@ public class BetEvaluator : MonoBehaviour
 
         yield return new WaitForSeconds(chipLossCollectDelay);
 
+        // Re-evaluate chips that were initially marked as losing
+        List<GameObject> secondWinners = new List<GameObject>();
+        List<GameObject> finalLosers = new List<GameObject>();
+        int originalLoserCount = losers.Count;
+
+        GameObject winningSlot = rouletteBall.GetWinningSlot();
+        RouletteSlot slotComponent = winningSlot != null ? winningSlot.GetComponent<RouletteSlot>() : null;
+
         foreach (var chip in losers)
+        {
+            ChipResult result = EvaluateChip(chip, winningSlot, slotComponent, out int reward);
+            if (result == ChipResult.Win)
+            {
+                rewardAmounts[chip] = reward;
+                secondWinners.Add(chip);
+            }
+            else
+            {
+                finalLosers.Add(chip);
+            }
+        }
+
+        // Update statistics based on second evaluation
+        successfulChipCount += secondWinners.Count;
+        totalSuccessful += secondWinners.Count;
+        unsuccessfulChipCount = finalLosers.Count;
+        totalUnsuccessful += finalLosers.Count - originalLoserCount;
+
+        foreach (var chip in secondWinners)
+        {
+            if (chip == null) continue;
+            if (winningChipDestination != null)
+            {
+                chip.transform.DOMove(winningChipDestination.position, chipMoveDuration)
+                    .OnComplete(() =>
+                    {
+                        if (rewardAmounts.TryGetValue(chip, out int reward))
+                            RewardPlayer(chip, reward);
+                        Destroy(chip);
+                    });
+            }
+            else
+            {
+                if (rewardAmounts.TryGetValue(chip, out int reward))
+                    RewardPlayer(chip, reward);
+                Destroy(chip);
+            }
+        }
+
+        foreach (var chip in finalLosers)
         {
             if (chip == null) continue;
             if (losingChipDestination != null)
