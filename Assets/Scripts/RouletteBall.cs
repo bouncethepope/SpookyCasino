@@ -70,6 +70,9 @@ public class RouletteBall : MonoBehaviour
     [Header("Result Display")]
     [Tooltip("Optional display for showing the winning number")] public WinningSlotDisplay slotDisplay;
 
+    [Header("Post Spin Events")]
+    [Tooltip("Centralized timing controller for post-spin actions")] public EventTimingSystem eventTimingSystem;
+
     private Transform followAnchor = null;
     private Coroutine snapRoutine = null;
 
@@ -264,20 +267,27 @@ public class RouletteBall : MonoBehaviour
         {
             Debug.Log($"🎯 Final result number: {slot.number}");
 
-            var evaluator = FindAnyObjectByType<BetEvaluator>();
-            if (evaluator != null)
+            if (eventTimingSystem != null)
             {
-                evaluator.GatherChipsFromScene();
-                evaluator.EvaluateBets();
+                eventTimingSystem.HandlePostSpin(slot);
             }
             else
             {
-                Debug.LogWarning("⚠️ No BetEvaluator found in the scene.");
-            }
+                var evaluator = FindAnyObjectByType<BetEvaluator>();
+                if (evaluator != null)
+                {
+                    evaluator.GatherChipsFromScene();
+                    evaluator.EvaluateBets();
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ No BetEvaluator found in the scene.");
+                }
 
-            if (slotDisplay != null)
-            {
-                slotDisplay.ShowResult(slot);
+                if (slotDisplay != null)
+                {
+                    slotDisplay.ShowResult(slot);
+                }
             }
         }
     }
