@@ -195,6 +195,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -959,7 +972,41 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Start Button Clean_0: 890130311496358609
+      Start Button Clean_1: 3333811477379486455
+      Start Button Clean_10: -8919687091786123613
+      Start Button Clean_11: -5960644054455415921
+      Start Button Clean_12: -5891074496255310920
+      Start Button Clean_13: 6780573307933147542
+      Start Button Clean_14: 4969931821212103703
+      Start Button Clean_15: 8604499245015800488
+      Start Button Clean_16: -8114967991327187576
+      Start Button Clean_17: 5996781044572197331
+      Start Button Clean_18: -2844935067889409812
+      Start Button Clean_19: 2994873174943753833
+      Start Button Clean_2: -7505610009375640430
+      Start Button Clean_20: 1462542313629133013
+      Start Button Clean_21: 1424953781002255968
+      Start Button Clean_22: -2741929357606903483
+      Start Button Clean_23: -201613965389631773
+      Start Button Clean_24: -3077392566302203762
+      Start Button Clean_25: -6899825189504429669
+      Start Button Clean_26: -8808197807112948250
+      Start Button Clean_27: -8064850879796370208
+      Start Button Clean_28: -496854235190950875
+      Start Button Clean_29: -5767266133790992422
+      Start Button Clean_3: -6276188403070410803
+      Start Button Clean_30: -2582880014998378350
+      Start Button Clean_31: 5287456074207215128
+      Start Button Clean_32: -6969456238442238562
+      Start Button Clean_33: 6512095237509648426
+      Start Button Clean_4: 4675752943240289924
+      Start Button Clean_5: -7900048504941236893
+      Start Button Clean_6: -8426924946026253229
+      Start Button Clean_7: -713533365175553006
+      Start Button Clean_8: 1141902928523169422
+      Start Button Clean_9: 3225122863037539561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
